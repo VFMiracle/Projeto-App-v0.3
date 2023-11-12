@@ -1,0 +1,95 @@
+ABREVIATION
+	- The following elements will be abreviated according to thir group's header:
+	.LIKE FUNCTIONS:
+		- Unique names of background tasks.
+
+CHALLENGES BY OPERATION:
+	RENAME DATABASE COLUMN:
+		- Despite online compillers having a SQLite sytax for changing a column's name, the sqflite package seems incapable of doing this kind of operaiton through a simple query execution. There is a workaround described in a saved web page in the 'Searches' favorite folder.
+	MAKE CUSTOM ICONS FOR APP AND IT'S NOTIFICATION ON RELEASE BUILD:
+		- For some reason, despite how the Flutter Local Notifications Package describes itself, the icons used for the release version of the app are the ones defined in the "mipmap" folders inside the "android/app/src/main/res" directory. Also, even if some differ from the others, the build process seems to always use the icon with the largest size to build the smaller ones. This might have something to do with the process that's used to make the App's Icon.
+
+CLASS LISTING ORDER:
+	- Classes are listed in alphabetical order, with one exception:
+		- Classes that extend StatefulWidget are always immediatly followed by their State classes.
+
+FLUTTER HABITS:
+	ALPHABETICAL ORDERS:
+		- The '_' always comes after letters.
+	BUILDCONTEXT VARIABLE NAMES:
+		- BuildContext variables can simply use the term 'Context' whithin their name to describe their type. They'll only use the full 'BuildContext' term if there's another variable in the same scope, of a different type, that requires the use of the 'Context' term.
+	CONDITIONAL WIDGETS IN THE RETURN SECTION OF BUILD FUNCTIONS:
+		- Wrapping a subwidget in an 'if' statement if it is only built under a condition doesn't work. What can be done is call a function that handles the 'if'. Due to Flutter's recomendations and our prioritization of adaptability, this function should always be defined outside of the build function.
+	GLOBAL VARIABLE PLACEMENT FOR STATEFUL WIDGETS:
+		- Flutter seems to nudge the placement of certain types of StatefulWidget variables into specific sections of it. Externally available constants are placed whithin the StatefulWidget itself, common variables (the ones whose state is mutable) are placed in the Widget's State and variables that need to be reset before every build are placed inside the build statement.
+	MODELS SENT TO THEIR VIEWS INSTEAD OF USING PROVIDER:
+		- This is done because of two reasons: 1- The main way to get information from a Model through Provider is to use the select function from BuildContext, which also subscribes whatever is using it to notifications for changes to the used value. Since these values migth already be accessed from whithin a Consumer, this can be unnecessary. 2- The Model will likely have it's own public functions that don't need to be recalled or rebuilt. There is also the Provider's read function, but that one can't be called from whithin the build so having a Model reference whithin the View is the best alternative.
+	REFERENCES TO STATEFUL WIDGETS:
+		- Flutter has limitations with references to Stateful Widgets. It can maintain them but has problems transfering them of their States. As such, Stateful Widgets that need to be transferable should use a Info class to hold their information and transfer that between different instances of the Stateful Widget.
+
+FUNCTION LISTING ORDER:
+	- Class constructors.
+		- The order for them is internal, factory and then custom constructors.
+	- Personal static functions in alphabetical order.
+	- Overrides of system functions.
+		- Startup and ending functions in the order they're called during an instance's lifecycle.
+		- Other overrides in aphabetical order of the function's name.
+		- Override of the 'build' function.
+	- Personal object functions in alphabetical order.
+
+NOMENCLATURE:
+	CASE TYPES:
+		FUNCTIONS:
+			- camelCase
+		VARIABLES:
+			- properties -> cascalCase & The name must end with the word Property, if the class has a variable with the same name (OBS: The '_' is part of the variable's name).
+			- All Others -> camelCase
+	NAME/TYPE ASSOCIATIONS:
+		DbEntry - Used to refer to an entry in a database, it is always associated with a Map.
+
+POSSIBLE PROBLEMS:
+	BUILD RELEASE VERSION:
+		- An Error pops up everytime a release version of the App is built, although it only happens in the first attempt and a subsequent try goes through without an issue. This is being ignored because the Release App doesn't have any noticible problems.
+
+PROJECT STRUCTURE:
+	CLASS LAYERS:
+		- Views: Describe how a particular Route or complex widget should be displayed on the screen.
+		- Models: Exists in a one to one relation with a particular View and describes it's state as well as controlling how it can be changed. There cannot be a Model without a respective View.
+		- Services: Provides some functionality or calculation to the Project, without being associated with any specific Route or Database Table.
+		- Facade: An interface between a Model and one or more DAOs, it restricts which parts of those DAOs can be accessed, as well as performing additional processing or checks on the acquired information before returning it.
+		- DTO: Serves as a execution time capsule for the information of an entry of the Table the DAO is associated with. It's purpose is to remove from the DAO, the responsability of translating the Database data into any formats that aren't the DTO itself. Although, the DTO doesn't need to be used if it is only the value of a single column that is being returned.
+		- DAO: Directly associated with a specific Database Table, it provides all methods to aceessing and altering that Table.
+	MULTIPLE CLASSES IN ONE SCRIPT:
+		MODEL WITH MULTIPLE NOTIFIERS:
+			- In the case of a Model where more than one of it's characteristics should be listened to, it'll maintain multiple custom Notifiers, which are written in the same script as the Model.
+			- Each Notifier will do the processing required by their respective listanable variable.
+			- The Model will grant external access to all of it's Notifiers (which should control their respective APIs), and provide functions that perform operations that span multiple notifiers if need be.
+			- The Model will have knowledge of the Notifier's private fields, however it should only access them through their respective properties, unless otherwise noted by a comment. Private functions can be accessed without issue.
+		- State classes should be written in the same script as their corresponding StatefulWidget.
+	THEME CLASSES:
+		- The Project must have atleast one Theme Class which describes the standard Theme for the entire Project.
+		- New Theme Classes can be created to provide specific Styles for cretain sections.
+		- Some definitions of the Theme are used by default on specific parts of the App (the specific places should be noted in an INFO comment if it isn't immediatly clear what the place is), while others have the custom defined associations bellow (This may change if the Project's scope increases too much):
+			- 'display' Themes - Used for buttons.
+			OBS-1: DO NOT use the labelLarge definition, as it is applied, by default on all Text Buttons of the application. As such, a lot of Theme Classes would be needed to override each specific Text Button use case.
+			OBS-2: If these associations interfere with some default use that differs from them, override them in section specific Themes.
+	VIEW CLASSES:
+		- Views can use private _Build functions to describe specific parts of it's display if the code within the build function risks becoming too difficult to read.
+		- The _Build functions can only describe Widget struture so something like a Consumer wrapper should still be described inside the build function, while wrapping the function that builds it desired Widget.
+		- Dialogs should also have their own _Build functions, but the showDialog call itself needs to still happen in build. That makes it easier to switch the reponse function for when the Dialog closes.
+		- There are only two kinds of data that can be held inside a View:
+			1- A reference to the Model of the Widget, which holds all information the View cannot.
+			2- Display related data that doesn't change over the Widget's lifetime and isn't used in the Widget's functionality.
+
+VARIABLE LISTING ORDER:
+	- Separate the group of fields from the group of their accessors with an empty line.
+		- Order them in the same manner as variables, which means the rest of this proccess applies to them as well.
+			- A getter and setter pair for the same field needs to be right next to eachother with the getter on top.
+		- Separate each accessor with an empty line.
+	- Static variables always come before instance ones, with an empty line spearating these two groups.
+	- Ordered alphabetically by modifier(no modifier, "const", "final", "late").
+	- Place value types above reference types, and dynamic types are placed below both of them.
+		- Value types are ordered in increasing order of type complexity.
+		- Reference types are ordered alphabetically by type name.
+	- OBS: Collection fields are placed right bellow the group of fields that has the same type as it's most complex type, with Lists coming before Maps.
+	- Order alphabetically by variable name.
