@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:projeto_time_counter/dto/time_editor_dto.dart';
 import 'package:projeto_time_counter/facade/time_record_facade.dart';
-import 'package:projeto_time_counter/models/time_record_panel_model.dart';
+import 'package:projeto_time_counter/models/routes/time_record_panel_model.dart';
 import 'package:projeto_time_counter/services/time_conversion_service.dart';
 
 class TimeRecordModel{

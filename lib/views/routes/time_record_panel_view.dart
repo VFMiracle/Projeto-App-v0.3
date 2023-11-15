@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_time_counter/dto/time_editor_dto.dart';
 import 'package:projeto_time_counter/exception/time_record_panel/task_already_recorded_exception.dart';
-import 'package:projeto_time_counter/models/time_record_model.dart';
-import 'package:projeto_time_counter/models/time_record_panel_model.dart';
+import 'package:projeto_time_counter/models/widgets/time_record_model.dart';
+import 'package:projeto_time_counter/models/routes/time_record_panel_model.dart';
 import 'package:projeto_time_counter/services/builder/time_editor_builder.dart';
 import 'package:projeto_time_counter/utils/date_time_utils.dart';
-import 'package:projeto_time_counter/views/reusable/exception_dialog_view.dart';
-import 'package:projeto_time_counter/views/time_record_view.dart';
-import 'package:projeto_time_counter/views/reusable/time_editor_view.dart';
+import 'package:projeto_time_counter/views/widgets/reusable/exception_dialog_view.dart';
+import 'package:projeto_time_counter/views/widgets/time_record_view.dart';
+import 'package:projeto_time_counter/views/widgets/reusable/time_editor_view.dart';
 import 'package:provider/provider.dart';
 
 class TimeRecordPanelView extends StatefulWidget{
@@ -86,7 +86,7 @@ class _TimeRecordPanelViewState extends State<TimeRecordPanelView>{
     );
   }
 
-  Widget _buildNoTimeRecordsMessage(){
+  Center _buildNoTimeRecordsMessage(){
     return Center(
       child: Text(
         "There aren't any Time Records for this day.",

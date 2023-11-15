@@ -1,2 +1,5 @@
 THINGS TO DO:
-	- PROJETO FINALIZADO (Por Enquanto [31/07/2023])
+	- Create a system for maintaining a history of the changes to the Time Records.
+		- Determine how it'll be structured.
+		*- Build the Model and View for the Command History Widget (it represents an entry in the Command History Panel).
+		- Build the Command Hisotry Panel Model.

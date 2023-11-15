@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_time_counter/models/cronometer_panel_model.dart';
-import 'package:projeto_time_counter/views/cronometer_panel_entry_view.dart';
+import 'package:projeto_time_counter/models/routes/cronometer_panel_model.dart';
+import 'package:projeto_time_counter/views/widgets/cronometer_panel_entry_view.dart';
 import 'package:provider/provider.dart';
 
 //Represents the visual blueprint for the Cronometer Panel.

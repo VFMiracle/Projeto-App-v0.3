@@ -1,7 +1,7 @@
 class TimeRecordDTO{
   final int? _id, _countedTime;
   final String? _taskName;
-  final DateTime? _crtnDate;
+  final DateTime? _creationDate;
 
   int? get id => _id;
 
@@ -9,7 +9,8 @@ class TimeRecordDTO{
 
   String? get taskName => _taskName;
 
-  DateTime? get crtnDate => _crtnDate;
+  DateTime? get creationDate => _creationDate;
 
-  TimeRecordDTO({int? id, int? countedTime, String? taskName, DateTime? crtnDate}) : _id = id, _countedTime = countedTime, _taskName = taskName, _crtnDate = crtnDate;
+  TimeRecordDTO({int? id, int? countedTime, String? taskName, DateTime? creationDate}) : 
+      _id = id, _countedTime = countedTime, _taskName = taskName, _creationDate = creationDate;
 }

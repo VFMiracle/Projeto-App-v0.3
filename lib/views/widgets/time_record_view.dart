@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_time_counter/models/time_record_model.dart';
+import 'package:projeto_time_counter/models/widgets/time_record_model.dart';
 import 'package:projeto_time_counter/services/builder/time_editor_builder.dart';
 import 'package:projeto_time_counter/services/time_conversion_service.dart';
-import 'package:projeto_time_counter/views/reusable/time_editor_view.dart';
+import 'package:projeto_time_counter/views/widgets/reusable/time_editor_view.dart';
 import 'package:provider/provider.dart';
 
 class TimeRecordView extends StatelessWidget{

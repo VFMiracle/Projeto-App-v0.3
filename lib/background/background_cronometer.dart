@@ -1,5 +1,5 @@
 import 'package:projeto_time_counter/background/notification_manager.dart';
-import 'package:projeto_time_counter/models/cronometer_model.dart';
+import 'package:projeto_time_counter/models/routes/cronometer_model.dart';
 import 'package:projeto_time_counter/services/time_conversion_service.dart';
 
 //DESC: Describes the logic for the Bakcground Cronometer Notification.

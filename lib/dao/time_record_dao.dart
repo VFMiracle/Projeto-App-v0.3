@@ -26,7 +26,7 @@ class TimeRecordDAO{
   Future<int> insertDbEntry(TimeRecordDTO timeRecord) async {
     int newTimeRecordId = 0;
     Map<String, dynamic> timeRecordDbEntry = {"nm_task": timeRecord.taskName, "nr_time_in_seconds": timeRecord.countedTime,
-      "dt_creation_date": DateTimeUtils().mapDateToDatabaseString(DateTime.now())};
+      "dt_creation_date": DateTimeUtils().mapDateToDatabaseString(timeRecord.creationDate ?? DateTime.now())};
     await _database.insert(
       _tableName,
       timeRecordDbEntry,
@@ -45,7 +45,7 @@ class TimeRecordDAO{
     );
     for(Map<String, dynamic> timeRecordMap in timeRecordsMap){
       timeRecords.add(TimeRecordDTO(id: timeRecordMap["id_time_record"], taskName: timeRecordMap["nm_task"], countedTime: timeRecordMap["nr_time_in_seconds"],
-        crtnDate: crtnDate));
+        creationDate: crtnDate));
     }
     return timeRecords;
   }
@@ -61,7 +61,7 @@ class TimeRecordDAO{
     if(queryResult.isNotEmpty){
       DateTime parsedDateTime = DateTimeUtils().mapStringToDate(queryResult[0]["dt_creation_date"]);
       return TimeRecordDTO(id: queryResult[0]["id_time_record"], countedTime: queryResult[0]["nr_time_in_seconds"], taskName: queryResult[0]["nm_task"],
-          crtnDate: parsedDateTime);
+          creationDate: parsedDateTime);
     }else{
       return null;
     }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_time_counter/models/cronometer_model.dart';
+import 'package:projeto_time_counter/models/routes/cronometer_model.dart';
 import 'package:projeto_time_counter/services/time_conversion_service.dart';
-import 'package:projeto_time_counter/views/cronometer_view.dart';
+import 'package:projeto_time_counter/views/routes/cronometer_view.dart';
 import 'package:provider/provider.dart';
 
 class CronometerPanelEntryView extends StatefulWidget{

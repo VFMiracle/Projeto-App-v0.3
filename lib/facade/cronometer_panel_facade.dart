@@ -1,6 +1,6 @@
 import 'package:projeto_time_counter/dao/cronometer_dao.dart';
 import 'package:projeto_time_counter/dto/cronometer_dto.dart';
-import 'package:projeto_time_counter/models/cronometer_model.dart';
+import 'package:projeto_time_counter/models/routes/cronometer_model.dart';
 
 class CronometerPanelFacade{
 

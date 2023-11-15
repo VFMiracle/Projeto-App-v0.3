@@ -1,7 +1,7 @@
 import 'package:projeto_time_counter/dao/time_record_dao.dart';
 import 'package:projeto_time_counter/dto/time_editor_dto.dart';
 import 'package:projeto_time_counter/dto/time_record_dto.dart';
-import 'package:projeto_time_counter/models/time_record_model.dart';
+import 'package:projeto_time_counter/models/widgets/time_record_model.dart';
 import 'package:projeto_time_counter/services/time_conversion_service.dart';
 
 class TimeRecordPanelFacade{
@@ -10,8 +10,8 @@ class TimeRecordPanelFacade{
     TimeRecordDAO().deleteDbEntry(timeRecordId);
   }
 
-  Future<TimeRecordModel> insertDbEntry(TimeEditorDTO timeEditorDto) async {
-    TimeRecordDTO recordDTO = _mapEditorDtoToRecordDto(timeEditorDto);
+  Future<TimeRecordModel> insertDbEntry(TimeEditorDTO timeEditorDto, DateTime creationDate) async {
+    TimeRecordDTO recordDTO = _mapEditorDtoToRecordDto(timeEditorDto, creationDate);
     TimeRecordModel recordModel = TimeRecordModel(await TimeRecordDAO().insertDbEntry(recordDTO), recordDTO.taskName!, recordDTO.countedTime!);
     return recordModel;
   }
@@ -21,9 +21,9 @@ class TimeRecordPanelFacade{
     return _getModelListFromDtoList(dtos);
   }
 
-  TimeRecordDTO _mapEditorDtoToRecordDto(TimeEditorDTO editorDto){
+  TimeRecordDTO _mapEditorDtoToRecordDto(TimeEditorDTO editorDto, DateTime creationDate){
     return TimeRecordDTO(taskName: editorDto.textFieldText, countedTime: TimeConversionService().fromTimeUnitValuesToInt(hours: editorDto.hours,
-        minutes: editorDto.minutes, seconds: editorDto.seconds));
+        minutes: editorDto.minutes, seconds: editorDto.seconds), creationDate: creationDate);
   }
 
   TimeRecordModel _mapRecordDtoToRecordModel(TimeRecordDTO dto){

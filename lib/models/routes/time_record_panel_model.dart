@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:projeto_time_counter/dto/time_editor_dto.dart';
 import 'package:projeto_time_counter/exception/time_record_panel/task_already_recorded_exception.dart';
 import 'package:projeto_time_counter/facade/time_record_panel_facade.dart';
-import 'package:projeto_time_counter/models/time_record_model.dart';
+import 'package:projeto_time_counter/models/widgets/time_record_model.dart';
 
 class TimeRecordPanelModel{
   //INFO: While the Time Record Panel Model is a singleton, it is only needed on certain moments of the App. As such, in order to prevent it from consuming unnecessary
@@ -65,7 +65,7 @@ class TimeRecordPanelRecordsNotifier extends ChangeNotifier{
   }
 
   void _addTimeRecord(TimeEditorDTO timeEditorDto) async {
-    _timeRecords.add(await _parentModel._facade.insertDbEntry(timeEditorDto));
+    _timeRecords.add(await _parentModel._facade.insertDbEntry(timeEditorDto, _parentModel._selDateNtfr.selDate));
     notifyListeners();
   }
 

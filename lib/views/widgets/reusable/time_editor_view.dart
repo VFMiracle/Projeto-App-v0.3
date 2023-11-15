@@ -5,7 +5,7 @@ import 'package:projeto_time_counter/exception/time_editor/no_text_field_text_ex
 import 'package:projeto_time_counter/exception/time_editor/time_value_is_zero_exception.dart';
 import 'package:projeto_time_counter/models/reusable/time_editor_model.dart';
 import 'package:projeto_time_counter/themes/time_editor_theme.dart';
-import 'package:projeto_time_counter/views/reusable/exception_dialog_view.dart';
+import 'package:projeto_time_counter/views/widgets/reusable/exception_dialog_view.dart';
 import 'package:provider/provider.dart';
 
 class TimeEditorView extends StatefulWidget{

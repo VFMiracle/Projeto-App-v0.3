@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:projeto_time_counter/facade/cronometer_facade.dart';
-import 'package:projeto_time_counter/models/cronometer_panel_model.dart';
+import 'package:projeto_time_counter/models/routes/cronometer_panel_model.dart';
 
 //DESC: Describes the logic behind a Cronometer.
 class CronometerModel{

@@ -1,6 +1,6 @@
 import 'package:projeto_time_counter/dao/time_record_dao.dart';
 import 'package:projeto_time_counter/dto/time_record_dto.dart';
-import 'package:projeto_time_counter/models/time_record_model.dart';
+import 'package:projeto_time_counter/models/widgets/time_record_model.dart';
 
 class TimeRecordFacade{
   
@@ -9,6 +9,6 @@ class TimeRecordFacade{
   }
 
   TimeRecordDTO _mapRecordModelToRecordDto(TimeRecordModel model){
-    return TimeRecordDTO(id: model.id, taskName: model.taskNameNtfr.taskName, countedTime: model.countedTimeNtfr.countedTime, crtnDate: null);
+    return TimeRecordDTO(id: model.id, taskName: model.taskNameNtfr.taskName, countedTime: model.countedTimeNtfr.countedTime, creationDate: null);
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:projeto_time_counter/facade/cronometer_panel_facade.dart';
-import 'package:projeto_time_counter/models/cronometer_model.dart';
+import 'package:projeto_time_counter/models/routes/cronometer_model.dart';
 
 //DESC: Describes the logic behind the Cronometer Panel.
 class CronometerPanelModel extends ChangeNotifier{

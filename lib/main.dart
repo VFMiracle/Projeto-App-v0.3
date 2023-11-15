@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:projeto_time_counter/background/notification_manager.dart';
-import 'package:projeto_time_counter/models/cronometer_panel_model.dart';
-import 'package:projeto_time_counter/models/time_record_panel_model.dart';
+import 'package:projeto_time_counter/models/routes/cronometer_panel_model.dart';
+import 'package:projeto_time_counter/models/routes/time_record_panel_model.dart';
 import 'package:projeto_time_counter/services/database_initialization_service.dart';
 import 'package:projeto_time_counter/themes/main_theme.dart';
-import 'package:projeto_time_counter/views/cronometer_panel_view.dart';
-import 'package:projeto_time_counter/views/time_record_panel_view.dart';
+import 'package:projeto_time_counter/views/routes/cronometer_panel_view.dart';
+import 'package:projeto_time_counter/views/routes/time_record_panel_view.dart';
 import 'package:provider/provider.dart';
 
 void main() async{
