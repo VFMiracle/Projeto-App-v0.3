@@ -5,6 +5,7 @@ import 'package:projeto_time_counter/models/routes/cronometer_panel_model.dart';
 import 'package:projeto_time_counter/models/routes/time_record_panel_model.dart';
 import 'package:projeto_time_counter/services/database_initialization_service.dart';
 import 'package:projeto_time_counter/themes/main_theme.dart';
+import 'package:projeto_time_counter/views/routes/command_history_panel_view.dart';
 import 'package:projeto_time_counter/views/routes/cronometer_panel_view.dart';
 import 'package:projeto_time_counter/views/routes/time_record_panel_view.dart';
 import 'package:provider/provider.dart';
@@ -66,12 +67,20 @@ class MainMenu extends StatelessWidget{
                   child: const Text("Time Records"),
                 );
               }
+              case 2:{
+               return TextButton(
+                onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){
+                  return const CommandHistoryPanelView();
+                })),
+                child: const Text("Command History Panel"),
+               ); 
+              }
               default:{
                 return null;
               }
             }
           },
-          itemCount: 2,
+          itemCount: 3,
           padding: EdgeInsets.zero,
           separatorBuilder: (BuildContext context, int index) => const Divider(),
         ),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_time_counter/models/routes/command_history_panel_model.dart';
+import 'package:projeto_time_counter/views/widgets/command_history_view.dart';
 
 class CommandHistoryPanelView extends StatefulWidget{
   
@@ -11,6 +13,12 @@ class CommandHistoryPanelView extends StatefulWidget{
 class CommandHistoryPanelViewState extends State<CommandHistoryPanelView>{
 
   @override
+  void dispose(){
+    CommandHistoryPanelModel.disposeInstance();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
@@ -21,7 +29,13 @@ class CommandHistoryPanelViewState extends State<CommandHistoryPanelView>{
   }
 
   Widget _buildCommandHistoryList(){
-    return const Text("Nada");
+    return ListView.separated(
+      itemBuilder: (BuildContext context, int index){
+        return CommandHistoryView(model: CommandHistoryPanelModel().historiesNotifier.getHistoryByIndex(index));
+      },
+      itemCount: CommandHistoryPanelModel().historiesNotifier.qtdHistories,
+      separatorBuilder: (BuildContext context, int index) => const Divider(thickness: 2.5)
+    );
   }
 
   Center _buildNoCommandHistoryMessage(){

@@ -10,18 +10,18 @@ class TimeRecordPanelModel{
   static TimeRecordPanelModel? _timeRcrdPanelModel;
 
   final TimeRecordPanelFacade _facade = TimeRecordPanelFacade();
-  late final TimeRecordPanelRecordsNotifier _timeRecordsNtfr;
-  late final TimeRecordPanelSelectedDateNotifier _selDateNtfr;
+  late final TimeRecordPanelRecordsNotifier _timeRecordsNotifier;
+  late final TimeRecordPanelSelectedDateNotifier _selectedDateNotifier;
 
   static bool get isIntlzdPrprt => _timeRcrdPanelModel != null;
 
-  TimeRecordPanelRecordsNotifier get timeRecordsNtfr => _timeRecordsNtfr;
-  TimeRecordPanelSelectedDateNotifier get selDateNtfr => _selDateNtfr;
+  TimeRecordPanelRecordsNotifier get timeRecordsNtfr => _timeRecordsNotifier;
+  TimeRecordPanelSelectedDateNotifier get selDateNtfr => _selectedDateNotifier;
 
   TimeRecordPanelModel._internal(){
-    _selDateNtfr = TimeRecordPanelSelectedDateNotifier(this);
-    _timeRecordsNtfr = TimeRecordPanelRecordsNotifier(this);
-    _selDateNtfr.addListener(_loadTimeRecordsOfSelectedDate);
+    _selectedDateNotifier = TimeRecordPanelSelectedDateNotifier(this);
+    _timeRecordsNotifier = TimeRecordPanelRecordsNotifier(this);
+    _selectedDateNotifier.addListener(_loadTimeRecordsOfSelectedDate);
     _loadTimeRecordsOfSelectedDate();
   }
 
@@ -35,8 +35,8 @@ class TimeRecordPanelModel{
   }
 
   void _loadTimeRecordsOfSelectedDate(){
-    _facade.readDbEntriesByDay(_selDateNtfr.selDate).then((List<TimeRecordModel> timeRecords){
-      _timeRecordsNtfr._setTimeRecords(timeRecords);
+    _facade.readDbEntriesByDay(_selectedDateNotifier.selDate).then((List<TimeRecordModel> timeRecords){
+      _timeRecordsNotifier._setTimeRecords(timeRecords);
     });
   }
 }
@@ -65,7 +65,7 @@ class TimeRecordPanelRecordsNotifier extends ChangeNotifier{
   }
 
   void _addTimeRecord(TimeEditorDTO timeEditorDto) async {
-    _timeRecords.add(await _parentModel._facade.insertDbEntry(timeEditorDto, _parentModel._selDateNtfr.selDate));
+    _timeRecords.add(await _parentModel._facade.insertDbEntry(timeEditorDto, _parentModel._selectedDateNotifier.selDate));
     notifyListeners();
   }
 

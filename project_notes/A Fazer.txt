@@ -1,5 +1,11 @@
 THINGS TO DO:
+	*- Consider changing the fromIntToString fucntion of the TimeConversionService so it doesn't use the DateTime class, as it brings a lot of data that the function doesn't use.
 	- Create a system for maintaining a history of the changes to the Time Records.
 		- Determine how it'll be structured.
-		*- Build the Model and View for the Command History Widget (it represents an entry in the Command History Panel).
+		- Build the Model and View for the Command History Widget (it represents an entry in the Command History Panel).
+			- Write a test class that implements the CommandHistoryModel.
+				- Check if the test class doesn't require any extra functionality.
+			- Use the test class to check how the Command History Panel will look like.
+			- Fix the visual issues with the Command History Panel and it's Histories.
+				*- Add some formatting to the Creation Date of a Command History.
 		- Build the Command Hisotry Panel Model.

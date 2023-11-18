@@ -51,4 +51,12 @@ class TimeConversionService{
     }
     return timeValue;
   }
+
+  String fromTimeUnitValuesToString({int? hours, int? minutes, int? seconds, bool shouldDisplaySeconds = true}){
+    String timeString = "${(hours ?? 0).toString().padLeft(2, '0')}:${(minutes ?? 0).toString().padLeft(2, '0')}";
+    if(shouldDisplaySeconds){
+      timeString += ":${(seconds ?? 0).toString().padLeft(2, '0')}";
+    }
+    return timeString;
+  }
 }
