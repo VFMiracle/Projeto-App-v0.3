@@ -24,7 +24,7 @@ class _CronometerPanelViewState extends State<CronometerPanelView>{
             icon: const Icon(Icons.add),
             onPressed: () => showDialog(
               context: context,
-              builder: _buildCrnmtrCrtrDialog,
+              builder: _buildCronometerCreatorDialog,
             ),
           ),
         ],
@@ -35,21 +35,28 @@ class _CronometerPanelViewState extends State<CronometerPanelView>{
         children: [
           /*_buildSearchBar(),*/
           Expanded(
-            child: _buildCrnmtrList(),
+            child: Consumer<CronometerPanelModel>(
+              builder: (BuildContext context, CronometerPanelModel cronometerPanelModel, Widget? child){
+                if(cronometerPanelModel.qtdCronometer > 0){
+                  return _buildCronometerList();
+                }
+                return _buildNoCronometerMessage();
+              }
+            ),
           ),
         ],
       ),
     );
   }
 
-  AlertDialog _buildCrnmtrCrtrDialog(BuildContext context){
-    TextEditingController crnmtrNameEdtngCtrlr = TextEditingController();
+  AlertDialog _buildCronometerCreatorDialog(BuildContext context){
+    TextEditingController cronometerNameEdtngCtrlr = TextEditingController();
     return AlertDialog(
       actions: [
         TextButton(
           onPressed: (){
-            if(crnmtrNameEdtngCtrlr.text.isNotEmpty){
-              CronometerPanelModel().addCronometer(crnmtrNameEdtngCtrlr.text);
+            if(cronometerNameEdtngCtrlr.text.isNotEmpty){
+              CronometerPanelModel().addCronometer(cronometerNameEdtngCtrlr.text);
               Navigator.of(context).pop();
             }
           },
@@ -59,30 +66,26 @@ class _CronometerPanelViewState extends State<CronometerPanelView>{
           ),
         ),
       ],
-      content: TextField(controller: crnmtrNameEdtngCtrlr),
+      content: TextField(controller: cronometerNameEdtngCtrlr),
       title: const Text("Cronometer Creator"),
     );
   }
 
-  Consumer<CronometerPanelModel> _buildCrnmtrList(){
-    return Consumer<CronometerPanelModel>(
-      builder: (BuildContext context, CronometerPanelModel crnmtrPanelModel, Widget? child){
-        if(crnmtrPanelModel.qtdCrnmtrs > 0){
-          return ListView.separated(
-            itemBuilder: (BuildContext context, int index) => CronometerPanelEntryView(crnmtrModel: CronometerPanelModel().getCrnmtrModelByIndex(index)),
-            itemCount: CronometerPanelModel().qtdCrnmtrs,
-            separatorBuilder: (BuildContext context, int index) => const Divider()
-          );
-        }else{
-          return Center(
-            child: Text(
-              "There are no Cronometers to display.",
-              style: Theme.of(context).textTheme.headlineMedium,
-              textAlign: TextAlign.center,
-            ),
-          );
-        }
-      }
+  ListView _buildCronometerList(){
+    return ListView.separated(
+      itemBuilder: (BuildContext context, int index) => CronometerPanelEntryView(cronometerModel: CronometerPanelModel().getCronometerModelByIndex(index)),
+      itemCount: CronometerPanelModel().qtdCronometer,
+      separatorBuilder: (BuildContext context, int index) => const Divider()
+    );
+  }
+
+  Center _buildNoCronometerMessage(){
+    return Center(
+      child: Text(
+        "There are no Cronometers to display.",
+        style: Theme.of(context).textTheme.headlineMedium,
+        textAlign: TextAlign.center,
+      ),
     );
   }
 

@@ -10,7 +10,7 @@ class CronometerPanelModel extends ChangeNotifier{
   List<CronometerModel> _crnmtrsModel = [];
   final CronometerPanelFacade _facade = CronometerPanelFacade();
 
-  int get qtdCrnmtrs => _crnmtrsModel.length;
+  int get qtdCronometer => _crnmtrsModel.length;
 
   CronometerPanelModel._internal(){
     _facade.readAllDbEntries().then((List<CronometerModel> cronometers){
@@ -38,7 +38,7 @@ class CronometerPanelModel extends ChangeNotifier{
     _sortCronometers();
   }
 
-  CronometerModel getCrnmtrModelByIndex(int index){
+  CronometerModel getCronometerModelByIndex(int index){
     return _crnmtrsModel[index];
   }
 

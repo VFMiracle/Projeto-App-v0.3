@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:projeto_time_counter/models/routes/cronometer_model.dart';
 import 'package:projeto_time_counter/services/time_conversion_service.dart';
 import 'package:projeto_time_counter/views/routes/cronometer_view.dart';
+import 'package:projeto_time_counter/views/widgets/reusable/deletion_dialog_view.dart';
 import 'package:provider/provider.dart';
 
 class CronometerPanelEntryView extends StatefulWidget{
   final CronometerModel _crnmtrModel;
 
-  const CronometerPanelEntryView({required CronometerModel crnmtrModel, Key? key}) : _crnmtrModel = crnmtrModel, super(key: key);
+  const CronometerPanelEntryView({required CronometerModel cronometerModel, Key? key}) : _crnmtrModel = cronometerModel, super(key: key);
 
   @override
   State<CronometerPanelEntryView> createState() => CronometerPanelEntryViewState();
@@ -20,7 +21,10 @@ class CronometerPanelEntryViewState extends State<CronometerPanelEntryView>{
     return TextButton(
       onLongPress: () => showDialog(
         context: context,
-        builder: (BuildContext context) => _buildCrnmtrDeletionDialog(context),
+        builder: (BuildContext context) => DeletionDialogView(
+          "Are you sure you want to delete the ${widget._crnmtrModel.nameNtfr.name} Cronometer?",
+          widget._crnmtrModel.delete
+        ),
       ),
       onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){
           return MultiProvider(

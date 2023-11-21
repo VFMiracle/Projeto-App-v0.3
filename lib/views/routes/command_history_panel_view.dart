@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_time_counter/models/routes/command_history_panel_model.dart';
 import 'package:projeto_time_counter/views/widgets/command_history_view.dart';
+import 'package:provider/provider.dart';
 
 class CommandHistoryPanelView extends StatefulWidget{
   
@@ -24,17 +25,32 @@ class CommandHistoryPanelViewState extends State<CommandHistoryPanelView>{
       appBar: AppBar(
         title: const Text("Command History"),
       ),
-      body: 1 > 0 ? _buildCommandHistoryList() : _buildNoCommandHistoryMessage(),
+      body: Consumer<CommandHistoryPanelHistoriesNotifier>(
+        builder: (BuildContext context, CommandHistoryPanelHistoriesNotifier historiesNotifier, Widget? child){
+          if(historiesNotifier.qtdHistories > 0){
+            return _buildCommandHistoryList();
+          }else{
+            return _buildNoCommandHistoryMessage();
+          }
+        }
+      )
     );
   }
 
   Widget _buildCommandHistoryList(){
-    return ListView.separated(
-      itemBuilder: (BuildContext context, int index){
-        return CommandHistoryView(model: CommandHistoryPanelModel().historiesNotifier.getHistoryByIndex(index));
-      },
-      itemCount: CommandHistoryPanelModel().historiesNotifier.qtdHistories,
-      separatorBuilder: (BuildContext context, int index) => const Divider(thickness: 2.5)
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Expanded(
+          child: ListView.separated(
+            itemBuilder: (BuildContext context, int index){
+              return CommandHistoryView(model: CommandHistoryPanelModel().historiesNotifier.getHistoryByIndex(index));
+            },
+            itemCount: CommandHistoryPanelModel().historiesNotifier.qtdHistories,
+            separatorBuilder: (BuildContext context, int index) => const Divider(thickness: 2.5)
+          ),
+        ),
+      ]
     );
   }
 

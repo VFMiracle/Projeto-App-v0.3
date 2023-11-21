@@ -59,9 +59,9 @@ class _TimeRecordPanelViewState extends State<TimeRecordPanelView>{
         title: const Text("Time Records"),
       ),
       body: Consumer<TimeRecordPanelRecordsNotifier>(
-        builder: (BuildContext context, TimeRecordPanelRecordsNotifier timeRecordsNtfr, Widget? child){
-          if(timeRecordsNtfr.qtdTimeRecords > 0){
-            return _buildTimeRecordList(context, timeRecordsNtfr, child);
+        builder: (BuildContext context, TimeRecordPanelRecordsNotifier timeRecordsNotifier, Widget? child){
+          if(timeRecordsNotifier.qtdTimeRecords > 0){
+            return _buildTimeRecordList(context, timeRecordsNotifier, child);
           }
           return _buildNoTimeRecordsMessage();
         }

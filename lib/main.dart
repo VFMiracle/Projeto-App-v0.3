@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:projeto_time_counter/background/notification_manager.dart';
+import 'package:projeto_time_counter/models/routes/command_history_panel_model.dart';
 import 'package:projeto_time_counter/models/routes/cronometer_panel_model.dart';
 import 'package:projeto_time_counter/models/routes/time_record_panel_model.dart';
 import 'package:projeto_time_counter/services/database_initialization_service.dart';
@@ -70,7 +71,10 @@ class MainMenu extends StatelessWidget{
               case 2:{
                return TextButton(
                 onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){
-                  return const CommandHistoryPanelView();
+                  return ChangeNotifierProvider.value(
+                    value: CommandHistoryPanelModel().historiesNotifier,
+                    child: const CommandHistoryPanelView(),
+                  );
                 })),
                 child: const Text("Command History Panel"),
                ); 

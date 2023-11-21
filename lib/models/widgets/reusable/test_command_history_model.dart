@@ -1,6 +1,6 @@
 import 'package:projeto_time_counter/models/widgets/reusable/command_history_model.dart';
 
-class TestCommandHistoryModel implements CommandHistoryModel{
+class TestCommandHistoryModel extends CommandHistoryModel{
   final String _commandName;
   final DateTime _creationDate;
   final String _targetName;

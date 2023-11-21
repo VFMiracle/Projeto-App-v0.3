@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 abstract class MainTheme{
-  static Color secondaryColor = const Color.fromARGB(255, 7, 146, 211);
   
   static ThemeData build(){
     Color primaryColor = const Color.fromARGB(255, 11, 79, 206);
+    Color secondaryColor = const Color.fromARGB(255, 7, 146, 211);
     Color structureColor = const Color.fromARGB(255, 6, 24, 83);
     return ThemeData(
       colorScheme: ColorScheme(
@@ -35,10 +35,15 @@ abstract class MainTheme{
         thickness: 2,
       ),
       textTheme: TextTheme(
-        bodyMedium: TextStyle(
+        bodyLarge: TextStyle(
           color: primaryColor,
           fontSize: 20,
           fontWeight: FontWeight.w500,
+        ),
+        bodyMedium: TextStyle(
+          color: primaryColor,
+          fontSize: 18,
+          fontWeight: FontWeight.w500
         ),
         bodySmall: const TextStyle( //<- INFO: This style is implicitly used for the dates in the Date Picker.
           fontSize: 15,
