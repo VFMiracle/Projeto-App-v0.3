@@ -93,7 +93,7 @@ class TimeEditorViewState extends State<TimeEditorView>{
             infiniteLoop: true,
             itemHeight: 30,
             itemWidth: 70,
-            maxValue: timeUnit.valueToGrtrUnit - 1,
+            maxValue: timeUnit.valueToGreaterUnit - 1,
             minValue: 0,
             onChanged: (int newValue) => widget._model.getTimeUnitNotifier(timeUnit).value = newValue,
             selectedTextStyle: Theme.of(context).textTheme.headlineMedium,

@@ -5,9 +5,8 @@ ABREVIATION
 		- Information -> info
 		- Quantity -> qtd
 		- Selected -> sel
-	- The following elements will be abreviated according to thir group's header:
-	.LIKE FUNCTIONS:
-		- Unique names of background tasks.
+	- Certain repeating complex terms will be abreviated in order to make readebility easier. These are those terms:
+		- Command History Model -> chModel
 
 CHALLENGES BY OPERATION:
 	RENAME DATABASE COLUMN:

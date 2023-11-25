@@ -8,11 +8,15 @@ class TimeConversionService{
   factory TimeConversionService() => _instance;
 
   String fromIntToString(int timeInSeconds, {bool shouldDisplaySeconds = true}){
-    Duration time = Duration(seconds: timeInSeconds);
-    String timeString = "${time.inHours.toString().padLeft(2, '0')}:"
-        "${time.inMinutes.remainder(60).toString().padLeft(2, '0')}";
+    int timeInHours = timeInSeconds ~/ Duration.secondsPerHour;
+    timeInSeconds -= timeInHours * Duration.secondsPerHour;
+    int timeInMinutes = timeInSeconds ~/ Duration.secondsPerMinute;
+    timeInSeconds -= timeInMinutes * Duration.secondsPerMinute;
+    
+    String timeString = "${timeInHours.toString().padLeft(2, '0')}:"
+        "${timeInMinutes.toString().padLeft(2, '0')}";
     if(shouldDisplaySeconds){
-      timeString += ":${time.inSeconds.remainder(60).toString().padLeft(2, '0')}";
+      timeString += ":${timeInSeconds.remainder(60).toString().padLeft(2, '0')}";
     }
     return timeString;
   }

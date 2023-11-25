@@ -1,3 +1,7 @@
 THINGS TO DO:
-	*- Consider changing the fromIntToString function of the TimeConversionService so it doesn't use the DateTime class, as it brings a lot of data that the function doesn't use.
+	- Create classes for each type of Command History that can be recorded.
+		- Continue wrting the class CronometerEditingChModel.
+		- Determine the best way to specify to the Command History Panel Model which type of Command History it should load.
+		- Add entries to each possible Command History list in the Command History Panel Model.
+		*- Determine if and how to allow the Cronometer History Panel Model to call a function from it's Histories Notifier without making it public and, as such, accessible to any script in the Project.
 	- Create Database tables for maintaining Command Histories.
