@@ -3,5 +3,8 @@ THINGS TO DO:
 		- Continue wrting the class CronometerEditingChModel.
 		- Determine the best way to specify to the Command History Panel Model which type of Command History it should load.
 		- Add entries to each possible Command History list in the Command History Panel Model.
-		*- Determine if and how to allow the Cronometer History Panel Model to call a function from it's Histories Notifier without making it public and, as such, accessible to any script in the Project.
+		- Determine if and how to allow the Cronometer History Panel Model to call a function from it's Histories Notifier without making it public and, as such, accessible to any script in the Project.
+		- Reconsider how the Command History Panel will switch between the different types of Command Histoty.
+	- Allow the Command History Panel to switch which type of Command History is currently loaded.
+		*- Configure the Dropdown Button in the Command History Panel View.
 	- Create Database tables for maintaining Command Histories.

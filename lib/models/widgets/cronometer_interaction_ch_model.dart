@@ -8,7 +8,18 @@ class CronometerInteractionChModel extends CommandHistoryModel{
   final dynamic _updateInfo;
 
   @override
-  String get commandName => _command.toString();
+  String get commandName{
+    switch(_command){
+      case CronometerInteractionCommand.pause:
+        return "Pause";
+      case CronometerInteractionCommand.resetAndDeleteTime:
+        return "Reset & Delete Time";
+      case CronometerInteractionCommand.resetAndSaveTime:
+        return "Reset & Save Time";
+      case CronometerInteractionCommand.start:
+        return "Start";
+    }
+  }
 
   @override
   DateTime get creationDate => _creationDate;

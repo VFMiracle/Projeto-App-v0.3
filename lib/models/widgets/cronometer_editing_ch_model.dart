@@ -8,7 +8,16 @@ class CronometerEditingChModel extends CommandHistoryModel{
   final dynamic _updateInfo;
 
   @override
-  String get commandName => _command.toString();
+  String get commandName {
+    switch(_command){
+      case CronometerEditingCommand.create:
+        return "Create";
+      case CronometerEditingCommand.delete:
+        return "Delete";
+      case CronometerEditingCommand.updateName:
+        return "Update Name";
+    }
+  }
 
   @override
   DateTime get creationDate => _creationDate;

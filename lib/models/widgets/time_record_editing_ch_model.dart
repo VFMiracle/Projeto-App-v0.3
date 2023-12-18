@@ -8,7 +8,18 @@ class TimeRecordEditingChModel extends CommandHistoryModel{
   final dynamic _updateInfo;
 
   @override
-  String get commandName => _command.toString();
+  String get commandName{
+    switch(_command){
+      case TimeRecordEditingCommand.create:
+        return "Create";
+      case TimeRecordEditingCommand.delete:
+        return "Delete";
+      case TimeRecordEditingCommand.updateName:
+        return "Update Name";
+      case TimeRecordEditingCommand.updateValue:
+        return "Update Value";
+    }
+  }
 
   @override
   DateTime get creationDate => _creationDate;

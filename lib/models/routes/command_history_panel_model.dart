@@ -9,24 +9,18 @@ import 'package:projeto_time_counter/models/widgets/reusable/command_history_mod
 import 'package:projeto_time_counter/models/widgets/time_record_editing_ch_model.dart';
 
 class CommandHistoryPanelModel{
-  static CommandHistoryType _selCommandHistoryType = CommandHistoryType.cronometerEditing;
   static CommandHistoryPanelModel? _commandHistoryPanelModel;
   
   late final CommandHistoryPanelHistoriesNotifier _historiesNotifier;
 
-  set selCommandHistoryType(CommandHistoryType newValue){
-    _selCommandHistoryType = newValue;
-
-  }
-
   CommandHistoryPanelHistoriesNotifier get historiesNotifier => _historiesNotifier;
 
-  CommandHistoryPanelModel._internal(CommandHistoryType commandHistoryType){
-    _historiesNotifier = CommandHistoryPanelHistoriesNotifier(this, commandHistoryType);
+  CommandHistoryPanelModel._internal(){
+    _historiesNotifier = CommandHistoryPanelHistoriesNotifier(this);
   }
 
   factory CommandHistoryPanelModel(){
-    _commandHistoryPanelModel ??= CommandHistoryPanelModel._internal(commandHistoryType);
+    _commandHistoryPanelModel ??= CommandHistoryPanelModel._internal();
     return _commandHistoryPanelModel!;
   }
 
@@ -36,14 +30,20 @@ class CommandHistoryPanelModel{
 }
 
 class CommandHistoryPanelHistoriesNotifier extends ChangeNotifier{
+  CommandHistoryType _selCommandHistoryType = CommandHistoryType.cronometerEditing;
   final List<CommandHistoryModel> histories = [];
   // ignore: unused_field
   final CommandHistoryPanelModel _parentModel;
 
   int get qtdHistories => histories.length;
 
-  CommandHistoryPanelHistoriesNotifier(CommandHistoryPanelModel parentModel, CommandHistoryType commandHistoryType): _parentModel = parentModel{
-    _loadDesiredCommandHistories(commandHistoryType);
+  set selCommandHistoryType(CommandHistoryType newValue){
+    _selCommandHistoryType = newValue;
+    _loadDesiredCommandHistories();
+  }
+
+  CommandHistoryPanelHistoriesNotifier(CommandHistoryPanelModel parentModel): _parentModel = parentModel{
+    _loadDesiredCommandHistories();
   }
 
   addHistory(CommandHistoryModel history){
@@ -65,8 +65,9 @@ class CommandHistoryPanelHistoriesNotifier extends ChangeNotifier{
     return histories[index];
   }
 
-  _loadDesiredCommandHistories(CommandHistoryType commandHistoryType){
-    switch(commandHistoryType){
+  _loadDesiredCommandHistories(){
+    histories.clear();
+    switch(_selCommandHistoryType){
       case (CommandHistoryType.cronometerEditing):
         histories.addAll([
           CronometerEditingChModel(command: CronometerEditingCommand.create, targetName: "Erguminoga"),
@@ -100,8 +101,4 @@ class CommandHistoryPanelHistoriesNotifier extends ChangeNotifier{
         break;
     }
   }
-}
-
-abstract class _CommandHistoryPanelHistoriesNotifierRestrictConnection{
-  
 }
