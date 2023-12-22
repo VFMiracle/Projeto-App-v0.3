@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_time_counter/models/widgets/reusable/command_history_model.dart';
+import 'package:projeto_time_counter/services/time_conversion_service.dart';
 import 'package:projeto_time_counter/utils/date_time_utils.dart';
 import 'package:projeto_time_counter/views/widgets/reusable/deletion_dialog_view.dart';
 
@@ -25,7 +26,9 @@ class CommandHistoryView extends StatelessWidget{
   Table _buildHistoryContent(BuildContext context){
     String updateInfoText = "";
     if(_model.updateInfo != null){
-      if(_model.updateInfo.runtimeType != String){
+      if(_model.updateInfo.runtimeType == int){
+        updateInfoText = TimeConversionService().fromIntToString(_model.updateInfo);
+      }else if(_model.updateInfo.runtimeType != String){
         updateInfoText = _model.updateInfo.toString();
       }else{
         updateInfoText = _model.updateInfo;

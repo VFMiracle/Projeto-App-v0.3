@@ -37,6 +37,8 @@ class CommandHistoryPanelHistoriesNotifier extends ChangeNotifier{
 
   int get qtdHistories => histories.length;
 
+  CommandHistoryType get selCommandHistoryType => _selCommandHistoryType;
+
   set selCommandHistoryType(CommandHistoryType newValue){
     _selCommandHistoryType = newValue;
     _loadDesiredCommandHistories();

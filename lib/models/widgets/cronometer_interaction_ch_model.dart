@@ -3,33 +3,14 @@ import 'package:projeto_time_counter/models/widgets/reusable/command_history_mod
 
 class CronometerInteractionChModel extends CommandHistoryModel{
   final CronometerInteractionCommand _command;
-  final DateTime _creationDate;
-  final String _targetName;
-  final dynamic _updateInfo;
+  final int? _updateInfo;
 
   @override
-  String get commandName{
-    switch(_command){
-      case CronometerInteractionCommand.pause:
-        return "Pause";
-      case CronometerInteractionCommand.resetAndDeleteTime:
-        return "Reset & Delete Time";
-      case CronometerInteractionCommand.resetAndSaveTime:
-        return "Reset & Save Time";
-      case CronometerInteractionCommand.start:
-        return "Start";
-    }
-  }
-
-  @override
-  DateTime get creationDate => _creationDate;
-
-  @override
-  String get targetName => _targetName;
+  String get commandName => _command.name;
 
   @override
   dynamic get updateInfo => _updateInfo;
 
-  CronometerInteractionChModel({required CronometerInteractionCommand command, required String targetName, dynamic updateInfo}): _command = command,
-      _creationDate = DateTime.now(), _targetName = targetName, _updateInfo = updateInfo;
+  CronometerInteractionChModel({required CronometerInteractionCommand command, required String targetName, int? updateInfo}): _command = command,
+      _updateInfo = updateInfo, super(targetName: targetName, creationDate: DateTime.now());
 }

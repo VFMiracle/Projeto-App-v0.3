@@ -12,9 +12,12 @@ class TimeConversionService{
     timeInSeconds -= timeInHours * Duration.secondsPerHour;
     int timeInMinutes = timeInSeconds ~/ Duration.secondsPerMinute;
     timeInSeconds -= timeInMinutes * Duration.secondsPerMinute;
+    String timeString = "";
     
-    String timeString = "${timeInHours.toString().padLeft(2, '0')}:"
-        "${timeInMinutes.toString().padLeft(2, '0')}";
+    if(timeInHours > 0){
+      timeString += "${timeInHours.toString().padLeft(2, '0')}:";
+    }
+    timeString += timeInMinutes.toString().padLeft(2, '0');
     if(shouldDisplaySeconds){
       timeString += ":${timeInSeconds.remainder(60).toString().padLeft(2, '0')}";
     }

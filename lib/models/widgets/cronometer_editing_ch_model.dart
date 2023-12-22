@@ -3,31 +3,14 @@ import 'package:projeto_time_counter/models/widgets/reusable/command_history_mod
 
 class CronometerEditingChModel extends CommandHistoryModel{
   final CronometerEditingCommand _command;
-  final DateTime _creationDate;
-  final String _targetName;
-  final dynamic _updateInfo;
+  final String? _updateInfo;
 
   @override
-  String get commandName {
-    switch(_command){
-      case CronometerEditingCommand.create:
-        return "Create";
-      case CronometerEditingCommand.delete:
-        return "Delete";
-      case CronometerEditingCommand.updateName:
-        return "Update Name";
-    }
-  }
-
-  @override
-  DateTime get creationDate => _creationDate;
-
-  @override
-  String get targetName => _targetName;
+  String get commandName => _command.name;
 
   @override
   dynamic get updateInfo => _updateInfo;
 
-  CronometerEditingChModel({required CronometerEditingCommand command, required String targetName, dynamic updateInfo}): _command = command,
-      _targetName = targetName, _creationDate = DateTime.now(), _updateInfo = updateInfo;
+  CronometerEditingChModel({required CronometerEditingCommand command, required String targetName, String? updateInfo}): _command = command,
+      _updateInfo = updateInfo, super(targetName: targetName, creationDate: DateTime.now());
 }

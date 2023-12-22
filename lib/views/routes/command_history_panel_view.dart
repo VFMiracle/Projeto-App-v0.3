@@ -23,24 +23,23 @@ class CommandHistoryPanelViewState extends State<CommandHistoryPanelView>{
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      appBar: AppBar(
-        actions: [
-          DropdownButton<CommandHistoryType>(
-            items: [],
-            onChanged: (CommandHistoryType? newHistoryType) => print(newHistoryType),
-          )
+      appBar: AppBar(title: const Text("Command History")),
+      body: Column(
+        children: [
+          _buildCommandHistoryTypeDropdownSection(),
+          Expanded(
+            child: Consumer<CommandHistoryPanelHistoriesNotifier>(
+              builder: (BuildContext context, CommandHistoryPanelHistoriesNotifier historiesNotifier, Widget? child){
+                if(historiesNotifier.qtdHistories > 0){
+                  return _buildCommandHistoryList();
+                }else{
+                  return _buildNoCommandHistoryMessage();
+                }
+              }
+            )
+          ),
         ],
-        title: const Text("Command History"),
       ),
-      body: Consumer<CommandHistoryPanelHistoriesNotifier>(
-        builder: (BuildContext context, CommandHistoryPanelHistoriesNotifier historiesNotifier, Widget? child){
-          if(historiesNotifier.qtdHistories > 0){
-            return _buildCommandHistoryList();
-          }else{
-            return _buildNoCommandHistoryMessage();
-          }
-        }
-      )
     );
   }
 
@@ -60,6 +59,21 @@ class CommandHistoryPanelViewState extends State<CommandHistoryPanelView>{
         "No Commands were Performed on the Time Records Today",
         style: Theme.of(context).textTheme.headlineMedium,
         textAlign: TextAlign.center,
+      ),
+    );
+  }
+
+  Container _buildCommandHistoryTypeDropdownSection(){
+    return Container(
+      child: DropdownButton<CommandHistoryType>(
+        items: CommandHistoryType.values.map<DropdownMenuItem<CommandHistoryType>>(
+          (CommandHistoryType type) => DropdownMenuItem<CommandHistoryType>(
+            value: type,
+            child: Text(type.description)
+          ),
+        ).toList(),
+        onChanged: (CommandHistoryType? newHistoryType) => setState(() => CommandHistoryPanelModel().historiesNotifier.selCommandHistoryType = newHistoryType!),
+        value: CommandHistoryPanelModel().historiesNotifier.selCommandHistoryType,
       ),
     );
   }

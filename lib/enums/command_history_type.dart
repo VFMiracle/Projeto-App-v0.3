@@ -1,7 +1,9 @@
 enum CommandHistoryType{
-  cronometerEditing,
-  cronometerInteraction,
-  timeRecordEditing;
+  cronometerEditing(description: "Cronometer Edits"),
+  cronometerInteraction(description: "Cronometer Interactions"),
+  timeRecordEditing(description: "Time Record Edits");
 
-  const CommandHistoryType();
+  const CommandHistoryType({required this.description});
+
+  final String description;
 }

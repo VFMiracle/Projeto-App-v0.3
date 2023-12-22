@@ -1,7 +1,9 @@
 enum CronometerEditingCommand{
-  create,
-  updateName,
-  delete;
+  create(name: "Create"),
+  updateName(name: "Update Name"),
+  delete(name: "Delete");
 
-  const CronometerEditingCommand();
+  const CronometerEditingCommand({required this.name});
+
+  final String name;
 }
