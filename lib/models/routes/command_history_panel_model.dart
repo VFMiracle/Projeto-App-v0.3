@@ -88,7 +88,7 @@ class CommandHistoryPanelHistoriesNotifier extends ChangeNotifier{
           CronometerInteractionChModel(command: CronometerInteractionCommand.resetAndDeleteTime, targetName: "Arguminogaf", updateInfo: 1000),
           CronometerInteractionChModel(command: CronometerInteractionCommand.start, targetName: "Arguminogaf", updateInfo: 0),
           CronometerInteractionChModel(command: CronometerInteractionCommand.pause, targetName: "Arguminogaf", updateInfo: 200),
-          CronometerInteractionChModel(command: CronometerInteractionCommand.resetAndDeleteTime, targetName: "Arguminogaf", updateInfo: 200),
+          CronometerInteractionChModel(command: CronometerInteractionCommand.resetAndDeleteTime, targetName: "Arguminogaf", updateInfo: 4000),
         ]);
         break;
       case(CommandHistoryType.timeRecordEditing):

@@ -12,5 +12,5 @@ class CronometerInteractionChModel extends CommandHistoryModel{
   dynamic get updateInfo => _updateInfo;
 
   CronometerInteractionChModel({required CronometerInteractionCommand command, required String targetName, int? updateInfo}): _command = command,
-      _updateInfo = updateInfo, super(targetName: targetName, creationDate: DateTime.now());
+      _updateInfo = updateInfo, super(targetName: targetName, creationDateTime: DateTime.now());
 }

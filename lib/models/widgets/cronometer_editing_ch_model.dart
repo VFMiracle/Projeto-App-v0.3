@@ -12,5 +12,5 @@ class CronometerEditingChModel extends CommandHistoryModel{
   dynamic get updateInfo => _updateInfo;
 
   CronometerEditingChModel({required CronometerEditingCommand command, required String targetName, String? updateInfo}): _command = command,
-      _updateInfo = updateInfo, super(targetName: targetName, creationDate: DateTime.now());
+      _updateInfo = updateInfo, super(targetName: targetName, creationDateTime: DateTime.now());
 }

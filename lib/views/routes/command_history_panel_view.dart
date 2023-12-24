@@ -65,16 +65,48 @@ class CommandHistoryPanelViewState extends State<CommandHistoryPanelView>{
 
   Container _buildCommandHistoryTypeDropdownSection(){
     return Container(
-      child: DropdownButton<CommandHistoryType>(
-        items: CommandHistoryType.values.map<DropdownMenuItem<CommandHistoryType>>(
-          (CommandHistoryType type) => DropdownMenuItem<CommandHistoryType>(
-            value: type,
-            child: Text(type.description)
-          ),
-        ).toList(),
-        onChanged: (CommandHistoryType? newHistoryType) => setState(() => CommandHistoryPanelModel().historiesNotifier.selCommandHistoryType = newHistoryType!),
-        value: CommandHistoryPanelModel().historiesNotifier.selCommandHistoryType,
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.secondary,
       ),
+      padding: const EdgeInsets.symmetric(horizontal: 5),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Text(
+            "Displaying the History for: ",
+            style: Theme.of(context).textTheme.displaySmall!.copyWith(color: Theme.of(context).colorScheme.background),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.primary,
+            ),
+            margin: const EdgeInsets.symmetric(vertical: 5),
+            padding: const EdgeInsets.only(left: 5),
+            child: DropdownButtonHideUnderline(
+              child: DropdownButton<CommandHistoryType>(
+                iconEnabledColor: Theme.of(context).colorScheme.background,
+                items: CommandHistoryType.values.map<DropdownMenuItem<CommandHistoryType>>(
+                  (CommandHistoryType type) => DropdownMenuItem<CommandHistoryType>(
+                    value: type,
+                    child: Text(type.description)
+                  ),
+                ).toList(),
+                onChanged: (CommandHistoryType? newHistoryType) => setState(() => CommandHistoryPanelModel().historiesNotifier.selCommandHistoryType = newHistoryType!),
+                selectedItemBuilder: (BuildContext context) => CommandHistoryType.values.map<Widget>(
+                  (CommandHistoryType type) => Container(
+                    alignment: Alignment.center,
+                    child: Text(
+                      type.description,
+                      style: Theme.of(context).textTheme.displaySmall!.copyWith(color: Theme.of(context).colorScheme.background),
+                    )
+                  ),
+                ).toList(),
+                value: CommandHistoryPanelModel().historiesNotifier.selCommandHistoryType,
+              )
+            ),
+          ),
+        ]
+      )
     );
   }
 }

@@ -7,6 +7,15 @@ class DateTimeUtils{
     return _instance;
   }
 
+  String mapDateTimeToDisplayString(DateTime dateTime, {bool shouldDisplaySeconds = false}){
+    String dateTimeString = "${dateTime.year}/${dateTime.month.toString().padLeft(2, "0")}/${dateTime.day.toString().padLeft(2, "0")}" + 
+      "- ${dateTime.hour.toString().padLeft(2, "0")}:${dateTime.minute.toString().padLeft(2, "0")}";
+    if(shouldDisplaySeconds){
+      dateTimeString += ":${dateTime.second.toString().padLeft(2, "0")}";
+    }
+    return dateTimeString;
+  }
+
   String mapDateToDatabaseString(DateTime dateTime){
     return "${dateTime.year}-${dateTime.month}-${dateTime.day}";
   }

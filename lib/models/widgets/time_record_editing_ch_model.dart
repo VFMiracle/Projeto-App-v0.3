@@ -12,5 +12,5 @@ class TimeRecordEditingChModel extends CommandHistoryModel{
   dynamic get updateInfo => _updateInfo;
 
   TimeRecordEditingChModel({required TimeRecordEditingCommand command, required String targetName, dynamic updateInfo}): _command = command,
-      _updateInfo = updateInfo, super(targetName: targetName, creationDate: DateTime.now());
+      _updateInfo = updateInfo, super(targetName: targetName, creationDateTime: DateTime.now());
 }

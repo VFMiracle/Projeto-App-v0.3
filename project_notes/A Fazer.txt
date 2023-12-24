@@ -1,6 +1,5 @@
 THINGS TO DO:
-	- Allow the Command History Panel to switch which type of Command History is currently loaded.
-		- Configure the Dropdown Button in the Command History Panel View.
-		- Modify Panel's Command History Type Dropdown Button so it is displayed in a sub-header specific to that View.
-			*- Customize the appearance of the Type Dropdown Section and it's Button.
+	- Modify the appearance of the Command History View.
+		- Continue writing the newBuildHistoryContent function.
+		*- Build each Command History Model's implementation of the writeUpdateInfoDisplayString function.
 	- Create Database tables for maintaining Command Histories.
