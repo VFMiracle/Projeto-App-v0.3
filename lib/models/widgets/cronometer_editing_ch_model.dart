@@ -1,5 +1,6 @@
 import 'package:projeto_time_counter/enums/cronometer_editing_command.dart';
 import 'package:projeto_time_counter/models/widgets/reusable/command_history_model.dart';
+import 'package:timezone/timezone.dart';
 
 class CronometerEditingChModel extends CommandHistoryModel{
   final CronometerEditingCommand _command;
@@ -12,5 +13,13 @@ class CronometerEditingChModel extends CommandHistoryModel{
   dynamic get updateInfo => _updateInfo;
 
   CronometerEditingChModel({required CronometerEditingCommand command, required String targetName, String? updateInfo}): _command = command,
-      _updateInfo = updateInfo, super(targetName: targetName, creationDateTime: DateTime.now());
+      _updateInfo = updateInfo, super(targetName: targetName, creationDateTime: TZDateTime.now(getLocation("America/Sao_Paulo")));
+
+  @override
+  String writeUpdateInfoDisplayString({bool useDefaultPreamble = true}){
+    if(useDefaultPreamble){
+      return "Cronometer's New Name: $_updateInfo";
+    }
+    return _updateInfo!;
+  }
 }

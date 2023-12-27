@@ -3,8 +3,9 @@ import 'package:sqflite/sqflite.dart';
 
 //DESC: Manages the Database's Cronometer Entries.
 class CronometerDAO{
-  static const String _tableName = "cronometer";
   static final CronometerDAO _instance = CronometerDAO._internal();
+  
+  final String _tableName = "cronometer";
   late final Database _database;
 
   CronometerDAO._internal();

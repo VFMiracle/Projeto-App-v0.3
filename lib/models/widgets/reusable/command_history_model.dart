@@ -18,5 +18,5 @@ abstract class CommandHistoryModel{
     CommandHistoryPanelModel().historiesNotifier.deleteHistory(this);
   }
 
-  String writeUpdateInfoPreamble();
+  String writeUpdateInfoDisplayString({bool useDefaultPreamble = true});
 }

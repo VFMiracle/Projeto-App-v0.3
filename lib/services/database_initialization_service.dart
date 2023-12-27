@@ -31,6 +31,27 @@ class DatabaseInitializationService{
             dt_creation_date TEXT
           )'''
         );
+        database.execute(
+          '''CREATE TABLE command_history_type(
+            id_command_history_type INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+            nm_type TEXT NOT NULL
+          )'''
+        );
+        database.execute(
+          '''INSERT INTO command_history_type(nm_type) VALUES ('Cronometer Editing'), ('Cronometer Interaction'), ('Time Record Editing')'''
+        );
+        database.execute(
+          '''CREATE TABLE command_history_command(
+            id_command_history_command INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+            nm_command TEXT NOT NULL,
+            id_type INTEGER NOT NULL,
+            FOREIGN KEY (id_type) REFERENCES command_history_type(id_command_history_type)
+          )'''
+        );
+        database.execute(
+          '''INSERT INTO command_history_command(nm_command, id_type) VALUES ('Create', 1), ('Update Name', 1), ('Delete', 1), ('Start', 2), ('Pause', 2),
+            ('Reset and Save Time', 2), ('Reset and Delete Time', 2), ('Create', 3), ('Delete', 3), ('Update Name', 3), ('Update Value', 3)'''
+        );
       },
       onUpgrade: (Database database, int oldVersionNumber, int newVersionNumber) async{
         return database.execute(''' ''');

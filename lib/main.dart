@@ -10,10 +10,13 @@ import 'package:projeto_time_counter/views/routes/command_history_panel_view.dar
 import 'package:projeto_time_counter/views/routes/cronometer_panel_view.dart';
 import 'package:projeto_time_counter/views/routes/time_record_panel_view.dart';
 import 'package:provider/provider.dart';
+import 'package:timezone/data/latest.dart' as time_zone;
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   NotificationManager().startup();
+  time_zone.initializeTimeZones();
+
   await DatabaseInitializationService().initialize();
 
   SystemChrome.setPreferredOrientations([

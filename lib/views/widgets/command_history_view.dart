@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_time_counter/models/widgets/reusable/command_history_model.dart';
 import 'package:projeto_time_counter/models/widgets/time_record_editing_ch_model.dart';
-import 'package:projeto_time_counter/services/time_conversion_service.dart';
 import 'package:projeto_time_counter/utils/date_time_utils.dart';
 import 'package:projeto_time_counter/views/widgets/reusable/deletion_dialog_view.dart';
 
@@ -20,11 +19,11 @@ class CommandHistoryView extends StatelessWidget{
         ),
         context: context,
       ),
-      child: _newBuildHistoryContent(context),
+      child: _buildHistoryContent(context),
     );
   }
 
-  Widget _newBuildHistoryContent(BuildContext context){
+  Widget _buildHistoryContent(BuildContext context){
     String headerText = DateTimeUtils().mapDateTimeToDisplayString(_model.creationDateTime);
     List<Widget> columnContent = [
       Row(
@@ -48,20 +47,6 @@ class CommandHistoryView extends StatelessWidget{
       ),
     ];
     if(_model.updateInfo != null){
-      /*String updateInfoText;
-      if(_model.updateInfo.runtimeType == int){
-        updateInfoText = TimeConversionService().fromIntToString(_model.updateInfo);
-      }else if(_model.updateInfo.runtimeType != String){
-        updateInfoText = _model.updateInfo.toString();
-      }else{
-        updateInfoText = _model.updateInfo;
-      }
-      columnContent.add(Row(children: [
-        Text(
-          "New information: $updateInfoText",
-          style: Theme.of(context).textTheme.displaySmall!.copyWith(fontWeight: FontWeight.w500),
-        )
-      ]));*/
       columnContent.add(Row(children: [
         Text(
           _model.writeUpdateInfoDisplayString(),
@@ -70,50 +55,5 @@ class CommandHistoryView extends StatelessWidget{
       ]));
     }
     return Column(children: columnContent);
-  }
-
-  Table _buildHistoryContent(BuildContext context){
-    String updateInfoText = "";
-    if(_model.updateInfo != null){
-      if(_model.updateInfo.runtimeType == int){
-        updateInfoText = TimeConversionService().fromIntToString(_model.updateInfo);
-      }else if(_model.updateInfo.runtimeType != String){
-        updateInfoText = _model.updateInfo.toString();
-      }else{
-        updateInfoText = _model.updateInfo;
-      }
-    }
-    return Table(
-      children: [
-        TableRow(
-          children: [
-            Text(
-              _model.commandName,
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
-            Text(
-              DateTimeUtils().mapDateToDisplayString(_model.creationDateTime),
-              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                color: Theme.of(context).colorScheme.secondary
-              ),
-              textAlign: TextAlign.right,
-            ),
-          ],
-        ),
-        TableRow(
-          children: [
-            Text(
-              _model.targetName,
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
-            Text(
-              updateInfoText,
-              style: Theme.of(context).textTheme.bodyMedium,
-              textAlign: TextAlign.right,
-            )
-          ],
-        ),
-      ]
-    );
   }
 }

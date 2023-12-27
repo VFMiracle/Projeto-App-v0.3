@@ -3,8 +3,9 @@ import 'package:projeto_time_counter/utils/date_time_utils.dart';
 import 'package:sqflite/sqflite.dart';
 
 class TimeRecordDAO{
-  static const String _tableName = "time_record";
   static final TimeRecordDAO _instance = TimeRecordDAO._internal();
+  
+  final String _tableName = "time_record";
   late final Database _database;
 
   TimeRecordDAO._internal();

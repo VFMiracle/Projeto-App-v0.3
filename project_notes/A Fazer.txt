@@ -1,5 +1,6 @@
 THINGS TO DO:
-	- Modify the appearance of the Command History View.
-		- Continue writing the newBuildHistoryContent function.
-		*- Build each Command History Model's implementation of the writeUpdateInfoDisplayString function.
 	- Create Database tables for maintaining Command Histories.
+		- Create the Command History Type table.
+			- Import the table creation SQL query from the online editor into the Project's code.
+		- Create the Command History Command table.
+			*- Figure out why the Foreign Key Constraint, made in accordance with the example from the SQLite docs, doesn't work as intended on the online editor.

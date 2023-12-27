@@ -7,14 +7,14 @@ class TimeConversionService{
 
   factory TimeConversionService() => _instance;
 
-  String fromIntToString(int timeInSeconds, {bool shouldDisplaySeconds = true}){
+  String fromIntToString(int timeInSeconds, {bool shouldDisplaySeconds = true, bool shouldAlwaysDisplayHours = false}){
     int timeInHours = timeInSeconds ~/ Duration.secondsPerHour;
     timeInSeconds -= timeInHours * Duration.secondsPerHour;
     int timeInMinutes = timeInSeconds ~/ Duration.secondsPerMinute;
     timeInSeconds -= timeInMinutes * Duration.secondsPerMinute;
     String timeString = "";
     
-    if(timeInHours > 0){
+    if(shouldAlwaysDisplayHours || timeInHours > 0){
       timeString += "${timeInHours.toString().padLeft(2, '0')}:";
     }
     timeString += timeInMinutes.toString().padLeft(2, '0');
