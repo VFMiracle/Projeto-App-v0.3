@@ -41,33 +41,6 @@ class CronometerPanelEntryViewState extends State<CronometerPanelEntryView>{
     );
   }
 
-  AlertDialog _buildCrnmtrDeletionDialog(BuildContext context){
-    return AlertDialog(
-      actions: [
-        TextButton(
-          onPressed: (){
-            widget._crnmtrModel.delete();
-            Navigator.of(context).pop();
-          },
-          child: Text(
-            "Yes",
-            style: Theme.of(context).textTheme.displaySmall,
-          ),
-        ),
-        TextButton(
-          onPressed: () => Navigator.of(context).pop(),
-          child: Text(
-            "No",
-            style: Theme.of(context).textTheme.displaySmall,
-          )
-        ),
-      ],
-      title: Text(
-        "Are you sure you want to delete the ${widget._crnmtrModel.nameNtfr.name} Cronometer?",
-      )
-    );
-  }
-
   Table _buildEntryContent(){
     return Table(
       children: [

@@ -3,6 +3,7 @@ import 'package:projeto_time_counter/enums/command_history_type.dart';
 import 'package:projeto_time_counter/enums/cronometer_editing_command.dart';
 import 'package:projeto_time_counter/enums/cronometer_interaction_command.dart';
 import 'package:projeto_time_counter/enums/time_record_editing_command.dart';
+import 'package:projeto_time_counter/facade/command_history_panel_facade.dart';
 import 'package:projeto_time_counter/models/widgets/cronometer_editing_ch_model.dart';
 import 'package:projeto_time_counter/models/widgets/cronometer_interaction_ch_model.dart';
 import 'package:projeto_time_counter/models/widgets/reusable/command_history_model.dart';
@@ -11,11 +12,13 @@ import 'package:projeto_time_counter/models/widgets/time_record_editing_ch_model
 class CommandHistoryPanelModel{
   static CommandHistoryPanelModel? _commandHistoryPanelModel;
   
+  final CommandHistoryPanelFacade _facade = CommandHistoryPanelFacade();
   late final CommandHistoryPanelHistoriesNotifier _historiesNotifier;
 
   CommandHistoryPanelHistoriesNotifier get historiesNotifier => _historiesNotifier;
 
   CommandHistoryPanelModel._internal(){
+    _facade.testing();
     _historiesNotifier = CommandHistoryPanelHistoriesNotifier(this);
   }
 

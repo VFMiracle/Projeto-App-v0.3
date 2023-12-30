@@ -24,7 +24,7 @@ class CommandHistoryView extends StatelessWidget{
   }
 
   Widget _buildHistoryContent(BuildContext context){
-    String headerText = DateTimeUtils().mapDateTimeToDisplayString(_model.creationDateTime);
+    String headerText = DateTimeUtils().mapDateTimeToDisplayString(_model.creationDateTime, shouldDisplaySeconds: true);
     List<Widget> columnContent = [
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

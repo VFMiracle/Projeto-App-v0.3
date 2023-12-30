@@ -1,4 +1,5 @@
 import 'package:path/path.dart';
+import 'package:projeto_time_counter/dao/command_history_dao.dart';
 import 'package:projeto_time_counter/dao/cronometer_dao.dart';
 import 'package:projeto_time_counter/dao/time_record_dao.dart';
 import 'package:sqflite/sqflite.dart';
@@ -16,6 +17,9 @@ class DatabaseInitializationService{
   Future<void> initialize() async{
     _database = await openDatabase(
       join(await getDatabasesPath(), _dbName),
+      onConfigure: (Database database){
+        database.execute("PRAGMA foreign_keys = ON");
+      },
       onCreate: (Database database, int versionNumber){
         database.execute(
           '''CREATE TABLE cronometer(
@@ -52,13 +56,60 @@ class DatabaseInitializationService{
           '''INSERT INTO command_history_command(nm_command, id_type) VALUES ('Create', 1), ('Update Name', 1), ('Delete', 1), ('Start', 2), ('Pause', 2),
             ('Reset and Save Time', 2), ('Reset and Delete Time', 2), ('Create', 3), ('Delete', 3), ('Update Name', 3), ('Update Value', 3)'''
         );
+        database.execute(
+          '''CREATE TABLE command_history(
+            id_command_history INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+            id_used_command INTEGER NOT NULL,
+            nm_target TEXT NOT NULL,
+            dt_history_creation TEXT NOT NULL,
+            ds_update_info TEXT,
+            FOREIGN KEY (id_used_command) REFERENCES command_history_command(id_command_history_command)
+          )'''
+        );
       },
       onUpgrade: (Database database, int oldVersionNumber, int newVersionNumber) async{
-        return database.execute(''' ''');
+        database.execute(
+          '''CREATE TABLE command_history_type(
+            id_command_history_type INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+            nm_type TEXT NOT NULL
+          )'''
+        );
+        database.execute(
+          '''INSERT INTO command_history_type(nm_type) VALUES ('Cronometer Editing'), ('Cronometer Interaction'), ('Time Record Editing')'''
+        );
+        database.execute(
+          '''CREATE TABLE command_history_command(
+            id_command_history_command INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+            nm_command TEXT NOT NULL,
+            id_type INTEGER NOT NULL,
+            FOREIGN KEY (id_type) REFERENCES command_history_type(id_command_history_type)
+          )'''
+        );
+        database.execute(
+          '''INSERT INTO command_history_command(nm_command, id_type) VALUES ('Create', 1), ('Update Name', 1), ('Delete', 1), ('Start', 2), ('Pause', 2),
+            ('Reset and Save Time', 2), ('Reset and Delete Time', 2), ('Create', 3), ('Delete', 3), ('Update Name', 3), ('Update Value', 3)'''
+        );
+        database.execute(
+          '''CREATE TABLE command_history(
+            id_command_history INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+            id_used_command INTEGER NOT NULL,
+            nm_target TEXT NOT NULL,
+            dt_history_creation TEXT NOT NULL,
+            ds_update_info TEXT,
+            FOREIGN KEY (id_used_command) REFERENCES command_history_command(id_command_history_command)
+          )'''
+        );
+        return database.execute(
+          '''INSERT INTO command_history(id_used_command, nm_target, dt_history_creation, ds_update_info) VALUES (1, "Bruxeval", "2023-12-27 15:05:00", NULL),
+            (2, "Bruxeval", "2023-10-12 20:12:22", "Grumadzul"), (4, 'Grumadzul', "2023-12-18 19:55:20", "0"), (5, 'Grumadzul', "2023-12-18 20:01:00", "340"),
+            (6, 'Grumadzul', "2023-12-18 21:01:41", "340"), (8, "Bruxeval", "2023-12-19 06:12:38", "1200"), (9, "Grumadzul", "2023-12-19 06:21:04", NULL),
+            (11, "Burxeval", "2023-12-19 06:13:01", '{"oldValue":1200, "newValue":4500}');'''
+        );
       },
-      version: 1,
+      version: 2,
     );
     CronometerDAO.initialize(_database);
     TimeRecordDAO.initialize(_database);
+    CommandHistoryDAO.initialize(_database);
   }
 }

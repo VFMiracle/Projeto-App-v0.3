@@ -7,11 +7,20 @@ class DateTimeUtils{
     return _instance;
   }
 
-  String mapDateTimeToDisplayString(DateTime dateTime, {bool shouldDisplaySeconds = false}){
-    String dateTimeString = "${dateTime.year}/${dateTime.month.toString().padLeft(2, "0")}/${dateTime.day.toString().padLeft(2, "0")}" + 
-      "- ${dateTime.hour.toString().padLeft(2, "0")}:${dateTime.minute.toString().padLeft(2, "0")}";
+  String mapDateTimeToDatabaseString(DateTime dateTime){
+    String dateTimeString = "${dateTime.year}-${dateTime.month}-${dateTime.day} ";
+    dateTimeString += "${dateTime.hour.toString().padLeft(2, '0')}:${dateTime.minute.toString().padLeft(2, '0')}:${dateTime.second.toString().padLeft(2, '0')}";
+    return dateTimeString;
+  }
+
+  String mapDateTimeToDisplayString(DateTime dateTime, {
+    bool shouldDisplaySeconds = false, String dateTimeSeparator = " - ", String dateUnitSeparator = "/", String timeUnitSeparator = ":"
+  }){
+    String dateTimeString =
+      "${dateTime.year}$dateUnitSeparator${dateTime.month.toString().padLeft(2, "0")}$dateUnitSeparator${dateTime.day.toString().padLeft(2, "0")}";
+    dateTimeString += " $dateTimeSeparator ${dateTime.hour.toString().padLeft(2, "0")}$timeUnitSeparator${dateTime.minute.toString().padLeft(2, "0")}";
     if(shouldDisplaySeconds){
-      dateTimeString += ":${dateTime.second.toString().padLeft(2, "0")}";
+      dateTimeString += "$timeUnitSeparator${dateTime.second.toString().padLeft(2, "0")}";
     }
     return dateTimeString;
   }
@@ -22,6 +31,18 @@ class DateTimeUtils{
 
   String mapDateToDisplayString(DateTime date){
     return "${date.year}/${date.month.toString().padLeft(2, "0")}/${date.day.toString().padLeft(2, "0")}";
+  }
+
+  DateTime mapDatabaseStringToDatetime(String databaseString){
+    List<String> dateTimeList = databaseString.split(' '), dateList = dateTimeList[0].split('-'), timeList = dateTimeList[1].split(':');
+    return DateTime(
+      int.parse(dateList[0]),
+      int.parse(dateList[1]),
+      int.parse(dateList[2]),
+      int.parse(timeList[0]),
+      int.parse(timeList[1]),
+      int.parse(timeList[2]),
+    );
   }
 
   DateTime mapStringToDate(String dateTimeString){

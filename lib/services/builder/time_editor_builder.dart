@@ -1,5 +1,5 @@
 import 'package:projeto_time_counter/enums/time_unit.dart';
-import 'package:projeto_time_counter/models/reusable/time_editor_model.dart';
+import 'package:projeto_time_counter/models/widgets/reusable/time_editor_model.dart';
 import 'package:projeto_time_counter/services/strategies/time_editor_configuration_strategy.dart';
 import 'package:projeto_time_counter/views/widgets/reusable/time_editor_view.dart';
 

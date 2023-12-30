@@ -13,4 +13,13 @@ class CommandHistoryDAO{
   static void initialize(Database database){
     _instance._database = database;
   }
+
+  void testing() async {
+    List<Map<String, dynamic>> test = await _database.rawQuery(
+      '''SELECT commands.id_type, commands.nm_command, base.nm_target, base.dt_history_creation, base.ds_update_info
+        FROM command_history AS base
+        INNER JOIN command_history_command AS commands ON base.id_used_command = commands.id_command_history_command;'''
+    );
+    print(test);
+  }
 }
