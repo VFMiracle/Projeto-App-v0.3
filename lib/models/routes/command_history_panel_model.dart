@@ -75,33 +75,33 @@ class CommandHistoryPanelHistoriesNotifier extends ChangeNotifier{
     switch(_selCommandHistoryType){
       case (CommandHistoryType.cronometerEditing):
         histories.addAll([
-          CronometerEditingChModel(command: CronometerEditingCommand.create, targetName: "Erguminoga"),
-          CronometerEditingChModel(command: CronometerEditingCommand.updateName, targetName: "Erguminoga", updateInfo: "Pergucielo"),
-          CronometerEditingChModel(command: CronometerEditingCommand.delete, targetName: "Pergucielo"),
-          CronometerEditingChModel(command: CronometerEditingCommand.create, targetName: "Arguminogaf")
+          CronometerEditingChModel(id: 1, command: CronometerEditingCommand.create, targetName: "Erguminoga"),
+          CronometerEditingChModel(id: 2, command: CronometerEditingCommand.updateName, targetName: "Erguminoga", updateInfo: "Pergucielo"),
+          CronometerEditingChModel(id: 3, command: CronometerEditingCommand.delete, targetName: "Pergucielo"),
+          CronometerEditingChModel(id: 4, command: CronometerEditingCommand.create, targetName: "Arguminogaf")
         ]);
         break;
       case (CommandHistoryType.cronometerInteraction):
         histories.addAll([
-          CronometerInteractionChModel(command: CronometerInteractionCommand.start, targetName: "Pergucielo", updateInfo: 0),
-          CronometerInteractionChModel(command: CronometerInteractionCommand.pause, targetName: "Pergucielo", updateInfo: 320),
-          CronometerInteractionChModel(command: CronometerInteractionCommand.resetAndSaveTime, targetName: "Pergucielo", updateInfo: 600),
-          CronometerInteractionChModel(command: CronometerInteractionCommand.start, targetName: "Arguminogaf", updateInfo: 0),
-          CronometerInteractionChModel(command: CronometerInteractionCommand.pause, targetName: "Arguminogaf", updateInfo: 1000),
-          CronometerInteractionChModel(command: CronometerInteractionCommand.resetAndDeleteTime, targetName: "Arguminogaf", updateInfo: 1000),
-          CronometerInteractionChModel(command: CronometerInteractionCommand.start, targetName: "Arguminogaf", updateInfo: 0),
-          CronometerInteractionChModel(command: CronometerInteractionCommand.pause, targetName: "Arguminogaf", updateInfo: 200),
-          CronometerInteractionChModel(command: CronometerInteractionCommand.resetAndDeleteTime, targetName: "Arguminogaf", updateInfo: 4000),
+          CronometerInteractionChModel(id: 5, command: CronometerInteractionCommand.start, targetName: "Pergucielo", updateInfo: 0),
+          CronometerInteractionChModel(id: 6, command: CronometerInteractionCommand.pause, targetName: "Pergucielo", updateInfo: 320),
+          CronometerInteractionChModel(id: 7, command: CronometerInteractionCommand.resetAndSaveTime, targetName: "Pergucielo", updateInfo: 600),
+          CronometerInteractionChModel(id: 8, command: CronometerInteractionCommand.start, targetName: "Arguminogaf", updateInfo: 0),
+          CronometerInteractionChModel(id: 9, command: CronometerInteractionCommand.pause, targetName: "Arguminogaf", updateInfo: 1000),
+          CronometerInteractionChModel(id: 10, command: CronometerInteractionCommand.resetAndDeleteTime, targetName: "Arguminogaf", updateInfo: 1000),
+          CronometerInteractionChModel(id: 11, command: CronometerInteractionCommand.start, targetName: "Arguminogaf", updateInfo: 0),
+          CronometerInteractionChModel(id: 12, command: CronometerInteractionCommand.pause, targetName: "Arguminogaf", updateInfo: 200),
+          CronometerInteractionChModel(id: 13, command: CronometerInteractionCommand.resetAndDeleteTime, targetName: "Arguminogaf", updateInfo: 4000),
         ]);
         break;
       case(CommandHistoryType.timeRecordEditing):
         histories.addAll([
-          TimeRecordEditingChModel(command: TimeRecordEditingCommand.create, targetName: "Pergucielo", updateInfo: 600),
-          TimeRecordEditingChModel(command: TimeRecordEditingCommand.updateName, targetName: "Pergucielo", updateInfo: "Borguvisol"),
-          TimeRecordEditingChModel(command: TimeRecordEditingCommand.updateValue, targetName: "Borguvisol",
+          TimeRecordEditingChModel(id: 14, command: TimeRecordEditingCommand.create, targetName: "Pergucielo", updateInfo: 600),
+          TimeRecordEditingChModel(id: 15, command: TimeRecordEditingCommand.updateName, targetName: "Pergucielo", updateInfo: "Borguvisol"),
+          TimeRecordEditingChModel(id: 16, command: TimeRecordEditingCommand.updateValue, targetName: "Borguvisol",
               updateInfo: <String, int>{"oldValue": 600, "newValue": 450}),
-          TimeRecordEditingChModel(command: TimeRecordEditingCommand.delete, targetName: "Borguvisol"),
-          TimeRecordEditingChModel(command: TimeRecordEditingCommand.create, targetName: "Arguminogaf", updateInfo: 200)
+          TimeRecordEditingChModel(id: 17, command: TimeRecordEditingCommand.delete, targetName: "Borguvisol"),
+          TimeRecordEditingChModel(id: 18, command: TimeRecordEditingCommand.create, targetName: "Arguminogaf", updateInfo: 200)
         ]);
         break;
     }

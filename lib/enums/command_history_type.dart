@@ -7,4 +7,13 @@ enum CommandHistoryType{
 
   final int id;
   final String description;
+
+  static CommandHistoryType? getTypeById(int id){
+    for(CommandHistoryType type in CommandHistoryType.values){
+      if(type.id == id){
+        return type;
+      }
+    }
+    return null;
+  }
 }

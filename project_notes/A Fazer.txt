@@ -1,3 +1,7 @@
 THINGS TO DO:
 	- Build the process for reading Command Histories from the Database.
-		*- Determine how the Command History DTO will be structured.
+		- Determine how the Command History DTO will be structured.
+		- Modify the testing function of CommandHistoryDAO so it returns a List of Command History DTOs.
+			- Create a function in the Command History DAO that converts the Database maps into Command History DTOs.
+			- Create a function in the Command History DAO that converts the Database entry's update info from a String into it's specific type.
+			*- Figure out why the function that reads Database items is throwing an error. It might be because the argumentes parameter doesn't do what was assumed it did.
