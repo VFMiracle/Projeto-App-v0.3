@@ -13,8 +13,9 @@ class CronometerInteractionChModel extends CommandHistoryModel{
   @override
   dynamic get updateInfo => _updateInfo;
 
-  CronometerInteractionChModel({required int id, required CronometerInteractionCommand command, required String targetName, int? updateInfo}): _command = command,
-      _updateInfo = updateInfo, super(id: id, targetName: targetName, creationDateTime: TZDateTime.now(getLocation("America/Sao_Paulo")));
+  CronometerInteractionChModel({required int id, required CronometerInteractionCommand command, required String targetName, required int updateInfo,
+      DateTime? creationDateTime}): _command = command, _updateInfo = updateInfo, super(id: id, targetName: targetName, creationDateTime: creationDateTime ??
+      TZDateTime.now(getLocation("America/Sao_Paulo")));
 
   @override
   String writeUpdateInfoDisplayString({bool useDefaultPreamble = true}){

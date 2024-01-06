@@ -52,7 +52,7 @@ class _TimeRecordPanelViewState extends State<TimeRecordPanelView>{
               }
             }),
           ),
-          Consumer<TimeRecordPanelSelectedDateNotifier>(
+          Consumer<TimeRecordPanelSelDateNotifier>(
             builder: _buildDateSelector,
           ),
         ],
@@ -63,30 +63,30 @@ class _TimeRecordPanelViewState extends State<TimeRecordPanelView>{
           if(timeRecordsNotifier.qtdTimeRecords > 0){
             return _buildTimeRecordList(context, timeRecordsNotifier, child);
           }
-          return _buildNoTimeRecordsMessage();
+          return _buildNoTimeRecordsMessage(context);
         }
       ),
     );
   }
 
-  TextButton _buildDateSelector(BuildContext context, TimeRecordPanelSelectedDateNotifier selDateNtfr, Widget? child){
+  TextButton _buildDateSelector(BuildContext context, TimeRecordPanelSelDateNotifier selDateNotifier, Widget? child){
     return TextButton(
       onPressed: () => showDialog<DateTime>(
         context: context,
         builder: _buildTimeRecordDatePickerDialog,
       ).then((DateTime? newDate){
         if(newDate != null){
-          selDateNtfr.changeDate(newDate);
+          selDateNotifier.selDate = newDate;
         }
       }),
       child: Text(
-        DateTimeUtils().mapDateToDisplayString(selDateNtfr.selDate),
+        DateTimeUtils().mapDateToDisplayString(selDateNotifier.selDate),
         style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
       ),
     );
   }
 
-  Center _buildNoTimeRecordsMessage(){
+  Center _buildNoTimeRecordsMessage(BuildContext context){
     return Center(
       child: Text(
         "There aren't any Time Records for this day.",

@@ -33,7 +33,7 @@ class DateTimeUtils{
     return "${date.year}/${date.month.toString().padLeft(2, "0")}/${date.day.toString().padLeft(2, "0")}";
   }
 
-  DateTime mapDatabaseStringToDatetime(String databaseString){
+  DateTime mapDatabaseStringToDateTime(String databaseString){
     List<String> dateTimeList = databaseString.split(' '), dateList = dateTimeList[0].split('-'), timeList = dateTimeList[1].split(':');
     return DateTime(
       int.parse(dateList[0]),

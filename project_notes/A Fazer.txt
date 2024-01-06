@@ -4,4 +4,10 @@ THINGS TO DO:
 		- Modify the testing function of CommandHistoryDAO so it returns a List of Command History DTOs.
 			- Create a function in the Command History DAO that converts the Database maps into Command History DTOs.
 			- Create a function in the Command History DAO that converts the Database entry's update info from a String into it's specific type.
-			*- Figure out why the function that reads Database items is throwing an error. It might be because the argumentes parameter doesn't do what was assumed it did.
+			- Figure out why the function that reads Database items is throwing an error. It might be because the argumentes parameter doesn't do what was assumed it did.
+			- Add a conversion from the dt_history_creation column of the Database from it's String type into DateTime.
+		- Build the process for the Facade to convert Command History DTOs into Models.
+			- Write the code for the _convertUpdateInfoStringToType function.
+		- Make the Command History Panel Model use the loaded Command History Models from the Facade.
+		- Filter the loaded Command Histories by the Command History Panel's Selected Date.
+			*- Modify the SQL Query that loads the Command Histories so it filters the results to only a specific Date.

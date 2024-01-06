@@ -7,31 +7,31 @@ import 'package:projeto_time_counter/models/widgets/time_record_model.dart';
 class TimeRecordPanelModel{
   //INFO: While the Time Record Panel Model is a singleton, it is only needed on certain moments of the App. As such, in order to prevent it from consuming unnecessary
   //  memory, the instance will be disposed whenever it's no longer needed.
-  static TimeRecordPanelModel? _timeRcrdPanelModel;
+  static TimeRecordPanelModel? _timeRecordPanelModel;
 
   final TimeRecordPanelFacade _facade = TimeRecordPanelFacade();
   late final TimeRecordPanelRecordsNotifier _timeRecordsNotifier;
-  late final TimeRecordPanelSelectedDateNotifier _selectedDateNotifier;
+  late final TimeRecordPanelSelDateNotifier _selectedDateNotifier;
 
-  static bool get isIntlzdPrprt => _timeRcrdPanelModel != null;
+  static bool get isIntialized => _timeRecordPanelModel != null;
 
   TimeRecordPanelRecordsNotifier get timeRecordsNtfr => _timeRecordsNotifier;
-  TimeRecordPanelSelectedDateNotifier get selDateNtfr => _selectedDateNotifier;
+  TimeRecordPanelSelDateNotifier get selDateNtfr => _selectedDateNotifier;
 
   TimeRecordPanelModel._internal(){
-    _selectedDateNotifier = TimeRecordPanelSelectedDateNotifier(this);
+    _selectedDateNotifier = TimeRecordPanelSelDateNotifier(this);
     _timeRecordsNotifier = TimeRecordPanelRecordsNotifier(this);
     _selectedDateNotifier.addListener(_loadTimeRecordsOfSelectedDate);
     _loadTimeRecordsOfSelectedDate();
   }
 
   factory TimeRecordPanelModel(){
-    _timeRcrdPanelModel ??= TimeRecordPanelModel._internal();
-    return _timeRcrdPanelModel!;
+    _timeRecordPanelModel ??= TimeRecordPanelModel._internal();
+    return _timeRecordPanelModel!;
   }
 
   static void disposeInstance(){
-    _timeRcrdPanelModel = null;
+    _timeRecordPanelModel = null;
   }
 
   void _loadTimeRecordsOfSelectedDate(){
@@ -83,17 +83,16 @@ class TimeRecordPanelRecordsNotifier extends ChangeNotifier{
   }
 }
 
-class TimeRecordPanelSelectedDateNotifier extends ChangeNotifier{
+class TimeRecordPanelSelDateNotifier extends ChangeNotifier{
   DateTime _selDate;
   // ignore: unused_field
   final TimeRecordPanelModel _parentModel;
 
   DateTime get selDate => _selDate;
-
-  TimeRecordPanelSelectedDateNotifier(TimeRecordPanelModel parentModel) : _parentModel = parentModel, _selDate = DateTime.now();
-
-  void changeDate(DateTime newDate){
+  set selDate(DateTime newDate){
     _selDate = newDate;
     notifyListeners();
   }
+
+  TimeRecordPanelSelDateNotifier(TimeRecordPanelModel parentModel) : _parentModel = parentModel, _selDate = DateTime.now();
 }

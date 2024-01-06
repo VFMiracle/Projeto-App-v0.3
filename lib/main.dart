@@ -74,8 +74,11 @@ class MainMenu extends StatelessWidget{
               case 2:{
                return TextButton(
                 onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){
-                  return ChangeNotifierProvider.value(
-                    value: CommandHistoryPanelModel().historiesNotifier,
+                  return MultiProvider(
+                    providers: [
+                      ChangeNotifierProvider.value(value: CommandHistoryPanelModel().historiesNotifier),
+                      ChangeNotifierProvider.value(value: CommandHistoryPanelModel().selDateNotifier),
+                    ],
                     child: const CommandHistoryPanelView(),
                   );
                 })),

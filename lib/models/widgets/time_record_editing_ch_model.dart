@@ -13,8 +13,9 @@ class TimeRecordEditingChModel extends CommandHistoryModel{
   @override
   dynamic get updateInfo => _updateInfo;
 
-  TimeRecordEditingChModel({required int id, required TimeRecordEditingCommand command, required String targetName, dynamic updateInfo}): _command = command,
-      _updateInfo = updateInfo, super(id: id, targetName: targetName, creationDateTime: TZDateTime.now(getLocation("America/Sao_Paulo")));
+  TimeRecordEditingChModel({required int id, required TimeRecordEditingCommand command, required String targetName, DateTime? creationDateTime, dynamic updateInfo}):
+      _command = command, _updateInfo = updateInfo, super(id: id, targetName: targetName, creationDateTime: creationDateTime ??
+      TZDateTime.now(getLocation("America/Sao_Paulo")));
 
   @override
   String writeUpdateInfoDisplayString({bool useDefaultPreamble = true}){

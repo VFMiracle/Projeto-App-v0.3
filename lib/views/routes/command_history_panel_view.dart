@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_time_counter/enums/command_history_type.dart';
 import 'package:projeto_time_counter/models/routes/command_history_panel_model.dart';
+import 'package:projeto_time_counter/utils/date_time_utils.dart';
 import 'package:projeto_time_counter/views/widgets/command_history_view.dart';
 import 'package:provider/provider.dart';
 
@@ -23,17 +24,24 @@ class CommandHistoryPanelViewState extends State<CommandHistoryPanelView>{
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      appBar: AppBar(title: const Text("Command History")),
+      appBar: AppBar(
+        actions: [
+          Consumer<CommandHistoryPanelSelDateNotifier>(
+            builder: _buildDateSelector,
+          )
+        ],
+        title: const Text("Command History")
+      ),
       body: Column(
         children: [
-          _buildCommandHistoryTypeDropdownSection(),
+          _buildCommandHistoryTypeDropdownSection(context),
           Expanded(
             child: Consumer<CommandHistoryPanelHistoriesNotifier>(
               builder: (BuildContext context, CommandHistoryPanelHistoriesNotifier historiesNotifier, Widget? child){
                 if(historiesNotifier.qtdHistories > 0){
-                  return _buildCommandHistoryList();
+                  return _buildCommandHistoryList(context);
                 }else{
-                  return _buildNoCommandHistoryMessage();
+                  return _buildNoCommandHistoryMessage(context);
                 }
               }
             )
@@ -43,7 +51,15 @@ class CommandHistoryPanelViewState extends State<CommandHistoryPanelView>{
     );
   }
 
-  Widget _buildCommandHistoryList(){
+  DatePickerDialog _buildCommandHistoryDatePickerDialog(BuildContext context){
+    return DatePickerDialog(
+      firstDate: DateTime(2023),
+      initialDate: CommandHistoryPanelModel().selDateNotifier.selDate,
+      lastDate: DateTime.now(),
+    );
+  }
+
+  Widget _buildCommandHistoryList(BuildContext context){
     return ListView.separated(
       itemBuilder: (BuildContext context, int index){
         return CommandHistoryView(model: CommandHistoryPanelModel().historiesNotifier.getHistoryByIndex(index));
@@ -53,7 +69,24 @@ class CommandHistoryPanelViewState extends State<CommandHistoryPanelView>{
     );
   }
 
-  Center _buildNoCommandHistoryMessage(){
+  TextButton _buildDateSelector(BuildContext context, CommandHistoryPanelSelDateNotifier selDateNotifier, Widget? child){
+    return TextButton(
+      onPressed: () => showDialog(
+        builder: _buildCommandHistoryDatePickerDialog,
+        context: context,
+      ).then((newDate){
+        if(newDate != null){
+          selDateNotifier.selDate = newDate;
+        }
+      }),
+      child: Text(
+        DateTimeUtils().mapDateToDisplayString(selDateNotifier.selDate),
+        style: TextStyle(color: Theme.of(context).colorScheme.onPrimary)
+      ),
+    );
+  }
+
+  Center _buildNoCommandHistoryMessage(BuildContext context){
     return Center(
       child: Text(
         "No Commands were Performed on the Time Records Today",
@@ -63,7 +96,7 @@ class CommandHistoryPanelViewState extends State<CommandHistoryPanelView>{
     );
   }
 
-  Container _buildCommandHistoryTypeDropdownSection(){
+  Container _buildCommandHistoryTypeDropdownSection(BuildContext context){
     return Container(
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.secondary,
