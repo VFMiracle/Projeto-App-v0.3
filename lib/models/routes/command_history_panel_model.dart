@@ -15,8 +15,8 @@ class CommandHistoryPanelModel{
   CommandHistoryPanelSelDateNotifier get selDateNotifier => _selDateNotifier;
 
   CommandHistoryPanelModel._internal(){
-    _historiesNotifier = CommandHistoryPanelHistoriesNotifier(this);
     _selDateNotifier = CommandHistoryPanelSelDateNotifier(this);
+    _historiesNotifier = CommandHistoryPanelHistoriesNotifier(this);
   }
 
   factory CommandHistoryPanelModel(){
@@ -69,7 +69,7 @@ class CommandHistoryPanelHistoriesNotifier extends ChangeNotifier{
 
   void _loadDesiredCommandHistories() async {
     histories.clear();
-    histories.addAll(await _parentModel._facade.readDbEntriesByCommandType(_selCommandHistoryType));
+    histories.addAll(await _parentModel._facade.readDbEntries(_selCommandHistoryType, _parentModel._selDateNotifier._selDate));
     notifyListeners();
   }
 }
@@ -82,6 +82,7 @@ class CommandHistoryPanelSelDateNotifier extends ChangeNotifier{
   DateTime get selDate => _selDate;
   set selDate(DateTime newDate){
     _selDate = newDate;
+    _parentModel._historiesNotifier._loadDesiredCommandHistories();
     notifyListeners();
   }
 

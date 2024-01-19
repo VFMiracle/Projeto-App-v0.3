@@ -69,12 +69,13 @@ class DatabaseInitializationService{
       },
       onUpgrade: (Database database, int oldVersionNumber, int newVersionNumber) async{
         database.execute(
-          '''UPDATE command_history
-            set ds_update_info = '600'
-            where id_command_history = 7;'''
+          '''INSERT INTO command_history(id_used_command, nm_target, dt_history_creation, ds_update_info) VALUES (1, "Bruxeval", "2023-12-27 15:05:00", NULL),
+            (2, "Bruxeval", "2023-10-12 20:12:22", "Grumadzul"), (4, 'Grumadzul', "2023-12-18 19:55:20", "0"), (4, 'Sei la', "2023-12-20 17:12:19", "100"),
+            (5, 'Grumadzul', "2023-12-18 20:01:00", "340"), (6, 'Grumadzul', "2023-12-18 21:01:41", "340"), (8, "Bruxeval", "2023-12-19 06:12:38", "1200"),
+            (9, "Grumadzul", "2023-12-19 06:21:04", "600"), (11, "Burxeval", "2023-12-19 06:13:01", '{"oldValue":1200, "newValue":4500}');'''
         );
       },
-      version: 3,
+      version: 6,
     );
     CronometerDAO.initialize(_database);
     TimeRecordDAO.initialize(_database);

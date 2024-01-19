@@ -11,8 +11,8 @@ import 'package:projeto_time_counter/models/widgets/time_record_editing_ch_model
 
 class CommandHistoryPanelFacade{
 
-  Future<List<CommandHistoryModel>> readDbEntriesByCommandType(CommandHistoryType commandType) async {
-    List<CommandHistoryDTO> dtos = await CommandHistoryDAO().readDbEntriesByCommandType(commandType.id);
+  Future<List<CommandHistoryModel>> readDbEntries(CommandHistoryType commandType, DateTime selDate) async {
+    List<CommandHistoryDTO> dtos = await CommandHistoryDAO().readDbEntriesByCommandType(commandType.id, selDate);
     return _getModelListFromDtoList(dtos);
   }
 
