@@ -26,22 +26,26 @@ class TimeEditorViewState extends State<TimeEditorView>{
   Theme build(BuildContext context){
     return Theme(
       data: TimeEditorTheme.build(context),
-      child: AlertDialog(
-        actions: [
-          TextButton(
-            onPressed: () => _submitEditor(context),
-            child: Text(
-              "Submit",
-              style: TextStyle(color: Theme.of(context).colorScheme.secondary)
+      child: Builder(
+        builder: (BuildContext context) => AlertDialog(
+          actions: [
+            TextButton(
+              onPressed: () => _submitEditor(context),
+              child: Text(
+                "Submit",
+                style: TextStyle(color: Theme.of(context).colorScheme.secondary)
+              ),
             ),
+          ],
+          actionsPadding: const EdgeInsets.fromLTRB(0, 5, 10, 0),
+          content: _buildContent(context),
+          contentPadding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
+          title: Text(
+            widget._title,
           ),
-        ],
-        actionsPadding: const EdgeInsets.fromLTRB(0, 5, 10, 0),
-        content: _buildContent(context),
-        contentPadding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
-        title: Text(widget._title),
-        titlePadding: const EdgeInsets.fromLTRB(30, 15, 30, 5),
-      )
+          titlePadding: const EdgeInsets.fromLTRB(30, 15, 30, 5),
+        )
+      ),
     );
   }
 
@@ -70,7 +74,8 @@ class TimeEditorViewState extends State<TimeEditorView>{
           Text("${widget._textFieldLabelName}: "),
           Expanded(
             child: TextField(
-              controller: textEdtngCtrlr
+              controller: textEdtngCtrlr,
+              style: Theme.of(context).textTheme.bodyMedium,
             ),
           ),
         ]

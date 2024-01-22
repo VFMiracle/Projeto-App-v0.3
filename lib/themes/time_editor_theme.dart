@@ -3,8 +3,15 @@ import 'package:flutter/material.dart';
 abstract class TimeEditorTheme{
 
   static ThemeData build(BuildContext context){
-    return ThemeData(
+    return Theme.of(context).copyWith(
+      colorScheme: Theme.of(context).colorScheme.copyWith(
+        background: Colors.white,
+      ),
       textTheme: TextTheme(
+        bodyMedium: TextStyle(
+          color: Theme.of(context).colorScheme.primary,
+          fontSize: 20
+        ),
         headlineMedium: TextStyle(
           color: Theme.of(context).colorScheme.secondary,
           fontSize: 25,

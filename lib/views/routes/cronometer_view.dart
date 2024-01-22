@@ -61,37 +61,32 @@ class _CronometerViewState extends State<CronometerView> with WidgetsBindingObse
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Center(
-            child: Consumer<CronometerValueNotifier>(
-              builder: (BuildContext context, CronometerValueNotifier crnmtrValueNtfr, Widget? child){
-                return Text(
-                  TimeConversionService().fromIntToString(crnmtrValueNtfr.currentValue),
-                  style: Theme.of(context).textTheme.headlineLarge!.copyWith(
-                    color: widget._theme.crnmtrCounterColor,
-                  ),
-                );
-              }
+          Expanded(
+            child: Center(
+              child: Consumer<CronometerValueNotifier>(
+                builder: (BuildContext context, CronometerValueNotifier crnmtrValueNtfr, Widget? child){
+                  return Text(
+                    TimeConversionService().fromIntToString(crnmtrValueNtfr.currentValue),
+                    style: Theme.of(context).textTheme.headlineLarge!.copyWith(
+                      color: widget._theme.crnmtrCounterColor,
+                    ),
+                  );
+                }
+              ),
             ),
-          )
-        ],
-      ),
-      bottomNavigationBar: _buildBottomAppBar(),
-    );
-  }
-
-  BottomAppBar _buildBottomAppBar(){
-    return BottomAppBar(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Consumer<CronometerIsRunningNotifier>(
-            builder: (BuildContext context, CronometerIsRunningNotifier crnmtrIsRnngNtfr, Widget? child) =>
-              _buildCountOptionButtons(crnmtrIsRnngNtfr.isRunning, widget._model.valueNtfr.currentValue)
           ),
-          TextButton(
-            onPressed: (){},
-            style: TextButton.styleFrom(textStyle: Theme.of(context).textTheme.displayMedium),
-            child: const Text("Setup Alarm")
+          Container(
+            color: Theme.of(context).colorScheme.onBackground,
+            padding: const EdgeInsets.symmetric(vertical: 12.5),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Consumer<CronometerIsRunningNotifier>(
+                  builder: (BuildContext context, CronometerIsRunningNotifier crnmtrIsRnngNtfr, Widget? child) =>
+                    _buildCountOptionButtons(crnmtrIsRnngNtfr.isRunning, widget._model.valueNtfr.currentValue)
+                ),
+              ],
+            )
           ),
         ],
       ),

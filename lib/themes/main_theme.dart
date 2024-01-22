@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_time_counter/themes/main_dialog_theme.dart';
 
 abstract class MainTheme{
   
   static ThemeData build(){
     Color primaryColor = const Color.fromARGB(255, 11, 79, 206);
-    Color secondaryColor = const Color.fromARGB(255, 7, 146, 211);
-    Color structureColor = const Color.fromARGB(255, 6, 24, 83);
+    Color secondaryColor = const Color.fromARGB(255, 26, 167, 233);
+    Color structureColor = const Color.fromARGB(255, 2, 16, 59);
     return ThemeData(
       colorScheme: ColorScheme(
         brightness: Brightness.light,
@@ -18,17 +19,11 @@ abstract class MainTheme{
         error: const Color.fromARGB(255, 128, 13, 13),
         onError: Colors.red[500]!,
         background: Colors.white,
-        onBackground: Colors.black,
-        surface: structureColor,
-        onSurface: const Color.fromARGB(255, 10, 99, 158),
+        onBackground: structureColor,
+        surface: primaryColor,
+        onSurface: Colors.white,
       ),
-      dialogTheme: DialogTheme(
-        titleTextStyle: TextStyle(
-          color: primaryColor,
-          fontSize: 20,
-          fontWeight: FontWeight.w500,
-        )
-      ),
+      dialogTheme: MainDialogTheme.build(titleColor: primaryColor, contentColor: structureColor),
       dividerTheme: DividerThemeData(
         color: structureColor,
         space: 0,

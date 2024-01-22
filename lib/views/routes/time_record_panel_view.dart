@@ -105,11 +105,20 @@ class _TimeRecordPanelViewState extends State<TimeRecordPanelView>{
     );
   }
 
-  DatePickerDialog _buildTimeRecordDatePickerDialog(BuildContext context){
-    return DatePickerDialog(
-      firstDate: DateTime(2023),
-      initialDate: TimeRecordPanelModel().selDateNtfr.selDate,
-      lastDate: DateTime.now(),
+  Theme _buildTimeRecordDatePickerDialog(BuildContext context){
+    return Theme(
+      data: Theme.of(context).copyWith(
+        colorScheme: Theme.of(context).colorScheme.copyWith(
+          
+        ),
+      ),
+      child: Builder(
+        builder: (BuildContext context) => DatePickerDialog(
+          firstDate: DateTime(2023),
+          initialDate: TimeRecordPanelModel().selDateNtfr.selDate,
+          lastDate: DateTime.now(),
+        ),
+      ),
     );
   }
 
