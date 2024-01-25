@@ -2,14 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:projeto_time_counter/background/background_cronometer.dart';
 import 'package:projeto_time_counter/models/routes/cronometer_model.dart';
 import 'package:projeto_time_counter/services/time_conversion_service.dart';
-import 'package:projeto_time_counter/themes/cronometer_theme.dart';
 import 'package:provider/provider.dart';
 
 //DESC: Represents the visual blueprint for a Cronometer.
 class CronometerView extends StatefulWidget{
   final BackgroundCronometer _bkgrndCrnmtr;
   final CronometerModel _model;
-  final CronometerTheme _theme = CronometerTheme();
 
   CronometerView({required CronometerModel crnmtrModel, Key? key}) : _model = crnmtrModel, _bkgrndCrnmtr = BackgroundCronometer(crnmtrModel), super(key: key);
 
@@ -67,8 +65,8 @@ class _CronometerViewState extends State<CronometerView> with WidgetsBindingObse
                 builder: (BuildContext context, CronometerValueNotifier crnmtrValueNtfr, Widget? child){
                   return Text(
                     TimeConversionService().fromIntToString(crnmtrValueNtfr.currentValue),
-                    style: Theme.of(context).textTheme.headlineLarge!.copyWith(
-                      color: widget._theme.crnmtrCounterColor,
+                    style: Theme.of(context).textTheme.displayLarge!.copyWith(
+                      color: Theme.of(context).colorScheme.onBackground,
                     ),
                   );
                 }
@@ -76,7 +74,7 @@ class _CronometerViewState extends State<CronometerView> with WidgetsBindingObse
             ),
           ),
           Container(
-            color: Theme.of(context).colorScheme.onBackground,
+            color: Theme.of(context).colorScheme.primaryContainer,
             padding: const EdgeInsets.symmetric(vertical: 12.5),
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -99,7 +97,7 @@ class _CronometerViewState extends State<CronometerView> with WidgetsBindingObse
     Widget? resetButton;
     
     if(!isRunning){
-      selPauseBtnColor = widget._theme.continueBtnTextColor;
+      selPauseBtnColor = Theme.of(context).colorScheme.scrim;
       if(crnmtrValue > 0){
         pauseBtnText = "Continue";
         resetButton = TextButton(
@@ -108,8 +106,8 @@ class _CronometerViewState extends State<CronometerView> with WidgetsBindingObse
           onLongPress: () => setState(() => widget._model.resetValue(false)),
           onPressed: () => setState(() => widget._model.resetValue(true)),
           style: TextButton.styleFrom(
-            foregroundColor: widget._theme.resetBtnTextColor,
-            textStyle: Theme.of(context).textTheme.displayMedium
+            foregroundColor: Theme.of(context).colorScheme.error,
+            textStyle: Theme.of(context).textTheme.displayMedium,
           ),
           child: const Text("Reset"),
         );

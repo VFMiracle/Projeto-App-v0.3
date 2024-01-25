@@ -69,33 +69,6 @@ class CommandHistoryPanelViewState extends State<CommandHistoryPanelView>{
     );
   }
 
-  TextButton _buildDateSelector(BuildContext context, CommandHistoryPanelSelDateNotifier selDateNotifier, Widget? child){
-    return TextButton(
-      onPressed: () => showDialog(
-        builder: _buildCommandHistoryDatePickerDialog,
-        context: context,
-      ).then((newDate){
-        if(newDate != null){
-          selDateNotifier.selDate = newDate;
-        }
-      }),
-      child: Text(
-        DateTimeUtils().mapDateToDisplayString(selDateNotifier.selDate),
-        style: TextStyle(color: Theme.of(context).colorScheme.onPrimary)
-      ),
-    );
-  }
-
-  Center _buildNoCommandHistoryMessage(BuildContext context){
-    return Center(
-      child: Text(
-        "No Commands were Performed on the Time Records Today",
-        style: Theme.of(context).textTheme.headlineMedium,
-        textAlign: TextAlign.center,
-      ),
-    );
-  }
-
   Container _buildCommandHistoryTypeDropdownSection(BuildContext context){
     return Container(
       decoration: BoxDecoration(
@@ -121,7 +94,10 @@ class CommandHistoryPanelViewState extends State<CommandHistoryPanelView>{
                 items: CommandHistoryType.values.map<DropdownMenuItem<CommandHistoryType>>(
                   (CommandHistoryType type) => DropdownMenuItem<CommandHistoryType>(
                     value: type,
-                    child: Text(type.description)
+                    child: Text(
+                      type.description,
+                      style: TextStyle(color: Theme.of(context).colorScheme.primary)
+                    )
                   ),
                 ).toList(),
                 onChanged: (CommandHistoryType? newHistoryType) => setState(() => CommandHistoryPanelModel().historiesNotifier.selCommandHistoryType = newHistoryType!),
@@ -140,6 +116,33 @@ class CommandHistoryPanelViewState extends State<CommandHistoryPanelView>{
           ),
         ]
       )
+    );
+  }
+
+  TextButton _buildDateSelector(BuildContext context, CommandHistoryPanelSelDateNotifier selDateNotifier, Widget? child){
+    return TextButton(
+      onPressed: () => showDialog(
+        builder: _buildCommandHistoryDatePickerDialog,
+        context: context,
+      ).then((newDate){
+        if(newDate != null){
+          selDateNotifier.selDate = newDate;
+        }
+      }),
+      child: Text(
+        DateTimeUtils().mapDateToDisplayString(selDateNotifier.selDate),
+        style: TextStyle(color: Theme.of(context).colorScheme.onPrimary)
+      ),
+    );
+  }
+
+  Center _buildNoCommandHistoryMessage(BuildContext context){
+    return Center(
+      child: Text(
+        "No Commands were Performed on the Time Records Today",
+        style: Theme.of(context).textTheme.headlineMedium,
+        textAlign: TextAlign.center,
+      ),
     );
   }
 }

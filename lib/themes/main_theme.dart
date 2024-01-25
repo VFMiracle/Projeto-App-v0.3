@@ -4,6 +4,8 @@ import 'package:projeto_time_counter/themes/main_dialog_theme.dart';
 abstract class MainTheme{
   
   static ThemeData build(){
+    Color confirmColor = const Color.fromARGB(255, 21, 190, 27);
+    Color errorColor = const Color.fromARGB(255, 218, 12, 12);
     Color primaryColor = const Color.fromARGB(255, 11, 79, 206);
     Color secondaryColor = const Color.fromARGB(255, 26, 167, 233);
     Color structureColor = const Color.fromARGB(255, 2, 16, 59);
@@ -16,12 +18,40 @@ abstract class MainTheme{
         onPrimary: Colors.white,
         onSecondary: Colors.white,
         onTertiary: Colors.white,
-        error: const Color.fromARGB(255, 128, 13, 13),
-        onError: Colors.red[500]!,
+        error: errorColor,
+        onError: const Color.fromARGB(255, 105, 28, 28),
         background: Colors.white,
-        onBackground: structureColor,
+        onBackground: const Color.fromARGB(255, 6, 33, 119),
         surface: primaryColor,
         onSurface: Colors.white,
+        primaryContainer: structureColor,
+        scrim: confirmColor,
+      ),
+      datePickerTheme: DatePickerThemeData(
+        cancelButtonStyle: ButtonStyle(
+          foregroundColor: MaterialStateProperty.all(errorColor),
+        ),
+        confirmButtonStyle: ButtonStyle(
+          foregroundColor: MaterialStateProperty.all(confirmColor)
+        ),
+        dayBackgroundColor: MaterialStateProperty.resolveWith((Set<MaterialState> states){
+          if(states.contains(MaterialState.selected)){
+            return confirmColor;
+          }
+          return primaryColor;
+        }),
+        todayBackgroundColor: MaterialStateProperty.resolveWith((Set<MaterialState> states){
+          if(states.contains(MaterialState.selected)){
+            return confirmColor;
+          }
+          return primaryColor;
+        }),
+        todayForegroundColor: MaterialStateProperty.resolveWith((Set<MaterialState> states){
+          if(states.contains(MaterialState.selected)){
+            return Colors.white;
+          }
+          return confirmColor;
+        }),
       ),
       dialogTheme: MainDialogTheme.build(titleColor: primaryColor, contentColor: structureColor),
       dividerTheme: DividerThemeData(
@@ -40,8 +70,11 @@ abstract class MainTheme{
           fontSize: 18,
           fontWeight: FontWeight.w500
         ),
-        bodySmall: const TextStyle( //<- INFO: This style is implicitly used for the dates in the Date Picker.
+        bodySmall: const TextStyle(
           fontSize: 15,
+        ),
+        displayLarge: const TextStyle(
+          fontSize: 80
         ),
         displayMedium: const TextStyle(
           fontSize: 30,
@@ -51,13 +84,16 @@ abstract class MainTheme{
           fontSize: 16,
         ),
         headlineLarge: const TextStyle(
-          fontSize: 80,
+          fontSize: 40,
           fontWeight: FontWeight.normal
         ),
         headlineMedium: TextStyle(
           color: primaryColor,
           fontSize: 25,
           fontWeight: FontWeight.bold,
+        ),
+        labelLarge: const TextStyle(
+          fontSize: 18,
         ),
       ),
     );

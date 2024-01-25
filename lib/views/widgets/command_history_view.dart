@@ -12,13 +12,14 @@ class CommandHistoryView extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return TextButton(
-      onPressed: () => showDialog(
+      onLongPress: () => showDialog(
         builder: (BuildContext context) => DeletionDialogView(
           "Are you sure about deleting this history?",
           _model.delete,
         ),
         context: context,
       ),
+      onPressed: (){},
       child: _buildHistoryContent(context),
     );
   }

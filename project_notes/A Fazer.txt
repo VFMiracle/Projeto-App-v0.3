@@ -5,4 +5,7 @@ THINGS TO DO:
 		- Fix the weird Color Scheme in the Time Editor Theme. Most prominently seen in the Time Record Panel's Time Record Creator.
 			- Figure out how to make the child of a Theme Widget use it's parent's overwrites.
 		- Fix the Date Picker Dialog's visual issues.
-			*- Fix the overflow on it's description of the Selected Date.
+			- Fix the overflow on it's description of the Selected Date.
+			- Fix the colors of the current date and the Select Button blending into the background.
+				- This might be caused by some kind of override on the Main Theme, since no change to the Styles that use the Primary Color on the Main Theme seems to have an effect.
+				*- Pass the Date Picker's specific stylings onto their own Theme Data on the App's Main Theme.
