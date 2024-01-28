@@ -7,24 +7,24 @@ import 'package:projeto_time_counter/models/routes/cronometer_panel_model.dart';
 class CronometerModel{
   final int _id;
   final CronometerFacade _facade = CronometerFacade();
-  late final CronometerIsRunningNotifier _isRunningNtfr;
-  late final CronometerNameNotifier _nameNtfr;
-  late final CronometerValueNotifier _valueNtfr;
+  late final CronometerIsRunningNotifier _isRunningNotifier;
+  late final CronometerNameNotifier _nameNotifier;
+  late final CronometerValueNotifier _valueNotifier;
 
   int get id => _id;
 
-  CronometerIsRunningNotifier get isRunningNtfr => _isRunningNtfr;
+  CronometerIsRunningNotifier get isRunningNotifier => _isRunningNotifier;
 
-  CronometerNameNotifier get nameNtfr => _nameNtfr;
+  CronometerNameNotifier get nameNotifier => _nameNotifier;
 
-  CronometerValueNotifier get valueNtfr => _valueNtfr;
+  CronometerValueNotifier get valueNotifier => _valueNotifier;
 
   CronometerModel(this._id, String name){
     //OBS: The Notifiers are being initialized insede the constructor because the 'this' keyword can't be used before this moment.
     //INFO: The Model reference needs to be sent so the Notifiers can have knowledge of the Model they're associated with.
-    _isRunningNtfr = CronometerIsRunningNotifier(this);
-    _nameNtfr = CronometerNameNotifier(this, name);
-    _valueNtfr = CronometerValueNotifier(this);
+    _isRunningNotifier = CronometerIsRunningNotifier(this);
+    _nameNotifier = CronometerNameNotifier(this, name);
+    _valueNotifier = CronometerValueNotifier(this);
   }
 
   void delete(){
@@ -33,18 +33,18 @@ class CronometerModel{
 
   void resetValue(bool shouldRecordTime){
     if(shouldRecordTime){
-      int rcrddTime = _valueNtfr.currentValue;
-      _facade.addTimeToRecords(_nameNtfr.name, rcrddTime);
+      int rcrddTime = _valueNotifier.currentValue;
+      _facade.addTimeToRecords(_nameNotifier.name, rcrddTime);
     }
-    _valueNtfr.startValue = 0;
+    _valueNotifier.startValue = 0;
   }
 
   void toggleIsRunning(){
-    _isRunningNtfr._toggle();
-    if(_isRunningNtfr.isRunning){
-      _valueNtfr._startTimeCounter();
+    _isRunningNotifier._toggle();
+    if(_isRunningNotifier.isRunning){
+      _valueNotifier._startTimeCounter();
     }else{
-      _valueNtfr._stopTimeCounter();
+      _valueNotifier._stopTimeCounter();
     }
   }
 }
@@ -70,8 +70,9 @@ class CronometerNameNotifier extends ChangeNotifier{
 
   String get name => _name;
   set name(String newName){
+    String oldName = _name;
     _name = newName;
-    _parentModel._facade.updateDbEntry(_parentModel);
+    _parentModel._facade.updateDbEntry(_parentModel, oldName);
     notifyListeners();
   }
 

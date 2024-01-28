@@ -1,6 +1,7 @@
 ABREVIATION
 	- Common code elements like variables, function, classes and etc, will never use abreviations, with the exception of the following terms when they aren't the only word used in a name:
 		- Data Access Object -> dao
+		- Database -> db
 		- Data Transfer Object -> dto
 		- Information -> info
 		- Quantity -> qtd
@@ -71,6 +72,7 @@ PROJECT STRUCTURE:
 			- The Model will grant external access to all of it's Notifiers (which should control their respective APIs), and provide functions that perform operations that span multiple notifiers if need be.
 			- The Model will have knowledge of the Notifier's private fields, however it should only access them through their respective properties, unless otherwise noted by a comment. Private functions can be accessed without issue.
 		- State classes should be written in the same script as their corresponding StatefulWidget.
+		- Terminal DTO classes should be written in the same script as their abstract parent class.
 	SERVICE CLASSES:
 		- Provide some functionality that is accessible throughout the project.
 	UTILS CLASSES:

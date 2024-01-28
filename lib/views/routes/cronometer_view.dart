@@ -81,7 +81,7 @@ class _CronometerViewState extends State<CronometerView> with WidgetsBindingObse
               children: [
                 Consumer<CronometerIsRunningNotifier>(
                   builder: (BuildContext context, CronometerIsRunningNotifier crnmtrIsRnngNtfr, Widget? child) =>
-                    _buildCountOptionButtons(crnmtrIsRnngNtfr.isRunning, widget._model.valueNtfr.currentValue)
+                    _buildCountOptionButtons(crnmtrIsRnngNtfr.isRunning, widget._model.valueNotifier.currentValue)
                 ),
               ],
             )
@@ -142,12 +142,12 @@ class _CronometerViewState extends State<CronometerView> with WidgetsBindingObse
   }
 
   AlertDialog _buildNameEditingDialog(BuildContext context){
-    TextEditingController nameEdtngCtrlr = TextEditingController(text: widget._model.nameNtfr.name);
+    TextEditingController nameEdtngCtrlr = TextEditingController(text: widget._model.nameNotifier.name);
     return AlertDialog(
       actions: [
         TextButton(
           onPressed: (){
-            widget._model.nameNtfr.name = nameEdtngCtrlr.text;
+            widget._model.nameNotifier.name = nameEdtngCtrlr.text;
             Navigator.of(context).pop();
           },
           child: Text(

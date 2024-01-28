@@ -9,26 +9,26 @@ class BackgroundCronometer{
   BackgroundCronometer(CronometerModel crnmtrModel) : _crnmtrModel = crnmtrModel;
 
   void start(){
-    if(_crnmtrModel.isRunningNtfr.isRunning){
-      _crnmtrModel.valueNtfr.addListener(_displayRunning);
-    }else if(_crnmtrModel.valueNtfr.currentValue > 0){
+    if(_crnmtrModel.isRunningNotifier.isRunning){
+      _crnmtrModel.valueNotifier.addListener(_displayRunning);
+    }else if(_crnmtrModel.valueNotifier.currentValue > 0){
       _displayPaused();
     }
   }
 
   void cancel(){
-    if(_crnmtrModel.isRunningNtfr.isRunning){
-      _crnmtrModel.valueNtfr.removeListener(_displayRunning);
+    if(_crnmtrModel.isRunningNotifier.isRunning){
+      _crnmtrModel.valueNotifier.removeListener(_displayRunning);
     }
     NotificationManager().cancelCronometer();
   }
 
   void _displayPaused(){
-    String crnmtrStatus = "${TimeConversionService().fromIntToString(_crnmtrModel.valueNtfr.currentValue)} - Paused";
-    NotificationManager().displayCronometer(_crnmtrModel.nameNtfr.name, crnmtrStatus);
+    String crnmtrStatus = "${TimeConversionService().fromIntToString(_crnmtrModel.valueNotifier.currentValue)} - Paused";
+    NotificationManager().displayCronometer(_crnmtrModel.nameNotifier.name, crnmtrStatus);
   }
 
   void _displayRunning(){
-    NotificationManager().displayCronometer(_crnmtrModel.nameNtfr.name, TimeConversionService().fromIntToString(_crnmtrModel.valueNtfr.currentValue));
+    NotificationManager().displayCronometer(_crnmtrModel.nameNotifier.name, TimeConversionService().fromIntToString(_crnmtrModel.valueNotifier.currentValue));
   }
 }

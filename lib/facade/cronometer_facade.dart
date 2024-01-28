@@ -1,7 +1,10 @@
+import 'package:projeto_time_counter/dao/command_history_dao.dart';
 import 'package:projeto_time_counter/dao/cronometer_dao.dart';
 import 'package:projeto_time_counter/dao/time_record_dao.dart';
+import 'package:projeto_time_counter/dto/command_history_dto.dart';
 import 'package:projeto_time_counter/dto/cronometer_dto.dart';
 import 'package:projeto_time_counter/dto/time_record_dto.dart';
+import 'package:projeto_time_counter/enums/cronometer_editing_command.dart';
 import 'package:projeto_time_counter/models/routes/cronometer_model.dart';
 
 class CronometerFacade{
@@ -18,11 +21,14 @@ class CronometerFacade{
     }
   }
 
-  void updateDbEntry(CronometerModel cronometer){
+  void updateDbEntry(CronometerModel cronometer, String oldName){
+    CommandHistoryDAO().insertDbEntry(
+      CommandHistoryRecordingDTO(commandId: CronometerEditingCommand.updateName.commandId, targetName: cronometer.nameNotifier.name, updateInfo: oldName)
+    );
     CronometerDAO().updateDbEntry(_getDtoFromModel(cronometer));
   }
 
   CronometerDTO _getDtoFromModel(CronometerModel model){
-    return CronometerDTO(model.id, model.nameNtfr.name);
+    return CronometerDTO(model.id, model.nameNotifier.name);
   }
 }

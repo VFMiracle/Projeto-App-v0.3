@@ -7,14 +7,14 @@ class CronometerPanelModel extends ChangeNotifier{
   //INFO: Since the Cronometer Panel Model is instanced at the start of the App and remains until it is closed, it is a better ideia to turn it into a static singleton.
   static final CronometerPanelModel _crnmtrPanelModel = CronometerPanelModel._internal();
   
-  List<CronometerModel> _crnmtrsModel = [];
+  List<CronometerModel> _cronometersModel = [];
   final CronometerPanelFacade _facade = CronometerPanelFacade();
 
-  int get qtdCronometer => _crnmtrsModel.length;
+  int get qtdCronometer => _cronometersModel.length;
 
   CronometerPanelModel._internal(){
     _facade.readAllDbEntries().then((List<CronometerModel> cronometers){
-      _crnmtrsModel = cronometers;
+      _cronometersModel = cronometers;
       _sortCronometers();
     });
   }
@@ -27,23 +27,23 @@ class CronometerPanelModel extends ChangeNotifier{
   void addCronometer(String crnmtrName){
     CronometerModel auxModel = CronometerModel(-1, crnmtrName);
     _facade.insertDbEntry(auxModel).then((int crnmtrId){
-      _crnmtrsModel.add(CronometerModel(crnmtrId, crnmtrName));
+      _cronometersModel.add(CronometerModel(crnmtrId, crnmtrName));
       _sortCronometers();
     });
   }
 
   void deleteCronometer(CronometerModel cronometer){
-    _crnmtrsModel.remove(cronometer);
-    _facade.deleteDbEntry(cronometer.id);
+    _cronometersModel.remove(cronometer);
+    _facade.deleteDbEntry(cronometer);
     _sortCronometers();
   }
 
   CronometerModel getCronometerModelByIndex(int index){
-    return _crnmtrsModel[index];
+    return _cronometersModel[index];
   }
 
   void _sortCronometers(){
-    _crnmtrsModel.sort((a, b) => a.nameNtfr.name.toLowerCase().compareTo(b.nameNtfr.name.toLowerCase()));
+    _cronometersModel.sort((a, b) => a.nameNotifier.name.toLowerCase().compareTo(b.nameNotifier.name.toLowerCase()));
     notifyListeners();
   }
 }

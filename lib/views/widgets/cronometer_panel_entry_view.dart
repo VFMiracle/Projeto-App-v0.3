@@ -22,16 +22,16 @@ class CronometerPanelEntryViewState extends State<CronometerPanelEntryView>{
       onLongPress: () => showDialog(
         context: context,
         builder: (BuildContext context) => DeletionDialogView(
-          "Are you sure you want to delete the ${widget._crnmtrModel.nameNtfr.name} Cronometer?",
+          "Are you sure you want to delete the ${widget._crnmtrModel.nameNotifier.name} Cronometer?",
           widget._crnmtrModel.delete
         ),
       ),
       onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){
           return MultiProvider(
             providers: [
-              ChangeNotifierProvider.value(value: widget._crnmtrModel.isRunningNtfr),
-              ChangeNotifierProvider.value(value: widget._crnmtrModel.nameNtfr),
-              ChangeNotifierProvider.value(value: widget._crnmtrModel.valueNtfr),
+              ChangeNotifierProvider.value(value: widget._crnmtrModel.isRunningNotifier),
+              ChangeNotifierProvider.value(value: widget._crnmtrModel.nameNotifier),
+              ChangeNotifierProvider.value(value: widget._crnmtrModel.valueNotifier),
             ],
             child: CronometerView(crnmtrModel: widget._crnmtrModel),
           );
@@ -47,13 +47,13 @@ class CronometerPanelEntryViewState extends State<CronometerPanelEntryView>{
         TableRow(
           children:[
             ChangeNotifierProvider.value(
-              value: widget._crnmtrModel.nameNtfr,
+              value: widget._crnmtrModel.nameNotifier,
               child: Consumer<CronometerNameNotifier>(
                 builder: (BuildContext context, CronometerNameNotifier crnmtrNameNtfr, Widget? child) => Text(crnmtrNameNtfr.name),
               ),
             ),
             ChangeNotifierProvider.value(
-              value: widget._crnmtrModel.isRunningNtfr,
+              value: widget._crnmtrModel.isRunningNotifier,
               child: Consumer<CronometerIsRunningNotifier>(
                 builder: (BuildContext context, CronometerIsRunningNotifier crnmtrIsRnngNtfr, Widget? child){
                   return Text(
@@ -69,7 +69,7 @@ class CronometerPanelEntryViewState extends State<CronometerPanelEntryView>{
         TableRow(
           children:[
             ChangeNotifierProvider.value(
-              value: widget._crnmtrModel.valueNtfr,
+              value: widget._crnmtrModel.valueNotifier,
               child: Consumer<CronometerValueNotifier>(
                 builder: (BuildContext context, CronometerValueNotifier crnmtrValueNtfr, Widget? child){
                   return Text(

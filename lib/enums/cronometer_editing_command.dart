@@ -1,10 +1,11 @@
 enum CronometerEditingCommand{
-  create(name: "Create", updateInfoType: null),
-  updateName(name: "Update Name", updateInfoType: String),
-  delete(name: "Delete", updateInfoType: null);
+  create(commandId: 1, name: "Create", updateInfoType: null),
+  updateName(commandId: 2, name: "Update Name", updateInfoType: String),
+  delete(commandId: 3, name: "Delete", updateInfoType: null);
 
-  const CronometerEditingCommand({required this.name, required this.updateInfoType});
+  const CronometerEditingCommand({required this.commandId, required this.name, required this.updateInfoType});
 
+  final int commandId;
   final String name;
   final Type? updateInfoType;
 

@@ -17,8 +17,19 @@ class CommandHistoryDAO{
     _instance._database = database;
   }
 
-  Future<List<CommandHistoryDTO>> readDbEntriesByCommandType(int commandHistoryTypeId, DateTime selDate) async {
-    List<CommandHistoryDTO> commandHistories = [];
+  Future<int> insertDbEntry(CommandHistoryRecordingDTO commandHistory) async {
+    int commandHistoryId = 0;
+    Map<String, dynamic> commandHistoryDbEntry = {"id_used_command": commandHistory.commandId, "nm_target": commandHistory.targetName, "dt_history_creation":
+      DateTimeUtils().mapDateTimeToDatabaseString(DateTime.now()), "ds_update_info": commandHistory.updateInfo.toString()};
+    await _database.insert(
+      _tableName,
+      commandHistoryDbEntry,
+    ).then((newCommandHistoryId) => commandHistoryId = newCommandHistoryId);
+    return commandHistoryId;
+  }
+
+  Future<List<CommandHistoryLoadingDTO>> readDbEntriesByCommandType(int commandHistoryTypeId, DateTime selDate) async {
+    List<CommandHistoryLoadingDTO> commandHistories = [];
     List<Map<String, dynamic>> commandHistoriesMap = await _database.rawQuery(
       '''SELECT base.id_command_history, commands.id_type, commands.nm_command, base.nm_target, base.dt_history_creation, base.ds_update_info
         FROM command_history AS base
@@ -27,7 +38,7 @@ class CommandHistoryDAO{
         [commandHistoryTypeId, "${DateTimeUtils().mapDateToDatabaseString(selDate)}%"]
     );
     for(Map<String, dynamic> commandHistoryMap in commandHistoriesMap){
-      commandHistories.add(CommandHistoryDTO(id: commandHistoryMap['id_command_history'], command: commandHistoryMap['nm_command'],
+      commandHistories.add(CommandHistoryLoadingDTO(id: commandHistoryMap['id_command_history'], commandName: commandHistoryMap['nm_command'],
         targetName: commandHistoryMap['nm_target'], type: CommandHistoryType.getTypeById(commandHistoryMap['id_type'])!,
         creationDateTime: DateTimeUtils().mapDatabaseStringToDateTime(commandHistoryMap['dt_history_creation']), updateInfo: commandHistoryMap['ds_update_info']));
     }
