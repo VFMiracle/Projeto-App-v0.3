@@ -6,7 +6,6 @@ import 'package:projeto_time_counter/models/routes/cronometer_panel_model.dart';
 //DESC: Describes the logic behind a Cronometer.
 class CronometerModel{
   final int _id;
-  final CronometerFacade _facade = CronometerFacade();
   late final CronometerIsRunningNotifier _isRunningNotifier;
   late final CronometerNameNotifier _nameNotifier;
   late final CronometerValueNotifier _valueNotifier;
@@ -33,9 +32,10 @@ class CronometerModel{
 
   void resetValue(bool shouldRecordTime){
     if(shouldRecordTime){
-      int rcrddTime = _valueNotifier.currentValue;
-      _facade.addTimeToRecords(_nameNotifier.name, rcrddTime);
+      int timeToRecord = _valueNotifier.currentValue;
+      CronometerFacade().addTimeToRecords(_nameNotifier.name, timeToRecord);
     }
+    CronometerFacade().recordTimeReset(this, shouldRecordTime);
     _valueNotifier.startValue = 0;
   }
 
@@ -60,6 +60,7 @@ class CronometerIsRunningNotifier extends ChangeNotifier{
 
   void _toggle(){
     _isRunning = !_isRunning;
+    CronometerFacade().recordIsRunningToggle(_parentModel);
     notifyListeners();
   }
 }
@@ -72,7 +73,7 @@ class CronometerNameNotifier extends ChangeNotifier{
   set name(String newName){
     String oldName = _name;
     _name = newName;
-    _parentModel._facade.updateDbEntry(_parentModel, oldName);
+    CronometerFacade().updateDbEntry(_parentModel, oldName);
     notifyListeners();
   }
 

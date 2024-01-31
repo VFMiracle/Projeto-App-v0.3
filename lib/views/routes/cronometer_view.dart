@@ -88,6 +88,7 @@ class _CronometerViewState extends State<CronometerView> with WidgetsBindingObse
           ),
         ],
       ),
+      resizeToAvoidBottomInset: false
     );
   }
 
@@ -151,7 +152,7 @@ class _CronometerViewState extends State<CronometerView> with WidgetsBindingObse
             Navigator.of(context).pop();
           },
           child: Text(
-            "Submit",
+            "Confirmar",
             style: Theme.of(context).textTheme.displaySmall,
           ),
         ),

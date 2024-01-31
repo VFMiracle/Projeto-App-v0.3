@@ -34,10 +34,13 @@ class CommandHistoryView extends StatelessWidget{
             headerText,
             style: Theme.of(context).textTheme.bodyMedium,
           ),
-          Text(
-            _model.commandName,
-            style: Theme.of(context).textTheme.bodyMedium,
-          )
+          SizedBox(
+            width: MediaQuery.of(context).size.width/2,
+            child: Text(
+              _model.commandName,
+              style: Theme.of(context).textTheme.bodyMedium,
+            )
+          ),
         ],
       ),
       Row(

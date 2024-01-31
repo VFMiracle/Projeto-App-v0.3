@@ -83,7 +83,7 @@ class TimeRecordView extends StatelessWidget{
       title: "Time Record Editor",
       textFieldLabelName: "Task Name",
       intlTextFieldText: _model.taskNameNtfr.taskName,
-      intlTimeUnitValues: TimeConversionService().fromIntToTimeUnitValues(_model.countedTimeNtfr.countedTime),
+      initialTimeUnitValues: TimeConversionService().fromIntToTimeUnitValues(_model.countedTimeNtfr.countedTime),
       allowEmptyTextField: false,
       allowTimeZero: false,
     );

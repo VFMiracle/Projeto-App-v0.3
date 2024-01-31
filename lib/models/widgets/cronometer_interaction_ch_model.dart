@@ -1,7 +1,6 @@
 import 'package:projeto_time_counter/enums/cronometer_interaction_command.dart';
 import 'package:projeto_time_counter/models/widgets/reusable/command_history_model.dart';
 import 'package:projeto_time_counter/services/time_conversion_service.dart';
-import 'package:timezone/timezone.dart';
 
 class CronometerInteractionChModel extends CommandHistoryModel{
   final CronometerInteractionCommand _command;
@@ -14,8 +13,7 @@ class CronometerInteractionChModel extends CommandHistoryModel{
   dynamic get updateInfo => _updateInfo;
 
   CronometerInteractionChModel({required int id, required CronometerInteractionCommand command, required String targetName, required int updateInfo,
-      DateTime? creationDateTime}): _command = command, _updateInfo = updateInfo, super(id: id, targetName: targetName, creationDateTime: creationDateTime ??
-      TZDateTime.now(getLocation("America/Sao_Paulo")));
+      DateTime? creationDateTime}): _command = command, _updateInfo = updateInfo, super(id: id, targetName: targetName, creationDateTime: creationDateTime ?? DateTime.now());
 
   @override
   String writeUpdateInfoDisplayString({bool useDefaultPreamble = true}){

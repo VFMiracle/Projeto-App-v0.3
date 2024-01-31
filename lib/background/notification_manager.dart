@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:timezone/data/latest.dart' as timezone;
 
 //DESC: Manages the display process for Notifications
 class NotificationManager{
@@ -15,8 +14,6 @@ class NotificationManager{
   void startup() async {
     const  AndroidInitializationSettings androidIntlztnSettings = AndroidInitializationSettings('mipmap/ic_launcher');
     const InitializationSettings intlztnSettings = InitializationSettings(android: androidIntlztnSettings);
-
-    timezone.initializeTimeZones();
 
     await flutterLocalNtfctnsPlugin.initialize(intlztnSettings);
   }

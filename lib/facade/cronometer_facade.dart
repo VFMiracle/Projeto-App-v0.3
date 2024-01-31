@@ -5,9 +5,19 @@ import 'package:projeto_time_counter/dto/command_history_dto.dart';
 import 'package:projeto_time_counter/dto/cronometer_dto.dart';
 import 'package:projeto_time_counter/dto/time_record_dto.dart';
 import 'package:projeto_time_counter/enums/cronometer_editing_command.dart';
+import 'package:projeto_time_counter/enums/cronometer_interaction_command.dart';
 import 'package:projeto_time_counter/models/routes/cronometer_model.dart';
 
 class CronometerFacade{
+  //INFO: This Facade is a singleton because having a single instance of it that any Cronometer Model calls is more efficient than each of them creating an instance of their
+  //  own.
+  static final CronometerFacade _instance = CronometerFacade._internal();
+
+  CronometerFacade._internal();
+
+  factory CronometerFacade(){
+    return _instance;
+  }
 
   void addTimeToRecords(String taskName, int time) async {
     TimeRecordDTO? timeRecordDTO = await TimeRecordDAO().readDbEntry(taskName, DateTime.now());
@@ -21,9 +31,29 @@ class CronometerFacade{
     }
   }
 
+  void recordIsRunningToggle(CronometerModel cronometer){
+    CommandHistoryDAO().insertDbEntry(
+      CommandHistoryRecordingDTO(
+        commandId: cronometer.isRunningNotifier.isRunning ? CronometerInteractionCommand.start.commandId : CronometerInteractionCommand.pause.commandId,
+        targetName: cronometer.nameNotifier.name,
+        updateInfo: cronometer.valueNotifier.currentValue.toString(),
+      ),
+    );
+  }
+
+  void recordTimeReset(CronometerModel cronometer, bool shouldRecordTime){
+    CommandHistoryDAO().insertDbEntry(
+      CommandHistoryRecordingDTO(
+        commandId: shouldRecordTime ? CronometerInteractionCommand.resetAndSaveTime.commandId : CronometerInteractionCommand.resetAndDeleteTime.commandId,
+        targetName: cronometer.nameNotifier.name,
+        updateInfo: cronometer.valueNotifier.currentValue.toString(),
+      )
+    );
+  }
+
   void updateDbEntry(CronometerModel cronometer, String oldName){
     CommandHistoryDAO().insertDbEntry(
-      CommandHistoryRecordingDTO(commandId: CronometerEditingCommand.updateName.commandId, targetName: cronometer.nameNotifier.name, updateInfo: oldName)
+      CommandHistoryRecordingDTO(commandId: CronometerEditingCommand.updateName.commandId, targetName: oldName, updateInfo: cronometer.nameNotifier.name)
     );
     CronometerDAO().updateDbEntry(_getDtoFromModel(cronometer));
   }

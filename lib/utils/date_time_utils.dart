@@ -18,7 +18,7 @@ class DateTimeUtils{
   }){
     String dateTimeString =
       "${dateTime.year}$dateUnitSeparator${dateTime.month.toString().padLeft(2, "0")}$dateUnitSeparator${dateTime.day.toString().padLeft(2, "0")}";
-    dateTimeString += " $dateTimeSeparator ${dateTime.hour.toString().padLeft(2, "0")}$timeUnitSeparator${dateTime.minute.toString().padLeft(2, "0")}";
+    dateTimeString += "$dateTimeSeparator${dateTime.hour.toString().padLeft(2, "0")}$timeUnitSeparator${dateTime.minute.toString().padLeft(2, "0")}";
     if(shouldDisplaySeconds){
       dateTimeString += "$timeUnitSeparator${dateTime.second.toString().padLeft(2, "0")}";
     }

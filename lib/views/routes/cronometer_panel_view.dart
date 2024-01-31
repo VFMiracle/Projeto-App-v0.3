@@ -68,17 +68,6 @@ class _CronometerPanelViewState extends State<CronometerPanelView>{
       ],
       content: TextField(
         controller: cronometerNameEdtngCtrlr,
-        decoration: InputDecoration(
-          border: UnderlineInputBorder(
-            borderSide: BorderSide(color: Theme.of(context).dialogTheme.contentTextStyle!.color!)
-          ),
-          enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: Theme.of(context).dialogTheme.contentTextStyle!.color!)
-          ),
-          focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: Theme.of(context).dialogTheme.contentTextStyle!.color!)
-          )
-        ),
         style: Theme.of(context).dialogTheme.contentTextStyle
       ),
       title: const Text("Cronometer Creator"),

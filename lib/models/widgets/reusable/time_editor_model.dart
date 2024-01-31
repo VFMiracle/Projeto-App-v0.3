@@ -10,16 +10,16 @@ class TimeEditorModel{
   final TimeEditorConfigurationStrategy _configStrtg;
   late final Map<TimeUnit, TimeEditorTimeUnitNotifier> _timeUnitNtfrs = <TimeUnit, TimeEditorTimeUnitNotifier>{};
 
-  TimeEditorModel({required TimeEditorConfigurationStrategy configStrtg, Map<TimeUnit, int>? intlTimeUnitValues, this.textFieldText}) : _configStrtg = configStrtg{
+  TimeEditorModel({required TimeEditorConfigurationStrategy configStrtg, Map<TimeUnit, int>? initialTimeUnitValues, this.textFieldText}) : _configStrtg = configStrtg{
     _timeUnitNtfrs.addAll({
       TimeUnit.hour: TimeEditorTimeUnitNotifier(this),
       TimeUnit.minute: TimeEditorTimeUnitNotifier(this),
       TimeUnit.second: TimeEditorTimeUnitNotifier(this),
     });
-    if(intlTimeUnitValues != null){
-      _timeUnitNtfrs[TimeUnit.hour]!._value = intlTimeUnitValues[TimeUnit.hour] ?? 0;
-      _timeUnitNtfrs[TimeUnit.minute]!._value = intlTimeUnitValues[TimeUnit.minute] ?? 0;
-      _timeUnitNtfrs[TimeUnit.second]!._value = intlTimeUnitValues[TimeUnit.second] ?? 0;
+    if(initialTimeUnitValues != null){
+      _timeUnitNtfrs[TimeUnit.hour]!._value = initialTimeUnitValues[TimeUnit.hour] ?? 0;
+      _timeUnitNtfrs[TimeUnit.minute]!._value = initialTimeUnitValues[TimeUnit.minute] ?? 0;
+      _timeUnitNtfrs[TimeUnit.second]!._value = initialTimeUnitValues[TimeUnit.second] ?? 0;
     }
   }
 

@@ -139,7 +139,7 @@ class CommandHistoryPanelViewState extends State<CommandHistoryPanelView>{
   Center _buildNoCommandHistoryMessage(BuildContext context){
     return Center(
       child: Text(
-        "No Commands were Performed on the Time Records Today",
+        "There aren't any registered Commands of this Type on this day.",
         style: Theme.of(context).textTheme.headlineMedium,
         textAlign: TextAlign.center,
       ),

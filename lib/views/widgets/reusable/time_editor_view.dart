@@ -75,7 +75,7 @@ class TimeEditorViewState extends State<TimeEditorView>{
           Expanded(
             child: TextField(
               controller: textEdtngCtrlr,
-              style: Theme.of(context).textTheme.bodyMedium,
+              style: Theme.of(context).dialogTheme.contentTextStyle,
             ),
           ),
         ]

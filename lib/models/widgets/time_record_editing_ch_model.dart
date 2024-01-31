@@ -1,7 +1,6 @@
 import 'package:projeto_time_counter/enums/time_record_editing_command.dart';
 import 'package:projeto_time_counter/models/widgets/reusable/command_history_model.dart';
 import 'package:projeto_time_counter/services/time_conversion_service.dart';
-import 'package:timezone/timezone.dart';
 
 class TimeRecordEditingChModel extends CommandHistoryModel{
   final TimeRecordEditingCommand _command;
@@ -14,8 +13,7 @@ class TimeRecordEditingChModel extends CommandHistoryModel{
   dynamic get updateInfo => _updateInfo;
 
   TimeRecordEditingChModel({required int id, required TimeRecordEditingCommand command, required String targetName, DateTime? creationDateTime, dynamic updateInfo}):
-      _command = command, _updateInfo = updateInfo, super(id: id, targetName: targetName, creationDateTime: creationDateTime ??
-      TZDateTime.now(getLocation("America/Sao_Paulo")));
+      _command = command, _updateInfo = updateInfo, super(id: id, targetName: targetName, creationDateTime: creationDateTime ?? DateTime.now());
 
   @override
   String writeUpdateInfoDisplayString({bool useDefaultPreamble = true}){
