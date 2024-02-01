@@ -30,15 +30,19 @@ class CommandHistoryView extends StatelessWidget{
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            headerText,
-            style: Theme.of(context).textTheme.bodyMedium,
+          Flexible(
+            flex: 2,
+            child: Text(
+              headerText,
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
           ),
-          SizedBox(
-            width: MediaQuery.of(context).size.width/2,
+          Flexible(
+            flex: 1,
             child: Text(
               _model.commandName,
               style: Theme.of(context).textTheme.bodyMedium,
+              textAlign: TextAlign.right,
             )
           ),
         ],
