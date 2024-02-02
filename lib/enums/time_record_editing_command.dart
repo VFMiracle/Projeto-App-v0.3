@@ -1,7 +1,7 @@
 enum TimeRecordEditingCommand{
-  create(commandId: 8, name: "Create", updateInfoType: int),
-  delete(commandId: 9, name: "Delete", updateInfoType: int),
-  updateName(commandId: 10, name: "Update Name", updateInfoType: String),
+  create(commandId: 8, name: "Create", updateInfoType: Map),
+  delete(commandId: 9, name: "Delete", updateInfoType: Map),
+  updateName(commandId: 10, name: "Update Name", updateInfoType: Map),
   updateValue(commandId: 11, name: "Update Value", updateInfoType: Map);
 
   const TimeRecordEditingCommand({required this.commandId, required this.name, required this.updateInfoType});

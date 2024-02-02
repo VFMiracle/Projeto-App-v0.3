@@ -1,10 +1,7 @@
 THINGS TO DO:
-	- Make the App record Cronometer Interaction Histories.
-		- Test if these processes are working properly.
-		- Force the Command Name display of the Command History Widget to occupy, at most, half of the screen's width.
-			*- Figure out what's causing the overflow in all Command History widgets.
+	*- Check if the App is still loading other Command History Types properly.
 	- Make the App record Time Record Editing Histories.
-		*- Clear the Database of all Command History Records.
+		- Clear the Database of all Command History Records.
 		- Update the _convertUpdateInfoStringToMap function of the Command History Panel Facade so it works with other Key Value Pair types beyond String/int.
 		- Change the updateInfoType for these Commands to Map, so the Date where they were applied is also recorded.
 	- Refactor the App's Theme. Start back from the Main Theme class and remove all others.

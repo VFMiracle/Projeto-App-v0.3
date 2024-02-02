@@ -7,6 +7,26 @@ class DateTimeUtils{
     return _instance;
   }
 
+  DateTime mapDatabaseStringToDate(String databaseString){
+    List<String> dateList = databaseString.split('-');
+    return DateTime(
+      int.parse(dateList[0]),
+      int.parse(dateList[1]),
+      int.parse(dateList[2]),
+    );
+  }
+
+  DateTime mapDatabaseStringToDateTime(String databaseString){
+    List<String> dateTimeList = databaseString.split(' '), timeList = dateTimeList[1].split(':');
+    DateTime returnDateTime = mapDatabaseStringToDate(databaseString[0]);
+    returnDateTime.add(Duration(
+      hours: int.parse(timeList[0]),
+      minutes: int.parse(timeList[1]),
+      seconds: int.parse(timeList[2])
+    ));
+    return returnDateTime;
+  }
+
   String mapDateTimeToDatabaseString(DateTime dateTime){
     String dateTimeString = "${dateTime.year}-${dateTime.month}-${dateTime.day} ";
     dateTimeString += "${dateTime.hour.toString().padLeft(2, '0')}:${dateTime.minute.toString().padLeft(2, '0')}:${dateTime.second.toString().padLeft(2, '0')}";
@@ -31,18 +51,6 @@ class DateTimeUtils{
 
   String mapDateToDisplayString(DateTime date){
     return "${date.year}/${date.month.toString().padLeft(2, "0")}/${date.day.toString().padLeft(2, "0")}";
-  }
-
-  DateTime mapDatabaseStringToDateTime(String databaseString){
-    List<String> dateTimeList = databaseString.split(' '), dateList = dateTimeList[0].split('-'), timeList = dateTimeList[1].split(':');
-    return DateTime(
-      int.parse(dateList[0]),
-      int.parse(dateList[1]),
-      int.parse(dateList[2]),
-      int.parse(timeList[0]),
-      int.parse(timeList[1]),
-      int.parse(timeList[2]),
-    );
   }
 
   DateTime mapStringToDate(String dateTimeString){
