@@ -18,8 +18,8 @@ class DateTimeUtils{
 
   DateTime mapDatabaseStringToDateTime(String databaseString){
     List<String> dateTimeList = databaseString.split(' '), timeList = dateTimeList[1].split(':');
-    DateTime returnDateTime = mapDatabaseStringToDate(databaseString[0]);
-    returnDateTime.add(Duration(
+    DateTime returnDateTime = mapDatabaseStringToDate(dateTimeList[0]);
+    returnDateTime = returnDateTime.add(Duration(
       hours: int.parse(timeList[0]),
       minutes: int.parse(timeList[1]),
       seconds: int.parse(timeList[2])
@@ -29,7 +29,7 @@ class DateTimeUtils{
 
   String mapDateTimeToDatabaseString(DateTime dateTime){
     String dateTimeString = "${dateTime.year}-${dateTime.month}-${dateTime.day} ";
-    dateTimeString += "${dateTime.hour.toString().padLeft(2, '0')}:${dateTime.minute.toString().padLeft(2, '0')}:${dateTime.second.toString().padLeft(2, '0')}";
+    dateTimeString += "${dateTime.hour}:${dateTime.minute}:${dateTime.second}";
     return dateTimeString;
   }
 
