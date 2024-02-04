@@ -8,6 +8,7 @@ import 'package:projeto_time_counter/models/widgets/cronometer_editing_ch_model.
 import 'package:projeto_time_counter/models/widgets/cronometer_interaction_ch_model.dart';
 import 'package:projeto_time_counter/models/widgets/reusable/command_history_model.dart';
 import 'package:projeto_time_counter/models/widgets/time_record_editing_ch_model.dart';
+import 'package:projeto_time_counter/utils/date_time_utils.dart';
 
 class CommandHistoryPanelFacade{
 
@@ -16,13 +17,26 @@ class CommandHistoryPanelFacade{
     return _getModelListFromDtoList(dtos);
   }
 
-  Map<String, int> _convertUpdateInfoStringToMap(String updateInfoString){
-    Map<String, int> updateInfoMap = {};
-    updateInfoString = updateInfoString.substring(1, updateInfoString.length - 1);
+  Map<String, dynamic> _convertUpdateInfoStringToMap(String updateInfoString){
+    Map<String, dynamic> updateInfoMap = {};
     List<String> entriesString = updateInfoString.split(", ");
     for(String entryString in entriesString){
       List<String> keyValuePairStrings = entryString.split(':');
-      updateInfoMap.addAll({keyValuePairStrings[0].substring(1, keyValuePairStrings[0].length - 1): int.parse(keyValuePairStrings[1])});
+      dynamic entryValue;
+      String valueTypeAsString = keyValuePairStrings[0].substring(0, 2);
+      keyValuePairStrings[0] = keyValuePairStrings[0].substring(3);
+      switch(valueTypeAsString){
+        case "da":
+          entryValue = DateTimeUtils().mapDatabaseStringToDate(keyValuePairStrings[1]);
+          break;
+        case "in":
+          entryValue = int.parse(keyValuePairStrings[1]);
+          break;
+        case "st":
+          entryValue = keyValuePairStrings[1];
+          break;
+      }
+      updateInfoMap.addAll({keyValuePairStrings[0]: entryValue});
     }
     return updateInfoMap;
   }

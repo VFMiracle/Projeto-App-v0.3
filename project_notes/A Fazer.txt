@@ -1,6 +1,8 @@
 THINGS TO DO:
+	*- Think about modifying the Command History part of the Database considering that both their Types and Commands have hardcoded associations to their Ids in the Project.
 	- Make the App record Time Record Editing Histories.
 		- Clear the Database of all Command History Records.
-		*- Update the _convertUpdateInfoStringToMap function of the Command History Panel Facade so it works with other Key Value Pair types beyond String/int.
 		- Change the updateInfoType for these Commands to Map, so the Date where they were applied is also recorded.
+		- Update the _convertUpdateInfoStringToMap function of the Command History Panel Facade so it works with other Key Value Pair types beyond String/int.
+		*- Guarantee that the new updateInfo is displayed correctly.
 	- Refactor the App's Theme. Start back from the Main Theme class and remove all others.
