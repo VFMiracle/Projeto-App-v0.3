@@ -28,14 +28,12 @@ class CommandHistoryDAO{
     return commandHistoryId;
   }
 
-  Future<List<CommandHistoryLoadingDTO>> readDbEntriesByCommandType(int commandHistoryTypeId, DateTime selDate) async {
+  Future<List<CommandHistoryLoadingDTO>> readDbEntriesByTypeAndDay(int commandHistoryTypeId, DateTime selDate) async {
     List<CommandHistoryLoadingDTO> commandHistories = [];
-    List<Map<String, dynamic>> commandHistoriesMap = await _database.rawQuery(
-      '''SELECT base.id_command_history, commands.id_type, commands.nm_command, base.nm_target, base.dt_history_creation, base.ds_update_info
-        FROM command_history AS base
-        INNER JOIN command_history_command AS commands ON base.id_used_command = commands.id_command_history_command
-        WHERE commands.id_type = ? AND base.dt_history_creation LIKE ?''',
-        [commandHistoryTypeId, "${DateTimeUtils().mapDateToDatabaseString(selDate)}%"]
+    List<Map<String, dynamic>> commandHistoriesMap = await _database.query(
+      _tableName,
+      where: "id_command_type = ? AND dt_history_creation LIKE ?",
+      whereArgs: [commandHistoryTypeId, "${DateTimeUtils().mapDateToDatabaseString(selDate)}%"]
     );
     for(Map<String, dynamic> commandHistoryMap in commandHistoriesMap){
       commandHistories.add(CommandHistoryLoadingDTO(id: commandHistoryMap['id_command_history'], commandName: commandHistoryMap['nm_command'],

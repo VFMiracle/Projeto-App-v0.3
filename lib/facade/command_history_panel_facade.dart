@@ -13,7 +13,7 @@ import 'package:projeto_time_counter/utils/date_time_utils.dart';
 class CommandHistoryPanelFacade{
 
   Future<List<CommandHistoryModel>> readDbEntries(CommandHistoryType commandType, DateTime selDate) async {
-    List<CommandHistoryLoadingDTO> dtos = await CommandHistoryDAO().readDbEntriesByCommandType(commandType.id, selDate);
+    List<CommandHistoryLoadingDTO> dtos = await CommandHistoryDAO().readDbEntriesByTypeAndDay(commandType.id, selDate);
     return _getModelListFromDtoList(dtos);
   }
 

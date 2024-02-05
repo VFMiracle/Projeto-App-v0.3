@@ -28,7 +28,7 @@ class CronometerDAO{
   //  database. As such, a Database Entry needs to be made before a Model of that Entry can exist.
   Future<int> insertDbEntry(CronometerDTO cronometer) async {
     int newCrnmtrId = 0;
-    Map<String, dynamic> cronometerDbEntry = {"nm_cronometer": cronometer.namePrprt};
+    Map<String, dynamic> cronometerDbEntry = {"nm_cronometer": cronometer.name};
     await _database.insert(
       _tableName,
       cronometerDbEntry,
@@ -48,12 +48,12 @@ class CronometerDAO{
   }
 
   void updateDbEntry(CronometerDTO cronometer){
-    Map<String, dynamic> crnmtrDbEntryUpdt = {"nm_cronometer": cronometer.namePrprt};
+    Map<String, dynamic> crnmtrDbEntryUpdt = {"nm_cronometer": cronometer.name};
     _database.update(
       _tableName,
       crnmtrDbEntryUpdt,
       where: "id_cronometer = ?",
-      whereArgs: [cronometer.idPrprt],
+      whereArgs: [cronometer.id],
     );
   }
 }

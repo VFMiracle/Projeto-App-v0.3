@@ -31,7 +31,7 @@ class CronometerPanelFacade{
   }
 
   CronometerModel _getModelFromDto(CronometerDTO dto){
-    return CronometerModel(dto.idPrprt!, dto.namePrprt!);
+    return CronometerModel(dto.id!, dto.name);
   }
 
   List<CronometerModel> _getModelListFromDtoList(List<CronometerDTO> dtos){

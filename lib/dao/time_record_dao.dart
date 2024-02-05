@@ -35,8 +35,8 @@ class TimeRecordDAO{
     return newTimeRecordId;
   }
 
-  Future<List<TimeRecordDTO>> readDbEntriesByDay(DateTime crtnDate) async {
-    String crtnDateString = DateTimeUtils().mapDateToDatabaseString(crtnDate);
+  Future<List<TimeRecordDTO>> readDbEntriesByDay(DateTime creationDate) async {
+    String crtnDateString = DateTimeUtils().mapDateToDatabaseString(creationDate);
     List<TimeRecordDTO> timeRecords = [];
     
     List<Map<String, dynamic>> timeRecordsMap = await _database.query(
@@ -46,7 +46,7 @@ class TimeRecordDAO{
     );
     for(Map<String, dynamic> timeRecordMap in timeRecordsMap){
       timeRecords.add(TimeRecordDTO(id: timeRecordMap["id_time_record"], taskName: timeRecordMap["nm_task"], countedTime: timeRecordMap["nr_time_in_seconds"],
-        creationDate: crtnDate));
+        creationDate: creationDate));
     }
     return timeRecords;
   }
