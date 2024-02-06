@@ -13,7 +13,7 @@ import 'package:projeto_time_counter/utils/date_time_utils.dart';
 class CommandHistoryPanelFacade{
 
   Future<List<CommandHistoryModel>> readDbEntries(CommandHistoryType commandType, DateTime selDate) async {
-    List<CommandHistoryLoadingDTO> dtos = await CommandHistoryDAO().readDbEntriesByTypeAndDay(commandType.id, selDate);
+    List<CommandHistoryDTO> dtos = await CommandHistoryDAO().readDbEntriesByTypeAndDay(commandType.id, selDate);
     return _getModelListFromDtoList(dtos);
   }
 
@@ -54,37 +54,37 @@ class CommandHistoryPanelFacade{
     }
   }
 
-  List<CommandHistoryModel> _getModelListFromDtoList(List<CommandHistoryLoadingDTO> dtos){
+  List<CommandHistoryModel> _getModelListFromDtoList(List<CommandHistoryDTO> dtos){
     List<CommandHistoryModel> models = [];
-    for(CommandHistoryLoadingDTO dto in dtos){
+    for(CommandHistoryDTO dto in dtos){
       models.add(_mapDtoToModel(dto));
     }
     return models;
   }
 
-  CommandHistoryModel _mapDtoToModel(CommandHistoryLoadingDTO dto){
+  CommandHistoryModel _mapDtoToModel(CommandHistoryDTO dto){
     switch(dto.type){
       case CommandHistoryType.cronometerEditing:
-        CronometerEditingCommand command = CronometerEditingCommand.getCommandByName(dto.commandName)!;
+        CronometerEditingCommand command = CronometerEditingCommand.getCommandById(dto.commandId)!;
         dynamic updateInfo;
         if(command.updateInfoType != null){
           updateInfo = _convertUpdateInfoStringToType(dto.updateInfo!, command.updateInfoType!);
         }
-        return CronometerEditingChModel(id: dto.id, command: command, targetName: dto.targetName, creationDateTime: dto.creationDateTime, updateInfo: updateInfo);
+        return CronometerEditingChModel(id: dto.id!, command: command, targetName: dto.targetName, creationDateTime: dto.historyCreation, updateInfo: updateInfo);
       case CommandHistoryType.cronometerInteraction:
-        CronometerInteractionCommand command = CronometerInteractionCommand.getCommandByName(dto.commandName)!;
+        CronometerInteractionCommand command = CronometerInteractionCommand.getCommandById(dto.commandId)!;
         dynamic updateInfo;
         if(command.updateInfoType != null){
           updateInfo = _convertUpdateInfoStringToType(dto.updateInfo!, command.updateInfoType!);
         }
-        return CronometerInteractionChModel(id: dto.id, command: command, targetName: dto.targetName, creationDateTime: dto.creationDateTime, updateInfo: updateInfo);
+        return CronometerInteractionChModel(id: dto.id!, command: command, targetName: dto.targetName, creationDateTime: dto.historyCreation, updateInfo: updateInfo);
       case CommandHistoryType.timeRecordEditing:
-        TimeRecordEditingCommand command = TimeRecordEditingCommand.getCommandByName(dto.commandName)!;
+        TimeRecordEditingCommand command = TimeRecordEditingCommand.getCommandById(dto.commandId)!;
         dynamic updateInfo;
         if(command.updateInfoType != null){
           updateInfo = _convertUpdateInfoStringToType(dto.updateInfo!, command.updateInfoType!);
         }
-        return TimeRecordEditingChModel(id: dto.id, command: command, targetName: dto.targetName, creationDateTime: dto.creationDateTime, updateInfo: updateInfo);
+        return TimeRecordEditingChModel(id: dto.id!, command: command, targetName: dto.targetName, creationDateTime: dto.historyCreation, updateInfo: updateInfo);
     }
   }
 }

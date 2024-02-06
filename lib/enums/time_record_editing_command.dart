@@ -10,9 +10,9 @@ enum TimeRecordEditingCommand{
   final String name;
   final Type? updateInfoType;
 
-  static TimeRecordEditingCommand? getCommandByName(String commandName){
+  static TimeRecordEditingCommand? getCommandById(int id){
     for(TimeRecordEditingCommand value in TimeRecordEditingCommand.values){
-      if(value.name == commandName){
+      if(value.commandId == id){
         return value;
       }
     }

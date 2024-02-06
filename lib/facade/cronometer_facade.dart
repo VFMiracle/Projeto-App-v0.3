@@ -4,6 +4,7 @@ import 'package:projeto_time_counter/dao/time_record_dao.dart';
 import 'package:projeto_time_counter/dto/command_history_dto.dart';
 import 'package:projeto_time_counter/dto/cronometer_dto.dart';
 import 'package:projeto_time_counter/dto/time_record_dto.dart';
+import 'package:projeto_time_counter/enums/command_history_type.dart';
 import 'package:projeto_time_counter/enums/cronometer_editing_command.dart';
 import 'package:projeto_time_counter/enums/cronometer_interaction_command.dart';
 import 'package:projeto_time_counter/models/routes/cronometer_model.dart';
@@ -33,8 +34,9 @@ class CronometerFacade{
 
   void recordIsRunningToggle(CronometerModel cronometer){
     CommandHistoryDAO().insertDbEntry(
-      CommandHistoryRecordingDTO(
+      CommandHistoryDTO(
         commandId: cronometer.isRunningNotifier.isRunning ? CronometerInteractionCommand.start.commandId : CronometerInteractionCommand.pause.commandId,
+        type: CommandHistoryType.cronometerInteraction,
         targetName: cronometer.nameNotifier.name,
         updateInfo: cronometer.valueNotifier.currentValue.toString(),
       ),
@@ -43,8 +45,9 @@ class CronometerFacade{
 
   void recordTimeReset(CronometerModel cronometer, bool shouldRecordTime){
     CommandHistoryDAO().insertDbEntry(
-      CommandHistoryRecordingDTO(
+      CommandHistoryDTO(
         commandId: shouldRecordTime ? CronometerInteractionCommand.resetAndSaveTime.commandId : CronometerInteractionCommand.resetAndDeleteTime.commandId,
+        type: CommandHistoryType.cronometerInteraction,
         targetName: cronometer.nameNotifier.name,
         updateInfo: cronometer.valueNotifier.currentValue.toString(),
       )
@@ -53,7 +56,8 @@ class CronometerFacade{
 
   void updateDbEntry(CronometerModel cronometer, String oldName){
     CommandHistoryDAO().insertDbEntry(
-      CommandHistoryRecordingDTO(commandId: CronometerEditingCommand.updateName.commandId, targetName: oldName, updateInfo: cronometer.nameNotifier.name)
+      CommandHistoryDTO(commandId: CronometerEditingCommand.updateName.commandId, type: CommandHistoryType.cronometerEditing, targetName: oldName,
+        updateInfo: cronometer.nameNotifier.name)
     );
     CronometerDAO().updateDbEntry(_getDtoFromModel(cronometer));
   }

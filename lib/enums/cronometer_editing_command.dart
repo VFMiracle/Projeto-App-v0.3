@@ -9,9 +9,9 @@ enum CronometerEditingCommand{
   final String name;
   final Type? updateInfoType;
 
-  static CronometerEditingCommand? getCommandByName(String commandName){
+  static CronometerEditingCommand? getCommandById(int id){
     for(CronometerEditingCommand value in CronometerEditingCommand.values){
-      if(value.name == commandName){
+      if(value.commandId == id){
         return value;
       }
     }

@@ -2,6 +2,7 @@ import 'package:projeto_time_counter/dao/command_history_dao.dart';
 import 'package:projeto_time_counter/dao/cronometer_dao.dart';
 import 'package:projeto_time_counter/dto/command_history_dto.dart';
 import 'package:projeto_time_counter/dto/cronometer_dto.dart';
+import 'package:projeto_time_counter/enums/command_history_type.dart';
 import 'package:projeto_time_counter/enums/cronometer_editing_command.dart';
 import 'package:projeto_time_counter/models/routes/cronometer_model.dart';
 
@@ -9,14 +10,16 @@ class CronometerPanelFacade{
 
   void deleteDbEntry(CronometerModel cronometer){
     CommandHistoryDAO().insertDbEntry(
-      CommandHistoryRecordingDTO(commandId: CronometerEditingCommand.delete.commandId, targetName: cronometer.nameNotifier.name, updateInfo: null)
+      CommandHistoryDTO(commandId: CronometerEditingCommand.delete.commandId, type: CommandHistoryType.cronometerEditing, targetName: cronometer.nameNotifier.name,
+        updateInfo: null)
     );
     CronometerDAO().deleteDbEntry(cronometer.id);
   }
 
   Future<int> insertDbEntry(CronometerModel cronometer){
     CommandHistoryDAO().insertDbEntry(
-      CommandHistoryRecordingDTO(commandId: CronometerEditingCommand.create.commandId, targetName: cronometer.nameNotifier.name, updateInfo: null)
+      CommandHistoryDTO(commandId: CronometerEditingCommand.create.commandId, type: CommandHistoryType.cronometerEditing, targetName: cronometer.nameNotifier.name,
+        updateInfo: null)
     );
     return CronometerDAO().insertDbEntry(_getDtoFromModel(cronometer));
   }

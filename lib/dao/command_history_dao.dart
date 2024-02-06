@@ -17,10 +17,11 @@ class CommandHistoryDAO{
     _instance._database = database;
   }
 
-  Future<int> insertDbEntry(CommandHistoryRecordingDTO commandHistory) async {
+  Future<int> insertDbEntry(CommandHistoryDTO commandHistory) async {
     int commandHistoryId = 0;
-    Map<String, dynamic> commandHistoryDbEntry = {"id_used_command": commandHistory.commandId, "nm_target": commandHistory.targetName, "dt_history_creation":
-      DateTimeUtils().mapDateTimeToDatabaseString(DateTime.now()), "ds_update_info": commandHistory.updateInfo.toString()};
+    Map<String, dynamic> commandHistoryDbEntry = {"id_used_command": commandHistory.commandId, "id_command_type": commandHistory.type.id,
+      "nm_target": commandHistory.targetName, "dt_history_creation": DateTimeUtils().mapDateTimeToDatabaseString(DateTime.now()),
+      "ds_update_info": commandHistory.updateInfo.toString()};
     await _database.insert(
       _tableName,
       commandHistoryDbEntry,
@@ -28,17 +29,18 @@ class CommandHistoryDAO{
     return commandHistoryId;
   }
 
-  Future<List<CommandHistoryLoadingDTO>> readDbEntriesByTypeAndDay(int commandHistoryTypeId, DateTime selDate) async {
-    List<CommandHistoryLoadingDTO> commandHistories = [];
+  Future<List<CommandHistoryDTO>> readDbEntriesByTypeAndDay(int commandHistoryTypeId, DateTime selDate) async {
+    List<CommandHistoryDTO> commandHistories = [];
     List<Map<String, dynamic>> commandHistoriesMap = await _database.query(
       _tableName,
       where: "id_command_type = ? AND dt_history_creation LIKE ?",
       whereArgs: [commandHistoryTypeId, "${DateTimeUtils().mapDateToDatabaseString(selDate)}%"]
     );
     for(Map<String, dynamic> commandHistoryMap in commandHistoriesMap){
-      commandHistories.add(CommandHistoryLoadingDTO(id: commandHistoryMap['id_command_history'], commandName: commandHistoryMap['nm_command'],
-        targetName: commandHistoryMap['nm_target'], type: CommandHistoryType.getTypeById(commandHistoryMap['id_type'])!,
-        creationDateTime: DateTimeUtils().mapDatabaseStringToDateTime(commandHistoryMap['dt_history_creation']), updateInfo: commandHistoryMap['ds_update_info']));
+      commandHistories.add(CommandHistoryDTO(id: commandHistoryMap['id_command_history'], commandId: commandHistoryMap['id_used_command'],
+        type: CommandHistoryType.getTypeById(commandHistoryMap['id_command_type'])!, targetName: commandHistoryMap['nm_target'],
+        historyCreation: DateTimeUtils().mapDatabaseStringToDateTime(commandHistoryMap['dt_history_creation']),
+        updateInfo: commandHistoryMap['ds_update_info']));
     }
     return commandHistories;
   }

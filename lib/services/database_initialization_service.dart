@@ -45,17 +45,7 @@ class DatabaseInitializationService{
       },
       onUpgrade: (Database database, int oldVersionNumber, int newVersionNumber) async{
         database.execute(
-          '''DROP TABLE command_history;'''
-        );
-        database.execute(
-          '''CREATE TABLE command_history(
-            id_command_history INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-            id_used_command INTEGER NOT NULL,
-            id_command_type INTEGER NOT NULL,
-            nm_target TEXT NOT NULL,
-            dt_history_creation TEXT NOT NULL,
-            ds_update_info TEXT
-          );'''
+          '''DELETE FROM command_history;'''
         );
         database.execute(
           '''INSERT INTO command_history(id_used_command, id_command_type, nm_target, dt_history_creation, ds_update_info) VALUES (1, 1, "Bruxeval", "2024-2-1 15:5:0", NULL),
@@ -67,7 +57,7 @@ class DatabaseInitializationService{
             (11, 3, "Burxeval", "2023-2-2 7:2:51", 'da_record_date:2024-2-2, in_oldValue:1200, in_newValue:4500');'''
         );
       },
-      version: 16,
+      version: 17,
     );
     CronometerDAO.initialize(_database);
     TimeRecordDAO.initialize(_database);

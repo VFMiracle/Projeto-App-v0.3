@@ -10,9 +10,9 @@ enum CronometerInteractionCommand{
   final String name;
   final Type? updateInfoType;
 
-  static CronometerInteractionCommand? getCommandByName(String commandName){
+  static CronometerInteractionCommand? getCommandById(int id){
     for(CronometerInteractionCommand value in CronometerInteractionCommand.values){
-      if(value.name == commandName){
+      if(value.commandId == id){
         return value;
       }
     }
