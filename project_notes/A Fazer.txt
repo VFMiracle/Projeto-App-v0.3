@@ -3,5 +3,6 @@ THINGS TO DO:
 		- Clear the Database of all Command History Records.
 		- Change the updateInfoType for these Commands to Map, so the Date where they were applied is also recorded.
 		- Update the _convertUpdateInfoStringToMap function of the Command History Panel Facade so it works with other Key Value Pair types beyond String/int.
-		*- Guarantee that the new updateInfo is displayed correctly.
+		- Guarantee that the new updateInfo is displayed correctly.
+		*- Guarantee that Time Record Editing Histories are being recorded correctly.
 	- Refactor the App's Theme. Start back from the Main Theme class and remove all others.
