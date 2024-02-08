@@ -1,6 +1,10 @@
+import 'package:projeto_time_counter/dao/command_history_dao.dart';
 import 'package:projeto_time_counter/dao/time_record_dao.dart';
+import 'package:projeto_time_counter/dto/command_history_dto.dart';
 import 'package:projeto_time_counter/dto/time_editor_dto.dart';
 import 'package:projeto_time_counter/dto/time_record_dto.dart';
+import 'package:projeto_time_counter/enums/command_history_type.dart';
+import 'package:projeto_time_counter/enums/time_record_editing_command.dart';
 import 'package:projeto_time_counter/models/widgets/time_record_model.dart';
 import 'package:projeto_time_counter/services/time_conversion_service.dart';
 
@@ -12,7 +16,10 @@ class TimeRecordPanelFacade{
 
   Future<TimeRecordModel> insertDbEntry(TimeEditorDTO timeEditorDto, DateTime creationDate) async {
     TimeRecordDTO recordDTO = _mapEditorDtoToRecordDto(timeEditorDto, creationDate);
-    TimeRecordModel recordModel = TimeRecordModel(await TimeRecordDAO().insertDbEntry(recordDTO), recordDTO.taskName!, recordDTO.countedTime!);
+    CommandHistoryDAO().insertDbEntry(CommandHistoryDTO(
+      commandId: TimeRecordEditingCommand.create.commandId, type: CommandHistoryType.timeRecordEditing, targetName: recordDTO.taskName
+    ));
+    TimeRecordModel recordModel = TimeRecordModel(await TimeRecordDAO().insertDbEntry(recordDTO), recordDTO.taskName, recordDTO.countedTime);
     return recordModel;
   }
 
@@ -22,12 +29,12 @@ class TimeRecordPanelFacade{
   }
 
   TimeRecordDTO _mapEditorDtoToRecordDto(TimeEditorDTO editorDto, DateTime creationDate){
-    return TimeRecordDTO(taskName: editorDto.textFieldText, countedTime: TimeConversionService().fromTimeUnitValuesToInt(hours: editorDto.hours,
+    return TimeRecordDTO(taskName: editorDto.textFieldText!, countedTime: TimeConversionService().fromTimeUnitValuesToInt(hours: editorDto.hours,
         minutes: editorDto.minutes, seconds: editorDto.seconds), creationDate: creationDate);
   }
 
   TimeRecordModel _mapRecordDtoToRecordModel(TimeRecordDTO dto){
-    return TimeRecordModel(dto.id!, dto.taskName!, dto.countedTime!);
+    return TimeRecordModel(dto.id!, dto.taskName, dto.countedTime);
   }
 
   List<TimeRecordModel> _getModelListFromDtoList(List<TimeRecordDTO> dtos){
