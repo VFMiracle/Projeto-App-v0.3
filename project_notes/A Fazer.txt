@@ -4,5 +4,6 @@ THINGS TO DO:
 		- Change the updateInfoType for these Commands to Map, so the Date where they were applied is also recorded.
 		- Update the _convertUpdateInfoStringToMap function of the Command History Panel Facade so it works with other Key Value Pair types beyond String/int.
 		- Guarantee that the new updateInfo is displayed correctly.
-		*- Guarantee that Time Record Editing Histories are being recorded correctly.
+		- Guarantee that Time Record Editing Histories are being recorded correctly.
+			*- Continue changing the insertDbEntry function of the Time Record Panel Facade, so it records a Time Record Creation Command History.
 	- Refactor the App's Theme. Start back from the Main Theme class and remove all others.

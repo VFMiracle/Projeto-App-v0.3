@@ -20,7 +20,7 @@ class TimeRecordModel{
   }
 
   void delete(){
-    TimeRecordPanelModel().timeRecordsNtfr.deleteTimeRecord(this);
+    TimeRecordPanelModel().timeRecordsNotifier.deleteTimeRecord(this);
   }
 
   void update(TimeEditorDTO timeEditorDto){

@@ -59,8 +59,8 @@ class MainMenu extends StatelessWidget{
                     //INFO: The Time Record Panel Model should never be initialized at this point in the code execution.
                     return MultiProvider(
                       providers: [
-                        ChangeNotifierProvider.value(value: TimeRecordPanelModel().timeRecordsNtfr),
-                        ChangeNotifierProvider.value(value: TimeRecordPanelModel().selDateNtfr),
+                        ChangeNotifierProvider.value(value: TimeRecordPanelModel().timeRecordsNotifier),
+                        ChangeNotifierProvider.value(value: TimeRecordPanelModel().selDateNotifier),
                       ],
                       child: const TimeRecordPanelView(),
                     );

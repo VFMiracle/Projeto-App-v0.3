@@ -93,14 +93,17 @@ PROJECT STRUCTURE:
 			2- Display related data that doesn't change over the Widget's lifetime and isn't used in the Widget's functionality.
 
 VARIABLE LISTING ORDER:
-	- Separate the group of fields from the group of their accessors with an empty line.
-		- Order them in the same manner as variables, which means the rest of this proccess applies to them as well.
-			- A getter and setter pair for the same field needs to be right next to eachother with the getter on top.
-		- Separate each accessor with an empty line.
-	- Static variables always come before instance ones, with an empty line spearating these two groups.
-	- Ordered alphabetically by modifier(no modifier, "const", "final", "late").
-	- Place value types above reference types, and dynamic types are placed below both of them.
-		- Value types are ordered in increasing order of type complexity.
-		- Reference types are ordered alphabetically by type name.
-	- OBS: Collection fields are placed right bellow the group of fields that has the same type as it's most complex type, with Lists coming before Maps.
-	- Order alphabetically by variable name.
+	ORDER: 
+		- Separate the group of fields from the group of their accessors with an empty line.
+			- Order them in the same manner as variables, which means the rest of this proccess applies to them as well.
+				- A getter and setter pair for the same field needs to be right next to eachother with the getter on top.
+			- Separate each accessor with an empty line.
+		- Static variables always come before instance ones, with an empty line spearating these two groups.
+		- Ordered alphabetically by modifier(no modifier, "const", "final", "late").
+		- Place value types above reference types, and dynamic types are placed below both of them.
+			- Value types are ordered in increasing order of type complexity.
+			- Reference types are ordered alphabetically by type name.
+		- OBS: Collection fields are placed right bellow the group of fields that has the same type as it's most complex type, with Lists coming before Maps.
+		- Order alphabetically by variable name.
+	EXCEPTIONS:
+		- In DTOs and Models, the Id field is always placed at the top of the field list.

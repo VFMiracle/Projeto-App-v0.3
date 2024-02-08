@@ -27,7 +27,7 @@ class TimeRecordDAO{
   Future<int> insertDbEntry(TimeRecordDTO timeRecord) async {
     int newTimeRecordId = 0;
     Map<String, dynamic> timeRecordDbEntry = {"nm_task": timeRecord.taskName, "nr_time_in_seconds": timeRecord.countedTime,
-      "dt_creation_date": DateTimeUtils().mapDateToDatabaseString(timeRecord.creationDate ?? DateTime.now())};
+      "dt_creation_date": DateTimeUtils().mapDateToDatabaseString(timeRecord.creationDate)};
     await _database.insert(
       _tableName,
       timeRecordDbEntry,

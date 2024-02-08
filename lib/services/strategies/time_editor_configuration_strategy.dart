@@ -1,11 +1,11 @@
 class TimeEditorConfigurationStrategy{
-  final bool? _allowEmptyTextField;
-  final bool _allowTimeZero;
+  final bool _allowEmptyTextField, _allowTimeZero;
 
-  TimeEditorConfigurationStrategy({required bool allowTimeZero, bool? allowEmptyTextField}) : _allowTimeZero = allowTimeZero, _allowEmptyTextField = allowEmptyTextField;
+  TimeEditorConfigurationStrategy({required bool allowTimeZero, bool? allowEmptyTextField}) : _allowTimeZero = allowTimeZero,
+    _allowEmptyTextField = allowEmptyTextField ?? true;
 
   bool verifyTextFieldValid(String? textFieldText){
-    return _allowEmptyTextField! || (textFieldText != null && textFieldText.isNotEmpty);
+    return _allowEmptyTextField || (textFieldText != null && textFieldText.isNotEmpty);
   }
 
   bool verifyTimeValid(int hours, int minutes, int seconds){

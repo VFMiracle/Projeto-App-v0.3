@@ -11,17 +11,17 @@ class TimeRecordPanelModel{
 
   final TimeRecordPanelFacade _facade = TimeRecordPanelFacade();
   late final TimeRecordPanelRecordsNotifier _timeRecordsNotifier;
-  late final TimeRecordPanelSelDateNotifier _selectedDateNotifier;
+  late final TimeRecordPanelSelDateNotifier _selDateNotifier;
 
   static bool get isIntialized => _timeRecordPanelModel != null;
 
-  TimeRecordPanelRecordsNotifier get timeRecordsNtfr => _timeRecordsNotifier;
-  TimeRecordPanelSelDateNotifier get selDateNtfr => _selectedDateNotifier;
+  TimeRecordPanelRecordsNotifier get timeRecordsNotifier => _timeRecordsNotifier;
+  TimeRecordPanelSelDateNotifier get selDateNotifier => _selDateNotifier;
 
   TimeRecordPanelModel._internal(){
-    _selectedDateNotifier = TimeRecordPanelSelDateNotifier(this);
+    _selDateNotifier = TimeRecordPanelSelDateNotifier(this);
     _timeRecordsNotifier = TimeRecordPanelRecordsNotifier(this);
-    _selectedDateNotifier.addListener(_loadTimeRecordsOfSelectedDate);
+    _selDateNotifier.addListener(_loadTimeRecordsOfSelectedDate);
     _loadTimeRecordsOfSelectedDate();
   }
 
@@ -35,7 +35,7 @@ class TimeRecordPanelModel{
   }
 
   void _loadTimeRecordsOfSelectedDate(){
-    _facade.readDbEntriesByDay(_selectedDateNotifier.selDate).then((List<TimeRecordModel> timeRecords){
+    _facade.readDbEntriesByDay(_selDateNotifier.selDate).then((List<TimeRecordModel> timeRecords){
       _timeRecordsNotifier._setTimeRecords(timeRecords);
     });
   }
@@ -65,7 +65,7 @@ class TimeRecordPanelRecordsNotifier extends ChangeNotifier{
   }
 
   void _addTimeRecord(TimeEditorDTO timeEditorDto) async {
-    _timeRecords.add(await _parentModel._facade.insertDbEntry(timeEditorDto, _parentModel._selectedDateNotifier.selDate));
+    _timeRecords.add(await _parentModel._facade.insertDbEntry(timeEditorDto, _parentModel._selDateNotifier.selDate));
     notifyListeners();
   }
 

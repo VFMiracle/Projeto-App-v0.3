@@ -23,7 +23,7 @@ class CronometerFacade{
   void addTimeToRecords(String taskName, int time) async {
     TimeRecordDTO? timeRecordDTO = await TimeRecordDAO().readDbEntry(taskName, DateTime.now());
     if(timeRecordDTO != null){
-      int newTime = timeRecordDTO.countedTime! + time;
+      int newTime = timeRecordDTO.countedTime + time;
       TimeRecordDTO updateDTO = TimeRecordDTO(id: timeRecordDTO.id, taskName: taskName, countedTime: newTime, creationDate: timeRecordDTO.creationDate);
       TimeRecordDAO().updateDbEntry(updateDTO);
     }else{

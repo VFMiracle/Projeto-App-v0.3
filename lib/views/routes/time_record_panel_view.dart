@@ -42,7 +42,7 @@ class _TimeRecordPanelViewState extends State<TimeRecordPanelView>{
               if(result != null){
                 TimeEditorDTO editorDto = result as TimeEditorDTO;
                 try{
-                  TimeRecordPanelModel().timeRecordsNtfr.addTimeRecord(editorDto);
+                  TimeRecordPanelModel().timeRecordsNotifier.addTimeRecord(editorDto);
                 }on TaskAlreadyRecordedException catch(tare){
                   showDialog(
                     builder: (BuildContext context) => ExceptionDialogView(tare.message),
@@ -108,7 +108,7 @@ class _TimeRecordPanelViewState extends State<TimeRecordPanelView>{
   DatePickerDialog _buildTimeRecordDatePickerDialog(BuildContext context){
     return DatePickerDialog(
       firstDate: DateTime(2023),
-      initialDate: TimeRecordPanelModel().selDateNtfr.selDate,
+      initialDate: TimeRecordPanelModel().selDateNotifier.selDate,
       lastDate: DateTime.now(),
     );
   }
