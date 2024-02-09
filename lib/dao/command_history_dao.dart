@@ -21,7 +21,7 @@ class CommandHistoryDAO{
     int commandHistoryId = 0;
     Map<String, dynamic> commandHistoryDbEntry = {"id_used_command": commandHistory.commandId, "id_command_type": commandHistory.type.id,
       "nm_target": commandHistory.targetName, "dt_history_creation": DateTimeUtils().mapDateTimeToDatabaseString(commandHistory.historyCreation),
-      "ds_update_info": commandHistory.updateInfo.toString()};
+      "ds_update_info": commandHistory.updateInfo};
     await _database.insert(
       _tableName,
       commandHistoryDbEntry,

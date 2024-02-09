@@ -5,5 +5,8 @@ THINGS TO DO:
 		- Update the _convertUpdateInfoStringToMap function of the Command History Panel Facade so it works with other Key Value Pair types beyond String/int.
 		- Guarantee that the new updateInfo is displayed correctly.
 		- Guarantee that Time Record Editing Histories are being recorded correctly.
-			*- Continue changing the insertDbEntry function of the Time Record Panel Facade, so it records a Time Record Creation Command History.
+			- Continue changing the insertDbEntry function of the Time Record Panel Facade, so it records a Time Record Creation Command History.
+		- Record Time Record Histories in the Database.
+			- Record Time Record Creation Histories.
+				*- Make the Cronometer Facade create one of these Histories when it creates a new Time Record.
 	- Refactor the App's Theme. Start back from the Main Theme class and remove all others.
