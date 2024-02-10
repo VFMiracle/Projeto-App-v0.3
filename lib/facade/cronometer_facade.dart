@@ -7,11 +7,12 @@ import 'package:projeto_time_counter/dto/time_record_dto.dart';
 import 'package:projeto_time_counter/enums/command_history_type.dart';
 import 'package:projeto_time_counter/enums/cronometer_editing_command.dart';
 import 'package:projeto_time_counter/enums/cronometer_interaction_command.dart';
+import 'package:projeto_time_counter/enums/time_record_editing_command.dart';
 import 'package:projeto_time_counter/models/routes/cronometer_model.dart';
 
 class CronometerFacade{
-  //INFO: This Facade is a singleton because having a single instance of it that any Cronometer Model calls is more efficient than each of them creating an instance of their
-  //  own.
+  //INFO: This Facade is a singleton because having a single instance of it that any Cronometer Model calls is more efficient than each of them creating an instance
+  //  of their own.
   static final CronometerFacade _instance = CronometerFacade._internal();
 
   CronometerFacade._internal();
@@ -25,10 +26,16 @@ class CronometerFacade{
     if(timeRecordDTO != null){
       int newTime = timeRecordDTO.countedTime + time;
       TimeRecordDTO updateDTO = TimeRecordDTO(id: timeRecordDTO.id, taskName: taskName, countedTime: newTime, creationDate: timeRecordDTO.creationDate);
+      CommandHistoryDAO().insertDbEntry(CommandHistoryDTO.trEditingRecordingDto(command: TimeRecordEditingCommand.updateValue, targetName: timeRecordDTO.taskName,
+        updateInfo: <String, dynamic>{"recordDate": timeRecordDTO.creationDate, "oldValue": timeRecordDTO.countedTime, "newValue": newTime}));
       TimeRecordDAO().updateDbEntry(updateDTO);
     }else{
       TimeRecordDTO newDTO = TimeRecordDTO(taskName: taskName, countedTime: time);
       TimeRecordDAO().insertDbEntry(newDTO);
+      CommandHistoryDAO().insertDbEntry(
+        CommandHistoryDTO.trEditingRecordingDto(command: TimeRecordEditingCommand.create, targetName: taskName,
+          updateInfo: <String, dynamic>{"recordDate": DateTime.now(), "initialValue": time})
+      );
     }
   }
 

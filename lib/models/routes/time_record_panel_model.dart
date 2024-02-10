@@ -56,7 +56,7 @@ class TimeRecordPanelRecordsNotifier extends ChangeNotifier{
 
   void deleteTimeRecord(TimeRecordModel timeRecord){
     _timeRecords.remove(timeRecord);
-    _parentModel._facade.deleteDbEntry(timeRecord.id);
+    _parentModel._facade.deleteDbEntry(timeRecord);
     notifyListeners();
   }
 
@@ -76,7 +76,7 @@ class TimeRecordPanelRecordsNotifier extends ChangeNotifier{
 
   void _validateTimeEditorDto(TimeEditorDTO timeEditorDto){
     for(TimeRecordModel timeRecord in _timeRecords){
-      if(timeRecord.taskNameNtfr.taskName.compareTo(timeEditorDto.textFieldText!) == 0){
+      if(timeRecord.taskNameNotifier.taskName.compareTo(timeEditorDto.textFieldText!) == 0){
         throw TaskAlreadyRecordedException();
       }
     }

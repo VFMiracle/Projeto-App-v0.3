@@ -9,4 +9,6 @@ THINGS TO DO:
 		- Record Time Record Histories in the Database.
 			- Record Time Record Creation Histories.
 				*- Make the Cronometer Facade create one of these Histories when it creates a new Time Record.
+	*- Fix the Command History deletion not working. It might be specific to Time Record Editing Histories.
+	- Determine how the system for loading the Cronometers' States from their Histories will work.
 	- Refactor the App's Theme. Start back from the Main Theme class and remove all others.

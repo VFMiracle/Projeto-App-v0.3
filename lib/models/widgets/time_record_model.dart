@@ -7,16 +7,16 @@ import 'package:projeto_time_counter/services/time_conversion_service.dart';
 class TimeRecordModel{
   final int _id;
   final TimeRecordFacade _facade = TimeRecordFacade();
-  late final TimeRecordCountedTimeNotifier _countedTimeNtfr;
-  late final TimeRecordTaskNameNotifier _taskNameNtfr;
+  late final TimeRecordCountedTimeNotifier _countedTimeNotifier;
+  late final TimeRecordTaskNameNotifier _taskNameNotifier;
 
   int get id => _id;
-  TimeRecordCountedTimeNotifier get countedTimeNtfr => _countedTimeNtfr;
-  TimeRecordTaskNameNotifier get taskNameNtfr => _taskNameNtfr;
+  TimeRecordCountedTimeNotifier get countedTimeNotifier => _countedTimeNotifier;
+  TimeRecordTaskNameNotifier get taskNameNotifier => _taskNameNotifier;
 
   TimeRecordModel(this._id, String taskName, int countedTime){
-    _countedTimeNtfr = TimeRecordCountedTimeNotifier(this, countedTime);
-    _taskNameNtfr = TimeRecordTaskNameNotifier(this, taskName);
+    _countedTimeNotifier = TimeRecordCountedTimeNotifier(this, countedTime);
+    _taskNameNotifier = TimeRecordTaskNameNotifier(this, taskName);
   }
 
   void delete(){
@@ -26,13 +26,17 @@ class TimeRecordModel{
   void update(TimeEditorDTO timeEditorDto){
     bool wasChanged = false;
     int dtoCountedTime = TimeConversionService().fromTimeUnitValuesToInt(hours: timeEditorDto.hours, minutes: timeEditorDto.minutes, seconds: timeEditorDto.seconds);
-    if(_taskNameNtfr.taskName != timeEditorDto.textFieldText){
-      _taskNameNtfr.taskName = timeEditorDto.textFieldText!;
+    if(_taskNameNotifier.taskName != timeEditorDto.textFieldText){
+      String oldName = _taskNameNotifier.taskName;
+      _taskNameNotifier.taskName = timeEditorDto.textFieldText!;
       wasChanged = true;
+      _facade.recordNameChange(this, oldName);
     }
-    if(_countedTimeNtfr.countedTime != dtoCountedTime){
-      _countedTimeNtfr.countedTime = dtoCountedTime;
+    if(_countedTimeNotifier.countedTime != dtoCountedTime){
+      int oldValue = _countedTimeNotifier.countedTime;
+      _countedTimeNotifier.countedTime = dtoCountedTime;
       wasChanged = true;
+      _facade.recordValueChange(this, oldValue);
     }
     if(wasChanged){
       _facade.updateDbEntry(this);

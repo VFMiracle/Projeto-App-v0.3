@@ -26,6 +26,12 @@ class TimeRecordEditingChModel extends CommandHistoryModel{
         }
         displayString += TimeConversionService().fromIntToString(_updateInfo["initialValue"]);
         break;
+      case TimeRecordEditingCommand.delete:
+        if(useDefaultPreamble){
+          displayString += "Deleted Time: ";
+        }
+        displayString += TimeConversionService().fromIntToString(_updateInfo["deleteValue"]);
+        break;
       case TimeRecordEditingCommand.updateName:
         if(useDefaultPreamble){
           displayString += "New Name: ";

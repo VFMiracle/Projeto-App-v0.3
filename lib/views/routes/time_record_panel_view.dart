@@ -119,8 +119,8 @@ class _TimeRecordPanelViewState extends State<TimeRecordPanelView>{
         TimeRecordModel timeRecordModel = timeRecordsNtfr.getRecordByIndex(index);
         return MultiProvider(
           providers: [
-            ChangeNotifierProvider.value(value: timeRecordModel.countedTimeNtfr),
-            ChangeNotifierProvider.value(value: timeRecordModel.taskNameNtfr),
+            ChangeNotifierProvider.value(value: timeRecordModel.countedTimeNotifier),
+            ChangeNotifierProvider.value(value: timeRecordModel.taskNameNotifier),
           ],
           child: TimeRecordView(timeRecordModel: timeRecordModel),
         );
