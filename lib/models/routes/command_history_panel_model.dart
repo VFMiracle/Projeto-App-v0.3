@@ -48,16 +48,6 @@ class CommandHistoryPanelHistoriesNotifier extends ChangeNotifier{
     _loadDesiredCommandHistories();
   }
 
-  void addHistory(CommandHistoryModel history){
-    histories.add(history);
-    notifyListeners();
-  }
-
-  void addHistories(List<CommandHistoryModel> histories){
-    histories.addAll(histories);
-    notifyListeners();
-  }
-
   void deleteHistory(CommandHistoryModel commandHistory){
     histories.remove(commandHistory);
     _parentModel._facade.deleteDbEntry(commandHistory.id);

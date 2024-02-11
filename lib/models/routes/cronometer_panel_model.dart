@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:projeto_time_counter/facade/cronometer_panel_facade.dart';
 import 'package:projeto_time_counter/models/routes/cronometer_model.dart';
+import 'package:projeto_time_counter/services/cronometer_initialization_service.dart';
 
 //DESC: Describes the logic behind the Cronometer Panel.
 class CronometerPanelModel extends ChangeNotifier{
@@ -15,7 +16,7 @@ class CronometerPanelModel extends ChangeNotifier{
   CronometerPanelModel._internal(){
     _facade.readAllDbEntries().then((List<CronometerModel> cronometers){
       _cronometersModel = cronometers;
-      _sortCronometers();
+      sortCronometers();
     });
   }
 
@@ -28,21 +29,23 @@ class CronometerPanelModel extends ChangeNotifier{
     CronometerModel auxModel = CronometerModel(-1, crnmtrName);
     _facade.insertDbEntry(auxModel).then((int crnmtrId){
       _cronometersModel.add(CronometerModel(crnmtrId, crnmtrName));
-      _sortCronometers();
+      sortCronometers();
+
+      CronometerInitializationService().initialize(_cronometersModel);
     });
   }
 
   void deleteCronometer(CronometerModel cronometer){
     _cronometersModel.remove(cronometer);
     _facade.deleteDbEntry(cronometer);
-    _sortCronometers();
+    sortCronometers();
   }
 
   CronometerModel getCronometerModelByIndex(int index){
     return _cronometersModel[index];
   }
 
-  void _sortCronometers(){
+  void sortCronometers(){
     _cronometersModel.sort((a, b) => a.nameNotifier.name.toLowerCase().compareTo(b.nameNotifier.name.toLowerCase()));
     notifyListeners();
   }
