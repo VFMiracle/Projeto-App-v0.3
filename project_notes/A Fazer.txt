@@ -1,14 +1,3 @@
 THINGS TO DO:
-	- Make the App record Time Record Editing Histories.
-		- Clear the Database of all Command History Records.
-		- Change the updateInfoType for these Commands to Map, so the Date where they were applied is also recorded.
-		- Update the _convertUpdateInfoStringToMap function of the Command History Panel Facade so it works with other Key Value Pair types beyond String/int.
-		- Guarantee that the new updateInfo is displayed correctly.
-		- Guarantee that Time Record Editing Histories are being recorded correctly.
-			- Continue changing the insertDbEntry function of the Time Record Panel Facade, so it records a Time Record Creation Command History.
-		- Record Time Record Histories in the Database.
-			- Record Time Record Creation Histories.
-				*- Make the Cronometer Facade create one of these Histories when it creates a new Time Record.
-	*- Fix the Command History deletion not working. It might be specific to Time Record Editing Histories.
-	- Determine how the system for loading the Cronometers' States from their Histories will work.
+	*- Determine how the system for loading the Cronometers' States from their Histories will work.
 	- Refactor the App's Theme. Start back from the Main Theme class and remove all others.

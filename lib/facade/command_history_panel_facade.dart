@@ -12,6 +12,10 @@ import 'package:projeto_time_counter/utils/date_time_utils.dart';
 
 class CommandHistoryPanelFacade{
 
+  void deleteDbEntry(int entryId){
+    CommandHistoryDAO().deleteDbEntry(entryId);
+  }
+
   Future<List<CommandHistoryModel>> readDbEntries(CommandHistoryType commandType, DateTime selDate) async {
     List<CommandHistoryDTO> dtos = await CommandHistoryDAO().readDbEntriesByTypeAndDay(commandType.id, selDate);
     return _getModelListFromDtoList(dtos);

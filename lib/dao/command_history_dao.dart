@@ -17,6 +17,14 @@ class CommandHistoryDAO{
     _instance._database = database;
   }
 
+  void deleteDbEntry(int commandHistoryId){
+    _database.delete(
+      _tableName,
+      where: "id_command_history = ?",
+      whereArgs: [commandHistoryId],
+    );
+  }
+
   Future<int> insertDbEntry(CommandHistoryDTO commandHistory) async {
     int commandHistoryId = 0;
     Map<String, dynamic> commandHistoryDbEntry = {"id_used_command": commandHistory.commandId, "id_command_type": commandHistory.type.id,
