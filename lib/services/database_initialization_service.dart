@@ -45,19 +45,14 @@ class DatabaseInitializationService{
       },
       onUpgrade: (Database database, int oldVersionNumber, int newVersionNumber) async{
         database.execute(
-          '''DELETE FROM command_history;'''
-        );
-        database.execute(
-          '''INSERT INTO command_history(id_used_command, id_command_type, nm_target, dt_history_creation, ds_update_info) VALUES (1, 1, "Bruxeval", "2024-2-1 15:5:0", NULL),
-            (2, 1, "Bruxeval", "2024-2-1 20:12:22", "Grumadzul"), (4, 2, 'Grumadzul', "2023-12-18 19:55:20", "0"), (4, 2, 'Sei la', "2023-12-20 17:12:19", "100"),
-            (5, 2, 'Grumadzul', "2023-12-18 20:1:0", "340"), (6, 2, 'Grumadzul', "2023-12-18 21:1:41", "340"),
-            (8, 3, "Bruxeval", "2024-2-2 6:12:38", 'da_recordDate:2024-2-2, in_initialValue:1200'),
-            (9, 3, "Grumadzul", "2024-2-2 6:21:4", 'da_recordDate:2024-2-2, in_deleteValue:600'),
-            (10, 3, "Arstuncio", "2024-2-2 6:41:24", 'da_recordDate:2024-2-1, st_newName:Grumadzul'),
-            (11, 3, "Burxeval", "2024-2-2 7:2:51", 'da_recordDate:2024-2-2, in_oldValue:1200, in_newValue:4500');'''
+          '''INSERT INTO command_history(id_used_command, id_command_type, nm_target, dt_history_creation, ds_update_info) VALUES
+            (4, 2, "Arstuncio", "2024-2-12 6:21:50", "0"), (4, 2, "Bruxeval", "2024-2-12 12:1:2", "0"), (4, 2, "Surgag", "2024-2-12 8:43:32", "100"),
+            (5, 2, "Bruxeval", "2024-2-12 12:22:2", "1260"), (4, 2, "Energumino", "2024-2-12 14:3:12", "0"), (5, 2, "Energumino", "2024-2-12 14:5:42", "150"),
+            (6, 2, "Energumino", "2024-2-12 14:7:1", "0"), (4, 2, "Pilvocu", "2024-2-12 17:8:58", "2000"), (5, 2, "Pilvocu", "2024-2-12 17:14:0", "2302"),
+            (7, 2, "Pilvocu", "2024-2-12 18:0:3", "2302");'''
         );
       },
-      version: 18,
+      version: 19,
     );
     CronometerDAO.initialize(_database);
     TimeRecordDAO.initialize(_database);

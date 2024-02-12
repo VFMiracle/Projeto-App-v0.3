@@ -1,3 +1,4 @@
+import 'package:projeto_time_counter/dao/command_history_dao.dart';
 import 'package:projeto_time_counter/models/routes/cronometer_model.dart';
 
 class CronometerInitializationService{
@@ -8,6 +9,6 @@ class CronometerInitializationService{
   factory CronometerInitializationService() => _instance;
 
   void initialize(List<CronometerModel> cronometers){
-    
+    CommandHistoryDAO().readDbLastCronoIntrctEntry(cronometers[0]);
   }
 }

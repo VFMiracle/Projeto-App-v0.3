@@ -8,6 +8,7 @@ ABREVIATION
 		- Selected -> sel
 	- Certain repeating complex terms will be abreviated in order to make readebility easier. These are those terms:
 		- Command History Model -> chModel
+		- Cronometer Interaction -> cronoIntrct
 
 CHALLENGES BY OPERATION:
 	RENAME DATABASE COLUMN:
