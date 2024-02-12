@@ -1,7 +1,7 @@
 import 'package:projeto_time_counter/models/routes/cronometer_model.dart';
 
 class CronometerInitializationService{
-  static CronometerInitializationService _instance = CronometerInitializationService._internal();
+  static final CronometerInitializationService _instance = CronometerInitializationService._internal();
 
   CronometerInitializationService._internal();
 

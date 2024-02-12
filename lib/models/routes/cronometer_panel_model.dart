@@ -17,6 +17,8 @@ class CronometerPanelModel extends ChangeNotifier{
     _facade.readAllDbEntries().then((List<CronometerModel> cronometers){
       _cronometersModel = cronometers;
       sortCronometers();
+
+      CronometerInitializationService().initialize(_cronometersModel);
     });
   }
 
@@ -30,8 +32,6 @@ class CronometerPanelModel extends ChangeNotifier{
     _facade.insertDbEntry(auxModel).then((int crnmtrId){
       _cronometersModel.add(CronometerModel(crnmtrId, crnmtrName));
       sortCronometers();
-
-      CronometerInitializationService().initialize(_cronometersModel);
     });
   }
 

@@ -1,3 +1,3 @@
 THINGS TO DO:
-	*- Determine how the system for loading the Cronometers' States from their Histories will work.
+	*- Wite the initialize function of the Cronometer Initialization Service.
 	- Refactor the App's Theme. Start back from the Main Theme class and remove all others.
