@@ -1,5 +1,7 @@
 THINGS TO DO:
 	- Wite the initialize function of the Cronometer Initialization Service.
 		- Write a Query to get a Cronometer's latest Interaction Command History.
-			*- Continue updating and testing the Query in the SQLite Online Editor.
+			- Continue updating and testing the Query in the SQLite Online Editor.
+		- Continue writing the initialize function of the Cronometer Initialization Service.
+			*- Write the system that updates the Cronometer depending on the Command of it's last Interaction.
 	- Refactor the App's Theme. Start back from the Main Theme class and remove all others.

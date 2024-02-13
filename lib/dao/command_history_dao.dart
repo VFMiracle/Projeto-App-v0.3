@@ -54,7 +54,24 @@ class CommandHistoryDAO{
     return commandHistories;
   }
 
-  void readDbLastCronoIntrctEntry(CronometerModel cronometer) async {
-    
+  Future<CommandHistoryDTO?> readDbLastCronoIntrctEntry(String cronometerName) async {
+    List<Map<String, dynamic>> cronoIntrctsMap = await _database.query(
+      _tableName,
+      where: "id_command_type = ? AND dt_history_creation LIKE ? AND nm_target LIKE ?",
+      whereArgs: [2, "${DateTimeUtils().mapDateToDatabaseString(DateTime.now())}%", cronometerName],
+      orderBy: "id_command_history DESC",
+      limit: 1,
+    );
+    if(cronoIntrctsMap.isNotEmpty){
+      return CommandHistoryDTO(
+        id: cronoIntrctsMap[0]["id_command_history"],
+        commandId: cronoIntrctsMap[0]["id_used_command"],
+        type: CommandHistoryType.getTypeById(cronoIntrctsMap[0]["id_command_type"])!,
+        targetName: cronoIntrctsMap[0]["nm_target"],
+        historyCreation: DateTimeUtils().mapDatabaseStringToDateTime(cronoIntrctsMap[0]["dt_history_creation"]),
+        updateInfo: cronoIntrctsMap[0]["ds_update_info"]
+      );
+    }
+    return null;
   }
 }
