@@ -18,12 +18,16 @@ class CronometerModel{
 
   CronometerValueNotifier get valueNotifier => _valueNotifier;
 
-  CronometerModel(this._id, String name){
-    //OBS: The Notifiers are being initialized insede the constructor because the 'this' keyword can't be used before this moment.
-    //INFO: The Model reference needs to be sent so the Notifiers can have knowledge of the Model they're associated with.
-    _isRunningNotifier = CronometerIsRunningNotifier(this);
+  CronometerModel(this._id, String name, {bool isRunning = false, int startValue = 0}){
+    _isRunningNotifier = CronometerIsRunningNotifier(this, isRunning);
     _nameNotifier = CronometerNameNotifier(this, name);
-    _valueNotifier = CronometerValueNotifier(this);
+    _valueNotifier = CronometerValueNotifier(this, startValue);
+  }
+
+  CronometerModel.forInsertion(String name): _id = -1{
+    _isRunningNotifier = CronometerIsRunningNotifier(this, false);
+    _nameNotifier = CronometerNameNotifier(this, name);
+    _valueNotifier = CronometerValueNotifier(this, 0);
   }
 
   void delete(){
@@ -50,13 +54,13 @@ class CronometerModel{
 }
 
 class CronometerIsRunningNotifier extends ChangeNotifier{
-  bool _isRunning = false;
+  bool _isRunning;
   //ignore: unused_field
   final CronometerModel _parentModel;
 
   bool get isRunning => _isRunning;
 
-  CronometerIsRunningNotifier(this._parentModel);
+  CronometerIsRunningNotifier(this._parentModel, this._isRunning);
 
   void _toggle(){
     _isRunning = !_isRunning;
@@ -78,11 +82,11 @@ class CronometerNameNotifier extends ChangeNotifier{
     notifyListeners();
   }
 
-  CronometerNameNotifier(this._parentModel, String name) : _name = name;
+  CronometerNameNotifier(this._parentModel, this._name);
 }
 
 class CronometerValueNotifier extends ChangeNotifier{
-  int _startValue = 0, _currentValue = 0;
+  int _startValue, _currentValue;
   DateTime _startTime = DateTime.now();
   Timer? _timeCounter;
   //ignore: unused_field
@@ -97,7 +101,7 @@ class CronometerValueNotifier extends ChangeNotifier{
     notifyListeners();
   }
 
-  CronometerValueNotifier(this._parentModel);
+  CronometerValueNotifier(this._parentModel, this._startValue): _currentValue = _startValue;
 
   void _startTimeCounter(){
     _startTime = DateTime.now();

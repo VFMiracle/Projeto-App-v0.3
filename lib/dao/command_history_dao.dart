@@ -1,6 +1,5 @@
 import 'package:projeto_time_counter/dto/command_history_dto.dart';
 import 'package:projeto_time_counter/enums/command_history_type.dart';
-import 'package:projeto_time_counter/models/routes/cronometer_model.dart';
 import 'package:projeto_time_counter/utils/date_time_utils.dart';
 import 'package:sqflite/sqflite.dart';
 

@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:projeto_time_counter/facade/cronometer_panel_facade.dart';
 import 'package:projeto_time_counter/models/routes/cronometer_model.dart';
-import 'package:projeto_time_counter/services/cronometer_initialization_service.dart';
 
 //DESC: Describes the logic behind the Cronometer Panel.
 class CronometerPanelModel extends ChangeNotifier{
@@ -17,8 +16,6 @@ class CronometerPanelModel extends ChangeNotifier{
     _facade.readAllDbEntries().then((List<CronometerModel> cronometers){
       _cronometersModel = cronometers;
       sortCronometers();
-
-      CronometerInitializationService().initialize(_cronometersModel);
     });
   }
 
@@ -27,10 +24,10 @@ class CronometerPanelModel extends ChangeNotifier{
   //OBS: This function waits for the Cronometer Record to be sent to the Database before creating a new Cronometer Model in the App. If delays begin to happend between
   //  the time that the Creation Dialog is closed and a new Cronometer is added to the Panel, this might be the cause of them. Right now the code is left as is because
   //  the only solution would require the Cronometer Model id to be initialized after it has been created, which may cause some comprehension issues.
-  void addCronometer(String crnmtrName){
-    CronometerModel auxModel = CronometerModel(-1, crnmtrName);
+  void addCronometer(String cronometerName){
+    CronometerModel auxModel = CronometerModel.forInsertion(cronometerName);
     _facade.insertDbEntry(auxModel).then((int crnmtrId){
-      _cronometersModel.add(CronometerModel(crnmtrId, crnmtrName));
+      _cronometersModel.add(CronometerModel(crnmtrId, cronometerName));
       sortCronometers();
     });
   }
