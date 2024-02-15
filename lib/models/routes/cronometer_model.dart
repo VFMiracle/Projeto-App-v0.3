@@ -21,7 +21,7 @@ class CronometerModel{
   CronometerModel(this._id, String name, {bool isRunning = false, int startValue = 0}){
     _isRunningNotifier = CronometerIsRunningNotifier(this, isRunning);
     _nameNotifier = CronometerNameNotifier(this, name);
-    _valueNotifier = CronometerValueNotifier(this, startValue);
+    _valueNotifier = CronometerValueNotifier(this, startValue, isRunning: isRunning);
   }
 
   CronometerModel.forInsertion(String name): _id = -1{
@@ -101,7 +101,11 @@ class CronometerValueNotifier extends ChangeNotifier{
     notifyListeners();
   }
 
-  CronometerValueNotifier(this._parentModel, this._startValue): _currentValue = _startValue;
+  CronometerValueNotifier(this._parentModel, this._startValue, {bool isRunning = false}): _currentValue = _startValue{
+    if(isRunning){
+      _startTimeCounter();
+    }
+  }
 
   void _startTimeCounter(){
     _startTime = DateTime.now();
