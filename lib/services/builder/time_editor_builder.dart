@@ -10,6 +10,7 @@ class TimeEditorBuilder{
       title: title,
       model: TimeEditorModel(
         configStrtg: TimeEditorConfigurationStrategy(
+          allowEmptyTextField: true,
           allowTimeZero: allowTimeZero ?? true,
         )
       )
@@ -23,7 +24,7 @@ class TimeEditorBuilder{
       textFieldLabelName: textFieldLabelName,
       model: TimeEditorModel(
         configStrtg: TimeEditorConfigurationStrategy(
-          allowEmptyTextField: allowEmptyTextField,
+          allowEmptyTextField: allowEmptyTextField ?? true,
           allowTimeZero: allowTimeZero ?? true,
         ),
         initialTimeUnitValues: initialTimeUnitValues,
