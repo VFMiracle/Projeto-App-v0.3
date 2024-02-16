@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_time_counter/models/routes/cronometer_panel_model.dart';
+import 'package:projeto_time_counter/themes/main_dialog_theme.dart';
 import 'package:projeto_time_counter/views/widgets/cronometer_panel_entry_view.dart';
 import 'package:provider/provider.dart';
 
@@ -49,28 +50,31 @@ class _CronometerPanelViewState extends State<CronometerPanelView>{
     );
   }
 
-  AlertDialog _buildCronometerCreatorDialog(BuildContext context){
+  Theme _buildCronometerCreatorDialog(BuildContext context){
     TextEditingController cronometerNameEdtngCtrlr = TextEditingController();
-    return AlertDialog(
-      actions: [
-        TextButton(
-          onPressed: (){
-            if(cronometerNameEdtngCtrlr.text.isNotEmpty){
-              CronometerPanelModel().addCronometer(cronometerNameEdtngCtrlr.text);
-              Navigator.of(context).pop();
-            }
-          },
-          child: Text(
-            "Create",
-            style: Theme.of(context).textTheme.displaySmall,
+    return Theme(
+      data: MainDialogTheme.build(context),
+      child: AlertDialog(
+        actions: [
+          TextButton(
+            onPressed: (){
+              if(cronometerNameEdtngCtrlr.text.isNotEmpty){
+                CronometerPanelModel().addCronometer(cronometerNameEdtngCtrlr.text);
+                Navigator.of(context).pop();
+              }
+            },
+            child: Text(
+              "Create",
+              style: Theme.of(context).textTheme.displaySmall,
+            ),
           ),
+        ],
+        content: TextField(
+          controller: cronometerNameEdtngCtrlr,
+          style: Theme.of(context).dialogTheme.contentTextStyle
         ),
-      ],
-      content: TextField(
-        controller: cronometerNameEdtngCtrlr,
-        style: Theme.of(context).dialogTheme.contentTextStyle
-      ),
-      title: const Text("Cronometer Creator"),
+        title: const Text("Cronometer Creator"),
+      )
     );
   }
 

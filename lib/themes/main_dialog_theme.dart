@@ -2,30 +2,25 @@ import 'package:flutter/material.dart';
 
 abstract class MainDialogTheme{
 
-  static DialogTheme build({required Color contentColor, required Color titleColor}){
-    return DialogTheme(
-      backgroundColor: Colors.white,
-      contentTextStyle: TextStyle(
-        color: contentColor,
-        fontSize: 18,
+  static ThemeData build(BuildContext context){
+    ThemeData enclosingTheme = Theme.of(context);
+    return ThemeData(
+      colorScheme: enclosingTheme.colorScheme.copyWith(
+        onSurface: Colors.black
       ),
-      titleTextStyle: TextStyle(
-        color: titleColor,
-        fontSize: 22,
-        fontWeight: FontWeight.w500,
-      ),
-    );
-    /*return ThemeData(
-      textTheme: TextTheme(
-        labelMedium: TextStyle(
-          color: Theme.of(context).colorScheme.secondary,
-          fontSize: 16,
+      dialogTheme: DialogTheme(
+        backgroundColor: Colors.white,
+        contentTextStyle: TextStyle(
+          color: enclosingTheme.colorScheme.primaryContainer,
+          fontSize: 18,
         ),
-        titleMedium: TextStyle(
-          color: Theme.of(context).colorScheme.primary,
+        titleTextStyle: TextStyle(
+          color: enclosingTheme.colorScheme.primary,
           fontSize: 22,
+          fontWeight: FontWeight.w500,
         ),
       ),
-    );*/
+      textTheme: enclosingTheme.textTheme,
+    );
   }
 }

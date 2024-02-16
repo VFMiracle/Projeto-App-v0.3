@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_time_counter/themes/main_dialog_theme.dart';
 
 abstract class MainTheme{
   
@@ -53,7 +52,6 @@ abstract class MainTheme{
           return confirmColor;
         }),
       ),
-      /*dialogTheme: MainDialogTheme.build(titleColor: primaryColor, contentColor: structureColor),*/
       dividerTheme: DividerThemeData(
         color: structureColor,
         space: 0,

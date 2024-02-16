@@ -4,7 +4,7 @@ import 'package:projeto_time_counter/enums/time_unit.dart';
 import 'package:projeto_time_counter/exception/time_editor/no_text_field_text_exception.dart';
 import 'package:projeto_time_counter/exception/time_editor/time_value_is_zero_exception.dart';
 import 'package:projeto_time_counter/models/widgets/reusable/time_editor_model.dart';
-import 'package:projeto_time_counter/themes/time_editor_theme.dart';
+import 'package:projeto_time_counter/themes/main_dialog_theme.dart';
 import 'package:projeto_time_counter/views/widgets/reusable/exception_dialog_view.dart';
 import 'package:provider/provider.dart';
 
@@ -25,7 +25,7 @@ class TimeEditorViewState extends State<TimeEditorView>{
   @override
   Theme build(BuildContext context){
     return Theme(
-      data: TimeEditorTheme.build(context),
+      data: MainDialogTheme.build(context),
       child: Builder(
         builder: (BuildContext context) => AlertDialog(
           actions: [

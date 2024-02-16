@@ -1,4 +1,6 @@
 THINGS TO DO:
 	- Fix the white underline that appears under the text of the Text Fields for the Cronometer and Cronometer Panel's Dialog.
-		*- Figure out what exact configurantion causes the difference in styling between the Cronometer Panel's Dialog and the Time Record Panel's Dialog. This difference still happens when the Dialog Theme is removed.
+		- Figure out what exact configurantion causes the difference in styling between the Cronometer Panel's Dialog and the Time Record Panel's Dialog. This difference still happens when the Dialog Theme is removed.
+		- Turn the Main Dialog Theme into it's own Theme Widget.
+			*- Determine which of the Project's Dialogs needs to be wrapped with this Theme.
 	- Add a Search Bar to the Cronometer Panel.
