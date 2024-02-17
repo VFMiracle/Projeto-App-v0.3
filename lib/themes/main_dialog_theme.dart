@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
+//INFO: This Theme should be applied on all Dialog's, except Date Picker Dialogs
 abstract class MainDialogTheme{
 
   static ThemeData build(BuildContext context){
     ThemeData enclosingTheme = Theme.of(context);
     return ThemeData(
       colorScheme: enclosingTheme.colorScheme.copyWith(
-        onSurface: Colors.black
+        onSurface: Colors.black,
       ),
       dialogTheme: DialogTheme(
         backgroundColor: Colors.white,
@@ -20,7 +21,7 @@ abstract class MainDialogTheme{
           fontWeight: FontWeight.w500,
         ),
       ),
-      textTheme: enclosingTheme.textTheme,
+      textTheme: enclosingTheme.textTheme
     );
   }
 }

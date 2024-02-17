@@ -54,27 +54,29 @@ class _CronometerPanelViewState extends State<CronometerPanelView>{
     TextEditingController cronometerNameEdtngCtrlr = TextEditingController();
     return Theme(
       data: MainDialogTheme.build(context),
-      child: AlertDialog(
-        actions: [
-          TextButton(
-            onPressed: (){
-              if(cronometerNameEdtngCtrlr.text.isNotEmpty){
-                CronometerPanelModel().addCronometer(cronometerNameEdtngCtrlr.text);
-                Navigator.of(context).pop();
-              }
-            },
-            child: Text(
-              "Create",
-              style: Theme.of(context).textTheme.displaySmall,
+      child: Builder(
+        builder: (BuildContext context) => AlertDialog(
+          actions: [
+            TextButton(
+              onPressed: (){
+                if(cronometerNameEdtngCtrlr.text.isNotEmpty){
+                  CronometerPanelModel().addCronometer(cronometerNameEdtngCtrlr.text);
+                  Navigator.of(context).pop();
+                }
+              },
+              child: Text(
+                "Create",
+                style: Theme.of(context).textTheme.displaySmall,
+              ),
             ),
+          ],
+          content: TextField(
+            controller: cronometerNameEdtngCtrlr,
+            style: Theme.of(context).dialogTheme.contentTextStyle
           ),
-        ],
-        content: TextField(
-          controller: cronometerNameEdtngCtrlr,
-          style: Theme.of(context).dialogTheme.contentTextStyle
-        ),
-        title: const Text("Cronometer Creator"),
-      )
+          title: const Text("Cronometer Creator"),
+        )
+      ),
     );
   }
 

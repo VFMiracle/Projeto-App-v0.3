@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:projeto_time_counter/models/widgets/time_record_model.dart';
 import 'package:projeto_time_counter/services/builder/time_editor_builder.dart';
 import 'package:projeto_time_counter/services/time_conversion_service.dart';
+import 'package:projeto_time_counter/views/widgets/reusable/deletion_dialog_view.dart';
 import 'package:projeto_time_counter/views/widgets/reusable/time_editor_view.dart';
 import 'package:provider/provider.dart';
 
@@ -14,7 +15,13 @@ class TimeRecordView extends StatelessWidget{
   Widget build(BuildContext context){
     return TextButton(
       onLongPress: (){
-        showDialog(builder: _buildDeletionDialog, context: context);
+        showDialog(
+          builder: (BuildContext context) => DeletionDialogView(
+            "Do you wish to delete this Time Record?",
+            _model.delete
+          ),
+          context: context
+        );
       },
       onPressed: () => showDialog(
         builder: _buildRecordEditor,
@@ -50,31 +57,6 @@ class TimeRecordView extends StatelessWidget{
           ),
         ],
       ),
-    );
-  }
-
-  AlertDialog _buildDeletionDialog(BuildContext context){
-    return AlertDialog(
-      actions: [
-        TextButton(
-          onPressed: (){
-            _model.delete();
-            Navigator.of(context).pop();
-          },
-          child: Text(
-            "Yes",
-            style: Theme.of(context).textTheme.displaySmall,
-          ),
-        ),
-        TextButton(
-          onPressed: () => Navigator.of(context).pop(),
-          child: Text(
-            "No",
-            style: Theme.of(context).textTheme.displaySmall,
-          ),
-        ),
-      ],
-      title: const Text("Do you wish to delete this Time Record?"),
     );
   }
 
