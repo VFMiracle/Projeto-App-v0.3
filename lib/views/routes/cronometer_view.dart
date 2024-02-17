@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:projeto_time_counter/background/background_cronometer.dart';
 import 'package:projeto_time_counter/models/routes/cronometer_model.dart';
 import 'package:projeto_time_counter/services/time_conversion_service.dart';
-import 'package:projeto_time_counter/themes/main_dialog_theme.dart';
 import 'package:provider/provider.dart';
 
 //DESC: Represents the visual blueprint for a Cronometer.
@@ -143,26 +142,23 @@ class _CronometerViewState extends State<CronometerView> with WidgetsBindingObse
     );
   }
 
-  Theme _buildNameEditingDialog(BuildContext context){
+  AlertDialog _buildNameEditingDialog(BuildContext context){
     TextEditingController nameEdtngCtrlr = TextEditingController(text: widget._model.nameNotifier.name);
-    return Theme(
-      data: MainDialogTheme.build(context),
-      child: AlertDialog(
-        actions: [
-          TextButton(
-            onPressed: (){
-              widget._model.nameNotifier.name = nameEdtngCtrlr.text;
-              Navigator.of(context).pop();
-            },
-            child: Text(
-              "Confirmar",
-              style: Theme.of(context).textTheme.displaySmall,
-            ),
+    return AlertDialog(
+      actions: [
+        TextButton(
+          onPressed: (){
+            widget._model.nameNotifier.name = nameEdtngCtrlr.text;
+            Navigator.of(context).pop();
+          },
+          child: Text(
+            "Confirmar",
+            style: Theme.of(context).textTheme.displaySmall,
           ),
-        ],
-        content: TextField(controller: nameEdtngCtrlr),
-        title: const Text("Name Editor")
-      ),
+        ),
+      ],
+      content: TextField(controller: nameEdtngCtrlr),
+      title: const Text("Name Editor")
     );
   }
 }

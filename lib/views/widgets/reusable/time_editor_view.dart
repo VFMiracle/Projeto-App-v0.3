@@ -4,7 +4,6 @@ import 'package:projeto_time_counter/enums/time_unit.dart';
 import 'package:projeto_time_counter/exception/time_editor/no_text_field_text_exception.dart';
 import 'package:projeto_time_counter/exception/time_editor/time_value_is_zero_exception.dart';
 import 'package:projeto_time_counter/models/widgets/reusable/time_editor_model.dart';
-import 'package:projeto_time_counter/themes/main_dialog_theme.dart';
 import 'package:projeto_time_counter/views/widgets/reusable/exception_dialog_view.dart';
 import 'package:provider/provider.dart';
 
@@ -23,29 +22,24 @@ class TimeEditorView extends StatefulWidget{
 class TimeEditorViewState extends State<TimeEditorView>{
 
   @override
-  Theme build(BuildContext context){
-    return Theme(
-      data: MainDialogTheme.build(context),
-      child: Builder(
-        builder: (BuildContext context) => AlertDialog(
-          actions: [
-            TextButton(
-              onPressed: () => _submitEditor(context),
-              child: Text(
-                "Submit",
-                style: TextStyle(color: Theme.of(context).colorScheme.secondary)
-              ),
-            ),
-          ],
-          actionsPadding: const EdgeInsets.fromLTRB(0, 5, 10, 0),
-          content: _buildContent(context),
-          contentPadding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
-          title: Text(
-            widget._title,
+  AlertDialog build(BuildContext context){
+    return AlertDialog(
+      actions: [
+        TextButton(
+          onPressed: () => _submitEditor(context),
+          child: Text(
+            "Submit",
+            style: TextStyle(color: Theme.of(context).colorScheme.secondary)
           ),
-          titlePadding: const EdgeInsets.fromLTRB(30, 15, 30, 5),
-        )
+        ),
+      ],
+      actionsPadding: const EdgeInsets.fromLTRB(0, 5, 10, 0),
+      content: _buildContent(context),
+      contentPadding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
+      title: Text(
+        widget._title,
       ),
+      titlePadding: const EdgeInsets.fromLTRB(30, 15, 30, 5),
     );
   }
 
