@@ -1,8 +1,4 @@
 THINGS TO DO:
-	- Fix the white underline that appears under the text of the Text Fields for the Cronometer and Cronometer Panel's Dialog.
-		- Figure out what exact configurantion causes the difference in styling between the Cronometer Panel's Dialog and the Time Record Panel's Dialog. This difference still happens when the Dialog Theme is removed.
-		- Turn the Main Dialog Theme into it's own Theme Widget.
-			- Determine which of the Project's Dialogs needs to be wrapped with this Theme.
-		*- Modify the Project's Styling considering the Color used for onSurface on the Main Theme is the Color used for the Auto Correct Underline throughout the Project.
-	- Fix the coloration of the Date Picker's writable Date section so it's Text Field is actually visable.
+	- Remake the App's Theme from the beggining.
+		*- Remove all instances of the App's sub Themes, such as Time Editor Theme, and stylings for specific Widgets.
 	- Add a Search Bar to the Cronometer Panel.

@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 //INFO: This Theme should be applied on all Dialog's, except Date Picker Dialogs
 abstract class MainDialogTheme{
 
-  static DialogTheme build(Color contentColor, Color titleColor){
+  static DialogTheme build(Color textColor, Color backgroundColor){
     return DialogTheme(
-      backgroundColor: Colors.white,
+      backgroundColor: backgroundColor,
       contentTextStyle: TextStyle(
-        color: contentColor,
+        color: textColor,
         fontSize: 18,
       ),
       titleTextStyle: TextStyle(
-        color: titleColor,
+        color: textColor,
         fontSize: 22,
         fontWeight: FontWeight.w500,
       ),

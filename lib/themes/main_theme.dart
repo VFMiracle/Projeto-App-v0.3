@@ -59,6 +59,20 @@ abstract class MainTheme{
         space: 0,
         thickness: 2,
       ),
+      inputDecorationTheme: const InputDecorationTheme(
+        enabledBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: Color.fromARGB(255, 114, 164, 255),
+            width: 1.5,
+          ),
+        ),
+        focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: Colors.white,
+            width: 2,
+          ),
+        ),
+      ),
       textTheme: TextTheme(
         bodyLarge: TextStyle(
           color: primaryColor,

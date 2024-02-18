@@ -157,7 +157,10 @@ class _CronometerViewState extends State<CronometerView> with WidgetsBindingObse
           ),
         ),
       ],
-      content: TextField(controller: nameEdtngCtrlr),
+      content: TextField(
+        controller: nameEdtngCtrlr,
+        style: Theme.of(context).dialogTheme.contentTextStyle,
+      ),
       title: const Text("Name Editor")
     );
   }

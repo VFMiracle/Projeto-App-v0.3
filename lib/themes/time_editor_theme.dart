@@ -13,13 +13,14 @@ abstract class TimeEditorTheme{
           fontSize: 20
         ),
         headlineMedium: TextStyle(
-          color: Theme.of(context).colorScheme.secondary,
+          color: Theme.of(context).colorScheme.onPrimary,
           fontSize: 25,
           fontWeight: FontWeight.w500,
         ),
         headlineSmall: TextStyle(
-          color: Theme.of(context).colorScheme.tertiary,
-          fontSize: 15,
+          color: Theme.of(context).colorScheme.secondary,
+          fontSize: 18,
+          fontWeight: FontWeight.w500
         ),
         titleLarge: TextStyle(
           color: Theme.of(context).colorScheme.primary,
