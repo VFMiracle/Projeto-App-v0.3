@@ -71,32 +71,32 @@ class CommandHistoryPanelViewState extends State<CommandHistoryPanelView>{
 
   Container _buildCommandHistoryTypeDropdownSection(BuildContext context){
     return Container(
-      decoration: BoxDecoration(
+      /* decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.secondary,
-      ),
+      ), */
       padding: const EdgeInsets.symmetric(horizontal: 5),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Text(
+          const Text(
             "Displaying the History for: ",
-            style: Theme.of(context).textTheme.displaySmall!.copyWith(color: Theme.of(context).colorScheme.background),
+            /*style: Theme.of(context).textTheme.displaySmall!.copyWith(color: Theme.of(context).colorScheme.background),*/
           ),
           Container(
-            decoration: BoxDecoration(
+            /* decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.primary,
-            ),
+            ), */
             margin: const EdgeInsets.symmetric(vertical: 5),
             padding: const EdgeInsets.only(left: 5),
             child: DropdownButtonHideUnderline(
               child: DropdownButton<CommandHistoryType>(
-                iconEnabledColor: Theme.of(context).colorScheme.background,
+                /* iconEnabledColor: Theme.of(context).colorScheme.background, */
                 items: CommandHistoryType.values.map<DropdownMenuItem<CommandHistoryType>>(
                   (CommandHistoryType type) => DropdownMenuItem<CommandHistoryType>(
                     value: type,
                     child: Text(
                       type.description,
-                      style: TextStyle(color: Theme.of(context).colorScheme.primary)
+                      /*style: TextStyle(color: Theme.of(context).colorScheme.primary)*/
                     )
                   ),
                 ).toList(),
@@ -106,7 +106,7 @@ class CommandHistoryPanelViewState extends State<CommandHistoryPanelView>{
                     alignment: Alignment.center,
                     child: Text(
                       type.description,
-                      style: Theme.of(context).textTheme.displaySmall!.copyWith(color: Theme.of(context).colorScheme.background),
+                      /*style: Theme.of(context).textTheme.displaySmall!.copyWith(color: Theme.of(context).colorScheme.background),*/
                     )
                   ),
                 ).toList(),
@@ -131,16 +131,16 @@ class CommandHistoryPanelViewState extends State<CommandHistoryPanelView>{
       }),
       child: Text(
         DateTimeUtils().mapDateToDisplayString(selDateNotifier.selDate),
-        style: TextStyle(color: Theme.of(context).colorScheme.onPrimary)
+        /*style: TextStyle(color: Theme.of(context).colorScheme.onPrimary)*/
       ),
     );
   }
 
   Center _buildNoCommandHistoryMessage(BuildContext context){
-    return Center(
+    return const Center(
       child: Text(
         "There aren't any registered Commands of this Type on this day.",
-        style: Theme.of(context).textTheme.headlineMedium,
+        /*style: Theme.of(context).textTheme.headlineMedium,*/
         textAlign: TextAlign.center,
       ),
     );

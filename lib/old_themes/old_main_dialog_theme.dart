@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 //INFO: This Theme should be applied on all Dialog's, except Date Picker Dialogs
-abstract class MainDialogTheme{
+abstract class OldMainDialogTheme{
 
   static DialogTheme build(Color textColor, Color backgroundColor){
     return DialogTheme(

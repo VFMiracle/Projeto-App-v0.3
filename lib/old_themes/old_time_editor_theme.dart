@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-abstract class TimeEditorTheme{
+abstract class OldTimeEditorTheme{
 
   static ThemeData build(BuildContext context){
     return Theme.of(context).copyWith(

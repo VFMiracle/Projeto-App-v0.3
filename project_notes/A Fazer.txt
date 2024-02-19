@@ -1,4 +1,6 @@
 THINGS TO DO:
 	- Remake the App's Theme from the beggining.
-		*- Remove all instances of the App's sub Themes, such as Time Editor Theme, and stylings for specific Widgets.
+		- Remove all instances of the App's sub Themes, such as Time Editor Theme, and stylings for specific Widgets.
+		- Remake the App's Color Scheme.
+			*- Analyse where each placeholder Color of the Scheme is being used and determine what actual Color should be used in that place.
 	- Add a Search Bar to the Cronometer Panel.

@@ -38,7 +38,7 @@ class TimeRecordView extends StatelessWidget{
               builder: (BuildContext context, TimeRecordTaskNameNotifier taskNameNtfr, Widget? child){
                 return Text(
                   taskNameNtfr.taskName,
-                  style: Theme.of(context).textTheme.bodyLarge,
+                  /* style: Theme.of(context).textTheme.bodyLarge, */
                 );
               },
             ),
@@ -48,9 +48,9 @@ class TimeRecordView extends StatelessWidget{
               builder:(BuildContext context, TimeRecordCountedTimeNotifier countedTimeNtfr, Widget? child){
                 return Text(
                   TimeConversionService().fromIntToString(countedTimeNtfr.countedTime),
-                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                  /* style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                     color: Theme.of(context).colorScheme.secondary,
-                  ),
+                  ), */
                 );
               },
             )

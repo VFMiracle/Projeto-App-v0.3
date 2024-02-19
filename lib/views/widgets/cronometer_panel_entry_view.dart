@@ -59,7 +59,7 @@ class CronometerPanelEntryViewState extends State<CronometerPanelEntryView>{
                   return Text(
                     crnmtrIsRnngNtfr.isRunning ? "" : "Paused",
                     textAlign: TextAlign.end,
-                    style: TextStyle(color: Theme.of(context).colorScheme.secondary)
+                    /* style: TextStyle(color: Theme.of(context).colorScheme.secondary) */
                   );
                 }
               ),
@@ -74,7 +74,7 @@ class CronometerPanelEntryViewState extends State<CronometerPanelEntryView>{
                 builder: (BuildContext context, CronometerValueNotifier crnmtrValueNtfr, Widget? child){
                   return Text(
                     TimeConversionService().fromIntToString(crnmtrValueNtfr.currentValue),
-                    style: TextStyle(color: Theme.of(context).colorScheme.secondary)
+                    /* style: TextStyle(color: Theme.of(context).colorScheme.secondary) */
                   );
                 }
               ),

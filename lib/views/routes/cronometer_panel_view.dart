@@ -20,7 +20,6 @@ class _CronometerPanelViewState extends State<CronometerPanelView>{
       appBar: AppBar(
         actions: [
           IconButton(
-            color: Colors.white,
             icon: const Icon(Icons.add),
             onPressed: () => showDialog(
               context: context,
@@ -60,15 +59,15 @@ class _CronometerPanelViewState extends State<CronometerPanelView>{
               Navigator.of(context).pop();
             }
           },
-          child: Text(
+          child: const Text(
             "Create",
-            style: Theme.of(context).textTheme.displaySmall,
+            /*style: Theme.of(context).textTheme.displaySmall,*/
           ),
         ),
       ],
       content: TextField(
         controller: cronometerNameEdtngCtrlr,
-        style: Theme.of(context).dialogTheme.contentTextStyle
+        /*style: Theme.of(context).dialogTheme.contentTextStyle*/
       ),
       title: const Text("Cronometer Creator"),
     );
@@ -83,10 +82,10 @@ class _CronometerPanelViewState extends State<CronometerPanelView>{
   }
 
   Center _buildNoCronometerMessage(){
-    return Center(
+    return const Center(
       child: Text(
         "There are no Cronometers to display.",
-        style: Theme.of(context).textTheme.headlineMedium,
+        /*style: Theme.of(context).textTheme.headlineMedium,*/
         textAlign: TextAlign.center,
       ),
     );
@@ -121,7 +120,7 @@ class _CronometerPanelViewState extends State<CronometerPanelView>{
                   hintStyle: TextStyle(color: Color.fromARGB(255, 30, 58, 71)),
                 ),
                 onChanged: null,
-                style: TextStyle(color: Colors.white),
+                /*style: TextStyle(color: Colors.white),*/
               ),
             ),
           ),

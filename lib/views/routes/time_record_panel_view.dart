@@ -81,16 +81,16 @@ class _TimeRecordPanelViewState extends State<TimeRecordPanelView>{
       }),
       child: Text(
         DateTimeUtils().mapDateToDisplayString(selDateNotifier.selDate),
-        style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+        /* style: TextStyle(color: Theme.of(context).colorScheme.onPrimary), */
       ),
     );
   }
 
   Center _buildNoTimeRecordsMessage(BuildContext context){
-    return Center(
+    return const Center(
       child: Text(
         "There aren't any Time Records for this day.",
-        style: Theme.of(context).textTheme.headlineMedium,
+        /* style: Theme.of(context).textTheme.headlineMedium, */
         textAlign: TextAlign.center,
       ),
     );

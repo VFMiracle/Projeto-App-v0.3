@@ -65,16 +65,15 @@ class _CronometerViewState extends State<CronometerView> with WidgetsBindingObse
                 builder: (BuildContext context, CronometerValueNotifier crnmtrValueNtfr, Widget? child){
                   return Text(
                     TimeConversionService().fromIntToString(crnmtrValueNtfr.currentValue),
-                    style: Theme.of(context).textTheme.displayLarge!.copyWith(
+                    /*style: Theme.of(context).textTheme.displayLarge!.copyWith(
                       color: Theme.of(context).colorScheme.onBackground,
-                    ),
+                    ),*/
                   );
                 }
               ),
             ),
           ),
           Container(
-            color: Theme.of(context).colorScheme.primaryContainer,
             padding: const EdgeInsets.symmetric(vertical: 12.5),
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -94,11 +93,11 @@ class _CronometerViewState extends State<CronometerView> with WidgetsBindingObse
 
   Row _buildCountOptionButtons(bool isRunning, int crnmtrValue){
     String pauseBtnText;
-    Color selPauseBtnColor;
+    /* Color selPauseBtnColor; */
     Widget? resetButton;
     
     if(!isRunning){
-      selPauseBtnColor = Theme.of(context).colorScheme.scrim;
+      /* selPauseBtnColor = Theme.of(context).colorScheme.scrim; */
       if(crnmtrValue > 0){
         pauseBtnText = "Continue";
         resetButton = TextButton(
@@ -106,10 +105,10 @@ class _CronometerViewState extends State<CronometerView> with WidgetsBindingObse
           //  reset since it doesn't listen to changes to the Cronometer's Value.
           onLongPress: () => setState(() => widget._model.resetValue(false)),
           onPressed: () => setState(() => widget._model.resetValue(true)),
-          style: TextButton.styleFrom(
+          /* style: TextButton.styleFrom(
             foregroundColor: Theme.of(context).colorScheme.error,
             textStyle: Theme.of(context).textTheme.displayMedium,
-          ),
+          ), */
           child: const Text("Reset"),
         );
       }else{
@@ -117,7 +116,7 @@ class _CronometerViewState extends State<CronometerView> with WidgetsBindingObse
       }
     }else{
       pauseBtnText = "Pause";
-      selPauseBtnColor = Theme.of(context).colorScheme.secondary;
+      /* selPauseBtnColor = Theme.of(context).colorScheme.secondary; */
     }
 
     List<Widget> children = [
@@ -125,10 +124,10 @@ class _CronometerViewState extends State<CronometerView> with WidgetsBindingObse
         onPressed: (){
           widget._model.toggleIsRunning();
         },
-        style: TextButton.styleFrom(
+        /*style: TextButton.styleFrom(
           foregroundColor: selPauseBtnColor,
           textStyle: Theme.of(context).textTheme.displayMedium
-        ),
+        ),*/
         child: Text(pauseBtnText),
       ),
     ];
@@ -151,15 +150,15 @@ class _CronometerViewState extends State<CronometerView> with WidgetsBindingObse
             widget._model.nameNotifier.name = nameEdtngCtrlr.text;
             Navigator.of(context).pop();
           },
-          child: Text(
+          child: const Text(
             "Confirmar",
-            style: Theme.of(context).textTheme.displaySmall,
+            /* style: Theme.of(context).textTheme.displaySmall, */
           ),
         ),
       ],
       content: TextField(
         controller: nameEdtngCtrlr,
-        style: Theme.of(context).dialogTheme.contentTextStyle,
+        /* style: Theme.of(context).dialogTheme.contentTextStyle, */
       ),
       title: const Text("Name Editor")
     );

@@ -34,14 +34,14 @@ class CommandHistoryView extends StatelessWidget{
             flex: 2,
             child: Text(
               headerText,
-              style: Theme.of(context).textTheme.bodyMedium,
+              /* style: Theme.of(context).textTheme.bodyMedium, */
             ),
           ),
           Flexible(
             flex: 1,
             child: Text(
               _model.commandName,
-              style: Theme.of(context).textTheme.bodyMedium,
+              /* style: Theme.of(context).textTheme.bodyMedium, */
               textAlign: TextAlign.right,
             )
           ),
@@ -50,7 +50,7 @@ class CommandHistoryView extends StatelessWidget{
       Row(
         children: [Text(
           (_model is TimeRecordEditingChModel ? "Target Time Record: " : "Target Cronometer: ") + _model.targetName,
-          style: Theme.of(context).textTheme.displaySmall!.copyWith(fontWeight: FontWeight.w500),
+          /* style: Theme.of(context).textTheme.displaySmall!.copyWith(fontWeight: FontWeight.w500), */
         )]
       ),
     ];
@@ -58,7 +58,7 @@ class CommandHistoryView extends StatelessWidget{
       columnContent.add(Row(children: [
         Text(
           _model.writeUpdateInfoDisplayString(),
-          style: Theme.of(context).textTheme.displaySmall!.copyWith(fontWeight: FontWeight.w500),
+          /* style: Theme.of(context).textTheme.displaySmall!.copyWith(fontWeight: FontWeight.w500), */
         )
       ]));
     }
