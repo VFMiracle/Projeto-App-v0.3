@@ -2,5 +2,7 @@ THINGS TO DO:
 	- Remake the App's Theme from the beggining.
 		- Remove all instances of the App's sub Themes, such as Time Editor Theme, and stylings for specific Widgets.
 		- Remake the App's Color Scheme.
-			*- Analyse where each placeholder Color of the Scheme is being used and determine what actual Color should be used in that place.
+			- Analyse where each placeholder Color of the Scheme is being used and determine what actual Color should be used in that place.
+			*- Make the Secondary and Error Colors be applied somewhere in the App so they can be seen in action.
+			- Determine what should be done about the On Secondary and On Error Colors of the Color Scheme, since they're required for it's constructor.
 	- Add a Search Bar to the Cronometer Panel.
