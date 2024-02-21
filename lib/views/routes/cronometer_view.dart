@@ -93,11 +93,11 @@ class _CronometerViewState extends State<CronometerView> with WidgetsBindingObse
 
   Row _buildCountOptionButtons(bool isRunning, int crnmtrValue){
     String pauseBtnText;
-    /* Color selPauseBtnColor; */
+    Color? selPauseBtnColor;
     Widget? resetButton;
     
     if(!isRunning){
-      /* selPauseBtnColor = Theme.of(context).colorScheme.scrim; */
+      selPauseBtnColor = Theme.of(context).colorScheme.onSecondary;
       if(crnmtrValue > 0){
         pauseBtnText = "Continue";
         resetButton = TextButton(
@@ -105,10 +105,9 @@ class _CronometerViewState extends State<CronometerView> with WidgetsBindingObse
           //  reset since it doesn't listen to changes to the Cronometer's Value.
           onLongPress: () => setState(() => widget._model.resetValue(false)),
           onPressed: () => setState(() => widget._model.resetValue(true)),
-          /* style: TextButton.styleFrom(
-            foregroundColor: Theme.of(context).colorScheme.error,
-            textStyle: Theme.of(context).textTheme.displayMedium,
-          ), */
+          style: TextButton.styleFrom(
+            foregroundColor: Theme.of(context).colorScheme.onError,
+          ),
           child: const Text("Reset"),
         );
       }else{
@@ -124,10 +123,9 @@ class _CronometerViewState extends State<CronometerView> with WidgetsBindingObse
         onPressed: (){
           widget._model.toggleIsRunning();
         },
-        /*style: TextButton.styleFrom(
+        style: TextButton.styleFrom(
           foregroundColor: selPauseBtnColor,
-          textStyle: Theme.of(context).textTheme.displayMedium
-        ),*/
+        ),
         child: Text(pauseBtnText),
       ),
     ];
