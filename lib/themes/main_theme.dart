@@ -17,6 +17,68 @@ abstract class MainTheme{
         background: Color.fromARGB(255, 18, 19, 19), //INFO: Color Name: Night
         onBackground: Color.fromARGB(255, 40, 94, 164), //INFO: Color Name: Lapis Lazuli
       ),
+      textTheme: const TextTheme(
+        bodyLarge: TextStyle(
+          color: Colors.amber,
+          fontSize: 24,
+        ),
+        bodyMedium: TextStyle(
+          color: Colors.amber,
+          fontSize: 20,
+        ),
+        bodySmall: TextStyle(
+          color: Colors.amber,
+          fontSize: 16,
+        ),
+        displayLarge: TextStyle(
+          color: Colors.redAccent,
+          fontSize: 40,
+        ),
+        displayMedium: TextStyle(
+          color: Colors.redAccent,
+          fontSize: 24,
+        ),
+        displaySmall: TextStyle(
+          color: Colors.redAccent,
+          fontSize: 16,
+        ),
+        headlineLarge: TextStyle(
+          color: Colors.brown,
+          fontSize: 40,
+        ),
+        headlineMedium: TextStyle(
+          color: Colors.brown,
+          fontSize: 24,
+        ),
+        headlineSmall: TextStyle(
+          color: Colors.brown,
+          fontSize: 16,
+        ),
+        labelLarge: TextStyle(
+          color: Colors.lime,
+          fontSize: 20,
+        ),
+        labelMedium: TextStyle(
+          color: Colors.lime,
+          fontSize: 24,
+        ),
+        labelSmall: TextStyle(
+          color: Colors.lime,
+          fontSize: 16,
+        ),
+        titleLarge: TextStyle(
+          color: Colors.pink,
+          fontSize: 40,
+        ),
+        titleMedium: TextStyle(
+          color: Colors.pink,
+          fontSize: 24,
+        ),
+        titleSmall: TextStyle(
+          color: Colors.pink,
+          fontSize: 16,
+        ),
+      )
     );
   }
 }

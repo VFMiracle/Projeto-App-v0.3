@@ -27,7 +27,7 @@ class NotificationManager{
       'cronometer',
       'Cronometer',
       channelDescription: 'The background representation of the cronometer.',
-      /* color: Color.fromARGB(255, 11, 79, 206), */
+      color: Color.fromARGB(255, 46, 156, 239),
       ongoing: true,
       playSound: false,
       priority: Priority.low,

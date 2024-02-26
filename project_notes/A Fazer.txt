@@ -6,5 +6,6 @@ THINGS TO DO:
 			- Make the Secondary and Error Colors be applied somewhere in the App so they can be seen in action.
 			- Determine what should be done about the On Secondary and On Error Colors of the Color Scheme, since they're required for it's constructor.
 		- Remake the App's Text Theme.
-			*- Determine how the text troughout the App should be styled considering the Text Theme and Widget specific stylings.
+			- Determine how the text troughout the App should be styled considering the Text Theme and Widget specific stylings.
+				*- Determine how the Time Editor View's Number Picker should be styled considering the default Styles it uses and the styling standards throughout the App.
 	- Add a Search Bar to the Cronometer Panel.

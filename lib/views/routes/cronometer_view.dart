@@ -65,6 +65,9 @@ class _CronometerViewState extends State<CronometerView> with WidgetsBindingObse
                 builder: (BuildContext context, CronometerValueNotifier crnmtrValueNtfr, Widget? child){
                   return Text(
                     TimeConversionService().fromIntToString(crnmtrValueNtfr.currentValue),
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      fontSize: 72
+                    ),
                     /*style: Theme.of(context).textTheme.displayLarge!.copyWith(
                       color: Theme.of(context).colorScheme.onBackground,
                     ),*/
@@ -92,6 +95,7 @@ class _CronometerViewState extends State<CronometerView> with WidgetsBindingObse
   }
 
   Row _buildCountOptionButtons(bool isRunning, int crnmtrValue){
+    const double buttonFontSize = 32;
     String pauseBtnText;
     Color? selPauseBtnColor;
     Widget? resetButton;
@@ -107,6 +111,9 @@ class _CronometerViewState extends State<CronometerView> with WidgetsBindingObse
           onPressed: () => setState(() => widget._model.resetValue(true)),
           style: TextButton.styleFrom(
             foregroundColor: Theme.of(context).colorScheme.onError,
+            textStyle: Theme.of(context).textTheme.labelLarge!.copyWith(
+              fontSize: buttonFontSize
+            )
           ),
           child: const Text("Reset"),
         );
@@ -125,6 +132,9 @@ class _CronometerViewState extends State<CronometerView> with WidgetsBindingObse
         },
         style: TextButton.styleFrom(
           foregroundColor: selPauseBtnColor,
+          textStyle: Theme.of(context).textTheme.labelLarge!.copyWith(
+            fontSize: buttonFontSize,
+          ),
         ),
         child: Text(pauseBtnText),
       ),
