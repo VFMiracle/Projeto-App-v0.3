@@ -20,7 +20,7 @@ abstract class MainTheme{
       textTheme: const TextTheme(
         bodyLarge: TextStyle(
           color: Colors.amber,
-          fontSize: 24,
+          fontSize: 22,
         ),
         bodyMedium: TextStyle(
           color: Colors.amber,
@@ -52,7 +52,8 @@ abstract class MainTheme{
         ),
         headlineSmall: TextStyle(
           color: Colors.brown,
-          fontSize: 16,
+          fontSize: 28,
+          fontWeight: FontWeight.w600,
         ),
         labelLarge: TextStyle(
           color: Colors.lime,
@@ -68,7 +69,7 @@ abstract class MainTheme{
         ),
         titleLarge: TextStyle(
           color: Colors.pink,
-          fontSize: 40,
+          fontSize: 30,
         ),
         titleMedium: TextStyle(
           color: Colors.pink,

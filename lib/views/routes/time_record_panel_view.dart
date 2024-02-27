@@ -56,7 +56,12 @@ class _TimeRecordPanelViewState extends State<TimeRecordPanelView>{
             builder: _buildDateSelector,
           ),
         ],
-        title: const Text("Time Records"),
+        title: Text(
+          "Time Records",
+          style: Theme.of(context).textTheme.titleLarge!.copyWith(
+            fontSize: 26
+          )
+        ),
       ),
       body: Consumer<TimeRecordPanelRecordsNotifier>(
         builder: (BuildContext context, TimeRecordPanelRecordsNotifier timeRecordsNotifier, Widget? child){
@@ -81,7 +86,9 @@ class _TimeRecordPanelViewState extends State<TimeRecordPanelView>{
       }),
       child: Text(
         DateTimeUtils().mapDateToDisplayString(selDateNotifier.selDate),
-        /* style: TextStyle(color: Theme.of(context).colorScheme.onPrimary), */
+        style: Theme.of(context).textTheme.labelLarge!.copyWith(
+          fontSize: 16
+        ),
       ),
     );
   }

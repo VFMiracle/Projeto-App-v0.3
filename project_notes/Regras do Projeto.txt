@@ -93,6 +93,14 @@ PROJECT STRUCTURE:
 			1- A reference to the Model of the Widget, which holds all information the View cannot.
 			2- Display related data that doesn't change over the Widget's lifetime and isn't used in the Widget's functionality.
 
+STYLING STANDARDS:
+	- The Project uses both Themes and direct stylings for it's elements.
+	- It has a Main Theme that styles every Widget throughout the App.
+	- With regards to specific Widgets:
+		- If it requires it's own Style, it should be applied as close to it as possible.
+		- If this Style is overriding something that was applied by an encompassing Theme Widget, it should copy and modify the Theme's Style that was being applied to it.
+	- If a Route or group of Widgets all require their own styling, a sub-Theme should be made for them. That Theme doesn't need to reference it's encompassing Theme.
+
 VARIABLE LISTING ORDER:
 	ORDER: 
 		- Separate the group of fields from the group of their accessors with an empty line.

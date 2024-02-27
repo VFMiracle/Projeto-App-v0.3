@@ -36,8 +36,11 @@ class TimeEditorViewState extends State<TimeEditorView>{
           ),
         ),
       ],
-      actionsPadding: const EdgeInsets.fromLTRB(0, 5, 10, 0),
-      content: _buildContent(context),
+      actionsPadding: const EdgeInsets.fromLTRB(0, 0, 15, 10),
+      content: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        child: _buildContent(context),
+      ),
       contentPadding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
       title: Text(
         widget._title,
@@ -93,13 +96,17 @@ class TimeEditorViewState extends State<TimeEditorView>{
         builder: (BuildContext context, TimeEditorTimeUnitNotifier timeUnitNtfr, Widget? child){
           return NumberPicker(
             infiniteLoop: true,
-            itemHeight: 30,
-            itemWidth: 70,
+            itemHeight: 40,
+            itemWidth: 50,
             maxValue: timeUnit.valueToGreaterUnit - 1,
             minValue: 0,
             onChanged: (int newValue) => widget._model.getTimeUnitNotifier(timeUnit).value = newValue,
-            /* selectedTextStyle: Theme.of(context).textTheme.headlineMedium, */
-            /* textStyle: Theme.of(context).textTheme.headlineSmall, */
+            selectedTextStyle: Theme.of(context).textTheme.headlineSmall!.copyWith(
+              color: Theme.of(context).colorScheme.primary,
+            ),
+            textStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(
+              fontWeight: FontWeight.w300,
+            ),
             value: widget._model.getTimeUnitNotifier(timeUnit).value,
             zeroPad: true,
           );
