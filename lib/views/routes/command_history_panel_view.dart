@@ -30,7 +30,12 @@ class CommandHistoryPanelViewState extends State<CommandHistoryPanelView>{
             builder: _buildDateSelector,
           )
         ],
-        title: const Text("Command History")
+        title: Text(
+          "Command History",
+          style: Theme.of(context).textTheme.titleLarge!.copyWith(
+            fontSize: 28
+          ),
+        )
       ),
       body: Column(
         children: [
@@ -129,8 +134,14 @@ class CommandHistoryPanelViewState extends State<CommandHistoryPanelView>{
           selDateNotifier.selDate = newDate;
         }
       }),
+      style: ButtonStyle(
+        padding: MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.only(right: 10)),
+      ),
       child: Text(
         DateTimeUtils().mapDateToDisplayString(selDateNotifier.selDate),
+        style: Theme.of(context).textTheme.labelLarge!.copyWith(
+          fontSize: 18
+        ),
         /*style: TextStyle(color: Theme.of(context).colorScheme.onPrimary)*/
       ),
     );

@@ -5,7 +5,9 @@ THINGS TO DO:
 			- Analyse where each placeholder Color of the Scheme is being used and determine what actual Color should be used in that place.
 			- Make the Secondary and Error Colors be applied somewhere in the App so they can be seen in action.
 			- Determine what should be done about the On Secondary and On Error Colors of the Color Scheme, since they're required for it's constructor.
-		*- Determine if and how the Main Theme should incorporate a Theme Widget for App Bar Actions throughout the App.
+		- Determine if and how the Main Theme should incorporate a Theme Widget for App Bar Actions throughout the App.
+		*- Consider if the Data Selector on App Bars should be made into it's own custom Widget.
+		- Check if there are any other Widgets that require custom styling.
 		- Remake the App's Text Theme.
 			- Determine how the text troughout the App should be styled considering the Text Theme and Widget specific stylings.
 				- Determine how the Time Editor View's Number Picker should be styled considering the default Styles it uses and the styling standards throughout the App.

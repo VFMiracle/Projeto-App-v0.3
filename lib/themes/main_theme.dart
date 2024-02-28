@@ -4,6 +4,9 @@ abstract class MainTheme{
 
   static ThemeData build(){
     return ThemeData(
+      appBarTheme: const AppBarTheme(
+        titleSpacing: 0
+      ),
       colorScheme: const ColorScheme(
         brightness: Brightness.dark,
         primary: Color.fromARGB(255, 46, 156, 239), //INFO: Color Name: Celestial Blue
@@ -16,6 +19,11 @@ abstract class MainTheme{
         onSurface: Color.fromARGB(255, 242, 245, 255), //INFO: Color Name: Ghost White
         background: Color.fromARGB(255, 18, 19, 19), //INFO: Color Name: Night
         onBackground: Color.fromARGB(255, 40, 94, 164), //INFO: Color Name: Lapis Lazuli
+      ),
+      iconButtonTheme: IconButtonThemeData(
+        style: ButtonStyle(
+          padding: MaterialStateProperty.all<EdgeInsetsGeometry>(EdgeInsets.zero),
+        ),
       ),
       textTheme: const TextTheme(
         bodyLarge: TextStyle(

@@ -51,17 +51,16 @@ class _TimeRecordPanelViewState extends State<TimeRecordPanelView>{
                 }
               }
             }),
+            /*style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
+              padding: MaterialStateProperty.all<EdgeInsetsGeometry>(EdgeInsets.zero),
+            ),*/
           ),
           Consumer<TimeRecordPanelSelDateNotifier>(
             builder: _buildDateSelector,
           ),
         ],
-        title: Text(
-          "Time Records",
-          style: Theme.of(context).textTheme.titleLarge!.copyWith(
-            fontSize: 26
-          )
-        ),
+        title: const Text("Time Records"),
       ),
       body: Consumer<TimeRecordPanelRecordsNotifier>(
         builder: (BuildContext context, TimeRecordPanelRecordsNotifier timeRecordsNotifier, Widget? child){
@@ -84,10 +83,13 @@ class _TimeRecordPanelViewState extends State<TimeRecordPanelView>{
           selDateNotifier.selDate = newDate;
         }
       }),
+      style: ButtonStyle(
+        padding: MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.only(right: 10)),
+      ),
       child: Text(
         DateTimeUtils().mapDateToDisplayString(selDateNotifier.selDate),
         style: Theme.of(context).textTheme.labelLarge!.copyWith(
-          fontSize: 16
+          fontSize: 18
         ),
       ),
     );

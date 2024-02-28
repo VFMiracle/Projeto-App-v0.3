@@ -37,6 +37,8 @@ class MainMenu extends StatelessWidget{
       home: Scaffold(
         appBar: AppBar(
           title: const Text("Time Counter"),
+          //OBS: This property is an override of the configuration on the App's Main Theme.
+          titleSpacing: 20
         ),
         body: ListView.separated(
           itemBuilder: (BuildContext context, int index){
