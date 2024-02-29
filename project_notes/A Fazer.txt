@@ -6,7 +6,10 @@ THINGS TO DO:
 			- Make the Secondary and Error Colors be applied somewhere in the App so they can be seen in action.
 			- Determine what should be done about the On Secondary and On Error Colors of the Color Scheme, since they're required for it's constructor.
 		- Determine if and how the Main Theme should incorporate a Theme Widget for App Bar Actions throughout the App.
-		*- Consider if the Data Selector on App Bars should be made into it's own custom Widget.
+		- Consider if the Date Selector on App Bars should be made into it's own custom Widget.
+		- Create a custom Widget for the Date Selector on App Bars.
+			- Write the SelDateNotifier class that should be extended by the Notifiers that are used on the Date Selector.
+				*- Make the TimeRecordPanelSelDateNotifier extend the SelDateNotifier.
 		- Check if there are any other Widgets that require custom styling.
 		- Remake the App's Text Theme.
 			- Determine how the text troughout the App should be styled considering the Text Theme and Widget specific stylings.

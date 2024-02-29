@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:projeto_time_counter/enums/command_history_type.dart';
 import 'package:projeto_time_counter/facade/command_history_panel_facade.dart';
 import 'package:projeto_time_counter/models/widgets/reusable/command_history_model.dart';
+import 'package:projeto_time_counter/models/widgets/reusable/sel_date_notifier.dart';
 
 class CommandHistoryPanelModel{
   static CommandHistoryPanelModel? _commandHistoryPanelModel;
@@ -65,12 +66,14 @@ class CommandHistoryPanelHistoriesNotifier extends ChangeNotifier{
   }
 }
 
-class CommandHistoryPanelSelDateNotifier extends ChangeNotifier{
+class CommandHistoryPanelSelDateNotifier extends SelDateNotifier{
   DateTime _selDate;
   // ignore: unused_field
   final CommandHistoryPanelModel _parentModel;
 
+  @override
   DateTime get selDate => _selDate;
+  @override
   set selDate(DateTime newDate){
     _selDate = newDate;
     _parentModel._historiesNotifier._loadDesiredCommandHistories();
