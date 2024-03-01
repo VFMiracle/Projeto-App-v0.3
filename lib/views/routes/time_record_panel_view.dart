@@ -5,6 +5,7 @@ import 'package:projeto_time_counter/models/widgets/time_record_model.dart';
 import 'package:projeto_time_counter/models/routes/time_record_panel_model.dart';
 import 'package:projeto_time_counter/services/builder/time_editor_builder.dart';
 import 'package:projeto_time_counter/utils/date_time_utils.dart';
+import 'package:projeto_time_counter/views/widgets/reusable/date_selector.dart';
 import 'package:projeto_time_counter/views/widgets/reusable/exception_dialog_view.dart';
 import 'package:projeto_time_counter/views/widgets/time_record_view.dart';
 import 'package:projeto_time_counter/views/widgets/reusable/time_editor_view.dart';
@@ -57,7 +58,7 @@ class _TimeRecordPanelViewState extends State<TimeRecordPanelView>{
             ),*/
           ),
           Consumer<TimeRecordPanelSelDateNotifier>(
-            builder: _buildDateSelector,
+            builder: DateSelector.build,
           ),
         ],
         title: const Text("Time Records"),

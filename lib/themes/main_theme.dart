@@ -30,7 +30,7 @@ abstract class MainTheme{
           color: Colors.amber,
           fontSize: 22,
         ),
-        bodyMedium: TextStyle(
+        bodyMedium: TextStyle( //TEMP: Is used
           color: Colors.amber,
           fontSize: 20,
         ),
@@ -58,12 +58,12 @@ abstract class MainTheme{
           color: Colors.brown,
           fontSize: 24,
         ),
-        headlineSmall: TextStyle(
+        headlineSmall: TextStyle( //TEMP: Is used
           color: Colors.brown,
           fontSize: 28,
           fontWeight: FontWeight.w600,
         ),
-        labelLarge: TextStyle(
+        labelLarge: TextStyle( //TEMP: Is used
           color: Colors.lime,
           fontSize: 20,
         ),
@@ -75,13 +75,13 @@ abstract class MainTheme{
           color: Colors.lime,
           fontSize: 16,
         ),
-        titleLarge: TextStyle(
+        titleLarge: TextStyle( //TEMP: Is used
           color: Colors.pink,
           fontSize: 30,
         ),
         titleMedium: TextStyle(
           color: Colors.pink,
-          fontSize: 24,
+          fontSize: 20,
         ),
         titleSmall: TextStyle(
           color: Colors.pink,

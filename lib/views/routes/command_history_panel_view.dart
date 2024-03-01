@@ -3,6 +3,7 @@ import 'package:projeto_time_counter/enums/command_history_type.dart';
 import 'package:projeto_time_counter/models/routes/command_history_panel_model.dart';
 import 'package:projeto_time_counter/utils/date_time_utils.dart';
 import 'package:projeto_time_counter/views/widgets/command_history_view.dart';
+import 'package:projeto_time_counter/views/widgets/reusable/date_selector.dart';
 import 'package:provider/provider.dart';
 
 class CommandHistoryPanelView extends StatefulWidget{
@@ -27,7 +28,7 @@ class CommandHistoryPanelViewState extends State<CommandHistoryPanelView>{
       appBar: AppBar(
         actions: [
           Consumer<CommandHistoryPanelSelDateNotifier>(
-            builder: _buildDateSelector,
+            builder: DateSelector.build,
           )
         ],
         title: Text(
@@ -79,20 +80,23 @@ class CommandHistoryPanelViewState extends State<CommandHistoryPanelView>{
       /* decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.secondary,
       ), */
-      padding: const EdgeInsets.symmetric(horizontal: 5),
+      padding: const EdgeInsets.fromLTRB(5, 10, 5, 0),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          const Text(
-            "Displaying the History for: ",
-            /*style: Theme.of(context).textTheme.displaySmall!.copyWith(color: Theme.of(context).colorScheme.background),*/
+          const SizedBox(
+            width: 150,
+            child: Text(
+              "Displaying the History for: ",
+              /*style: Theme.of(context).textTheme.displaySmall!.copyWith(color: Theme.of(context).colorScheme.background),*/
+            )
           ),
           Container(
             /* decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.primary,
             ), */
-            margin: const EdgeInsets.symmetric(vertical: 5),
-            padding: const EdgeInsets.only(left: 5),
+            /* margin: const EdgeInsets.symmetric(vertical: 5),
+            padding: const EdgeInsets.only(left: 5), */
             child: DropdownButtonHideUnderline(
               child: DropdownButton<CommandHistoryType>(
                 /* iconEnabledColor: Theme.of(context).colorScheme.background, */

@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:projeto_time_counter/dto/time_editor_dto.dart';
 import 'package:projeto_time_counter/exception/time_record_panel/task_already_recorded_exception.dart';
 import 'package:projeto_time_counter/facade/time_record_panel_facade.dart';
+import 'package:projeto_time_counter/models/widgets/reusable/sel_date_notifier.dart';
 import 'package:projeto_time_counter/models/widgets/time_record_model.dart';
 
 class TimeRecordPanelModel{
@@ -83,12 +84,14 @@ class TimeRecordPanelRecordsNotifier extends ChangeNotifier{
   }
 }
 
-class TimeRecordPanelSelDateNotifier extends ChangeNotifier{
+class TimeRecordPanelSelDateNotifier extends SelDateNotifier{
   DateTime _selDate;
   // ignore: unused_field
   final TimeRecordPanelModel _parentModel;
 
+  @override
   DateTime get selDate => _selDate;
+  @override
   set selDate(DateTime newDate){
     _selDate = newDate;
     notifyListeners();
