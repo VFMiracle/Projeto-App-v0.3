@@ -10,11 +10,12 @@ THINGS TO DO:
 		- Create a custom Widget for the Date Selector on App Bars.
 			- Write the SelDateNotifier class that should be extended by the Notifiers that are used on the Date Selector.
 				- Make the TimeRecordPanelSelDateNotifier extend the SelDateNotifier.
-		*- Add a custom Style for the Command History Panel's Type Dropdown Section.
+		- Add a custom Style for the Command History Panel's Type Dropdown Section.
 		- Check if there are any other Widgets that require custom styling.
-			*- Decide if the Command History List needs a custom style for it's entries.
+			- Decide if the Command History List needs a custom style for it's entries.
 		- Remake the App's Text Theme.
 			- Determine how the text troughout the App should be styled considering the Text Theme and Widget specific stylings.
 				- Determine how the Time Editor View's Number Picker should be styled considering the default Styles it uses and the styling standards throughout the App.
-			*- Determine which Styles are being used and which ones aren't. Removed the non-used ones and describe where the other ones are being used.
+			- Determine which Styles are being used and which ones aren't. Removed the non-used ones and describe where the other ones are being used.
+				*- Continue checking where the Headline Large Style is used.
 	- Add a Search Bar to the Cronometer Panel.

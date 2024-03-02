@@ -42,14 +42,23 @@ class CommandHistoryPanelViewState extends State<CommandHistoryPanelView>{
         children: [
           _buildCommandHistoryTypeDropdownSection(context),
           Expanded(
-            child: Consumer<CommandHistoryPanelHistoriesNotifier>(
-              builder: (BuildContext context, CommandHistoryPanelHistoriesNotifier historiesNotifier, Widget? child){
-                if(historiesNotifier.qtdHistories > 0){
-                  return _buildCommandHistoryList(context);
-                }else{
-                  return _buildNoCommandHistoryMessage(context);
+            child: Theme(
+              data: Theme.of(context).copyWith(
+                textTheme: Theme.of(context).textTheme.copyWith(
+                  labelLarge: TextStyle(
+                    fontSize: 18,
+                  ),
+                ),
+              ),
+              child: Consumer<CommandHistoryPanelHistoriesNotifier>(
+                builder: (BuildContext context, CommandHistoryPanelHistoriesNotifier historiesNotifier, Widget? child){
+                  if(historiesNotifier.qtdHistories > 0){
+                    return _buildCommandHistoryList(context);
+                  }else{
+                    return _buildNoCommandHistoryMessage(context);
+                  }
                 }
-              }
+              )
             )
           ),
         ],
@@ -77,9 +86,9 @@ class CommandHistoryPanelViewState extends State<CommandHistoryPanelView>{
 
   Container _buildCommandHistoryTypeDropdownSection(BuildContext context){
     return Container(
-      /* decoration: BoxDecoration(
+      decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.secondary,
-      ), */
+      ),
       padding: const EdgeInsets.fromLTRB(5, 10, 5, 0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -116,6 +125,7 @@ class CommandHistoryPanelViewState extends State<CommandHistoryPanelView>{
                     child: Text(
                       type.description,
                       /*style: Theme.of(context).textTheme.displaySmall!.copyWith(color: Theme.of(context).colorScheme.background),*/
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Theme.of(context).colorScheme.onSecondary),
                     )
                   ),
                 ).toList(),

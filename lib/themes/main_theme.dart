@@ -11,7 +11,7 @@ abstract class MainTheme{
         brightness: Brightness.dark,
         primary: Color.fromARGB(255, 46, 156, 239), //INFO: Color Name: Celestial Blue
         onPrimary: Color.fromARGB(255, 7, 236, 217), //INFO: Color Name: Turquoise
-        secondary: Color.fromARGB(255, 32, 131, 67), //INFO: Color Name: Sea Green
+        secondary: Color.fromARGB(255, 40, 76, 40), //INFO: Color Name: Sea Green
         onSecondary: Color.fromARGB(255, 50, 236, 65), //INFO: Color Name: SGBUS Green
         error: Color.fromARGB(255, 146, 25, 11), //INFO: Color Name: Penn Red
         onError: Color.fromARGB(255, 255, 54, 54), //INFO: Color Name: Vermilion
@@ -26,19 +26,21 @@ abstract class MainTheme{
         ),
       ),
       textTheme: const TextTheme(
+        //INFO: This Style is used on Text Fields and Text Form Fields.
         bodyLarge: TextStyle(
           color: Colors.amber,
           fontSize: 22,
         ),
-        bodyMedium: TextStyle( //TEMP: Is used
+        //INFO: This Style is used on the majority of simple text writtern throughout the App, including, but not limited to: Route warnings, Error Dialogs and Input labels.
+        bodyMedium: TextStyle(
           color: Colors.amber,
           fontSize: 20,
         ),
-        bodySmall: TextStyle(
+        /* bodySmall: TextStyle(
           color: Colors.amber,
           fontSize: 16,
-        ),
-        displayLarge: TextStyle(
+        ), */
+        /*displayLarge: TextStyle(
           color: Colors.redAccent,
           fontSize: 40,
         ),
@@ -49,7 +51,8 @@ abstract class MainTheme{
         displaySmall: TextStyle(
           color: Colors.redAccent,
           fontSize: 16,
-        ),
+        ),*/
+        //INFO: This Style is used for the Date Picker Header. (Maybe more, keep checking)
         headlineLarge: TextStyle(
           color: Colors.brown,
           fontSize: 40,
@@ -58,7 +61,8 @@ abstract class MainTheme{
           color: Colors.brown,
           fontSize: 24,
         ),
-        headlineSmall: TextStyle( //TEMP: Is used
+        //INFO: This Style is used in Dialog Titles.
+        headlineSmall: TextStyle(
           color: Colors.brown,
           fontSize: 28,
           fontWeight: FontWeight.w600,
