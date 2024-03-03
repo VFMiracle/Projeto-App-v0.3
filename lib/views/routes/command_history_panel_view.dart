@@ -45,7 +45,7 @@ class CommandHistoryPanelViewState extends State<CommandHistoryPanelView>{
             child: Theme(
               data: Theme.of(context).copyWith(
                 textTheme: Theme.of(context).textTheme.copyWith(
-                  labelLarge: TextStyle(
+                  labelLarge: const TextStyle(
                     fontSize: 18,
                   ),
                 ),
@@ -89,7 +89,7 @@ class CommandHistoryPanelViewState extends State<CommandHistoryPanelView>{
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.secondary,
       ),
-      padding: const EdgeInsets.fromLTRB(5, 10, 5, 0),
+      padding: const EdgeInsets.fromLTRB(5, 10, 5, 5),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
@@ -106,8 +106,12 @@ class CommandHistoryPanelViewState extends State<CommandHistoryPanelView>{
             ), */
             /* margin: const EdgeInsets.symmetric(vertical: 5),
             padding: const EdgeInsets.only(left: 5), */
+            //INFO: Flutter recommendes using the Dropdown Menu Widget as a subtitute for Dropdown Button on Material 3 Projects. For one reason or another, this Project used
+            //  the latter Widget, and since it's on it's final changes of this iteration, changing the Widget completly feels unnecessary. If this Project recieves another
+            //  iteration of changes, this Widget will be modified.
             child: DropdownButtonHideUnderline(
               child: DropdownButton<CommandHistoryType>(
+                dropdownColor: Theme.of(context).colorScheme.secondary,
                 /* iconEnabledColor: Theme.of(context).colorScheme.background, */
                 items: CommandHistoryType.values.map<DropdownMenuItem<CommandHistoryType>>(
                   (CommandHistoryType type) => DropdownMenuItem<CommandHistoryType>(
@@ -115,6 +119,7 @@ class CommandHistoryPanelViewState extends State<CommandHistoryPanelView>{
                     child: Text(
                       type.description,
                       /*style: TextStyle(color: Theme.of(context).colorScheme.primary)*/
+                      style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
                     )
                   ),
                 ).toList(),
@@ -125,7 +130,7 @@ class CommandHistoryPanelViewState extends State<CommandHistoryPanelView>{
                     child: Text(
                       type.description,
                       /*style: Theme.of(context).textTheme.displaySmall!.copyWith(color: Theme.of(context).colorScheme.background),*/
-                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Theme.of(context).colorScheme.onSecondary),
+                      style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Theme.of(context).colorScheme.onSecondary),
                     )
                   ),
                 ).toList(),

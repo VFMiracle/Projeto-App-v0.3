@@ -52,33 +52,34 @@ abstract class MainTheme{
           color: Colors.redAccent,
           fontSize: 16,
         ),*/
-        //INFO: This Style is used for the Date Picker Header. (Maybe more, keep checking)
+        //INFO: This Style is used for the Date Picker Weekday description in it's Header.
         headlineLarge: TextStyle(
           color: Colors.brown,
-          fontSize: 40,
+          fontSize: 38,
         ),
-        headlineMedium: TextStyle(
+        /* headlineMedium: TextStyle(
           color: Colors.brown,
           fontSize: 24,
-        ),
+        ), */
         //INFO: This Style is used in Dialog Titles.
         headlineSmall: TextStyle(
           color: Colors.brown,
           fontSize: 28,
           fontWeight: FontWeight.w600,
         ),
-        labelLarge: TextStyle( //TEMP: Is used
+        //INFO: This Style is used for the Text on Text Buttons and the "Select Date" text on the Date Picker.
+        labelLarge: TextStyle(
           color: Colors.lime,
           fontSize: 20,
         ),
-        labelMedium: TextStyle(
+        /* labelMedium: TextStyle(
           color: Colors.lime,
           fontSize: 24,
         ),
         labelSmall: TextStyle(
           color: Colors.lime,
           fontSize: 16,
-        ),
+        ), */
         titleLarge: TextStyle( //TEMP: Is used
           color: Colors.pink,
           fontSize: 30,
