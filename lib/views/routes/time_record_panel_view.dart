@@ -52,10 +52,6 @@ class _TimeRecordPanelViewState extends State<TimeRecordPanelView>{
                 }
               }
             }),
-            /*style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
-              padding: MaterialStateProperty.all<EdgeInsetsGeometry>(EdgeInsets.zero),
-            ),*/
           ),
           Consumer<TimeRecordPanelSelDateNotifier>(
             builder: DateSelector.build,
@@ -100,7 +96,6 @@ class _TimeRecordPanelViewState extends State<TimeRecordPanelView>{
     return const Center(
       child: Text(
         "There aren't any Time Records for this day.",
-        /* style: Theme.of(context).textTheme.headlineMedium, */
         textAlign: TextAlign.center,
       ),
     );

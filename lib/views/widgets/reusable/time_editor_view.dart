@@ -27,13 +27,7 @@ class TimeEditorViewState extends State<TimeEditorView>{
       actions: [
         TextButton(
           onPressed: () => _submitEditor(context),
-          child: const Text(
-            "Submit",
-            /*style: TextStyle(
-              color: Theme.of(context).colorScheme.secondary,
-              fontSize: 20,
-            ),*/
-          ),
+          child: const Text("Submit"),
         ),
       ],
       actionsPadding: const EdgeInsets.fromLTRB(0, 0, 15, 10),
@@ -73,10 +67,7 @@ class TimeEditorViewState extends State<TimeEditorView>{
         children: [
           Text("${widget._textFieldLabelName}: "),
           Expanded(
-            child: TextField(
-              controller: textEdtngCtrlr,
-              /* style: Theme.of(context).dialogTheme.contentTextStyle, */
-            ),
+            child: TextField(controller: textEdtngCtrlr,),
           ),
         ]
       ));

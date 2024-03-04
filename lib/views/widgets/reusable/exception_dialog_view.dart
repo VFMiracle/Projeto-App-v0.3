@@ -10,20 +10,12 @@ class ExceptionDialogView extends StatelessWidget{
     return AlertDialog(
       actions: [
         TextButton(
-          child: const Text(
-            "Close",
-            /* style: Theme.of(context).textTheme.displaySmall, */
-          ),
+          child: const Text("Close"),
           onPressed: () => Navigator.pop(context),
         ),
       ],
       content: Text(_message),
-      title: const Text(
-        "ERROR",
-        /* style: TextStyle(
-          color: Theme.of(context).colorScheme.error,
-        ) */
-      ),
+      title: const Text("ERROR",),
     );
   }
 }

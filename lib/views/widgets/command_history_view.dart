@@ -32,33 +32,27 @@ class CommandHistoryView extends StatelessWidget{
         children: [
           Flexible(
             flex: 2,
-            child: Text(
-              headerText,
-              /* style: Theme.of(context).textTheme.bodyMedium, */
-            ),
+            child: Text(headerText),
           ),
           Flexible(
             flex: 1,
             child: Text(
               _model.commandName,
-              /* style: Theme.of(context).textTheme.bodyMedium, */
               textAlign: TextAlign.right,
             )
           ),
         ],
       ),
       Row(
-        children: [Text(
-          (_model is TimeRecordEditingChModel ? "Target Time Record: " : "Target Cronometer: ") + _model.targetName,
-          /* style: Theme.of(context).textTheme.displaySmall!.copyWith(fontWeight: FontWeight.w500), */
-        )]
+        children: [
+          Text((_model is TimeRecordEditingChModel ? "Target Time Record: " : "Target Cronometer: ") + _model.targetName)
+        ]
       ),
     ];
     if(_model.updateInfo != null){
       columnContent.add(Row(children: [
         Text(
-          _model.writeUpdateInfoDisplayString(),
-          /* style: Theme.of(context).textTheme.displaySmall!.copyWith(fontWeight: FontWeight.w500), */
+          _model.writeUpdateInfoDisplayString()
         )
       ]));
     }

@@ -59,16 +59,10 @@ class _CronometerPanelViewState extends State<CronometerPanelView>{
               Navigator.of(context).pop();
             }
           },
-          child: const Text(
-            "Create",
-            /*style: Theme.of(context).textTheme.displaySmall,*/
-          ),
+          child: const Text("Create"),
         ),
       ],
-      content: TextField(
-        controller: cronometerNameEdtngCtrlr,
-        /*style: Theme.of(context).dialogTheme.contentTextStyle*/
-      ),
+      content: TextField(controller: cronometerNameEdtngCtrlr),
       title: const Text("Cronometer Creator"),
     );
   }
@@ -85,7 +79,6 @@ class _CronometerPanelViewState extends State<CronometerPanelView>{
     return const Center(
       child: Text(
         "There are no Cronometers to display.",
-        /*style: Theme.of(context).textTheme.headlineMedium,*/
         textAlign: TextAlign.center,
       ),
     );

@@ -68,9 +68,6 @@ class _CronometerViewState extends State<CronometerView> with WidgetsBindingObse
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                       fontSize: 72
                     ),
-                    /*style: Theme.of(context).textTheme.displayLarge!.copyWith(
-                      color: Theme.of(context).colorScheme.onBackground,
-                    ),*/
                   );
                 }
               ),
@@ -122,7 +119,6 @@ class _CronometerViewState extends State<CronometerView> with WidgetsBindingObse
       }
     }else{
       pauseBtnText = "Pause";
-      /* selPauseBtnColor = Theme.of(context).colorScheme.secondary; */
     }
 
     List<Widget> children = [
@@ -160,14 +156,10 @@ class _CronometerViewState extends State<CronometerView> with WidgetsBindingObse
           },
           child: const Text(
             "Confirmar",
-            /* style: Theme.of(context).textTheme.displaySmall, */
           ),
         ),
       ],
-      content: TextField(
-        controller: nameEdtngCtrlr,
-        /* style: Theme.of(context).dialogTheme.contentTextStyle, */
-      ),
+      content: TextField(controller: nameEdtngCtrlr),
       title: const Text("Name Editor")
     );
   }

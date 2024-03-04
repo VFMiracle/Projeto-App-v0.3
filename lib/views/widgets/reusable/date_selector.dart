@@ -35,8 +35,7 @@ class _DateSelectorState extends State<DateSelector>{
         DateTimeUtils().mapDateToDisplayString(widget._selDateNotifier.selDate),
         style: Theme.of(context).textTheme.labelLarge!.copyWith(
           fontSize: 18
-        ),
-        /*style: TextStyle(color: Theme.of(context).colorScheme.onPrimary)*/
+        )
       ),
     );
   }

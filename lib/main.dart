@@ -31,8 +31,6 @@ class MainMenu extends StatelessWidget{
 
   @override
   Widget build(BuildContext context){
-    /*ButtonStyle buttonStyle = const ButtonStyle(padding: MaterialStatePropertyAll<EdgeInsetsGeometry>(EdgeInsets.zero));*/
-    
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -51,7 +49,6 @@ class MainMenu extends StatelessWidget{
                       child: const CronometerPanelView(),
                     );
                   })),
-                  /*style: buttonStyle,*/
                   child: const Text("Cronometer List"),
                 );
               }
@@ -67,7 +64,6 @@ class MainMenu extends StatelessWidget{
                       child: const TimeRecordPanelView(),
                     );
                   })),
-                  /*style: buttonStyle,*/
                   child: const Text("Time Records"),
                 );
               }

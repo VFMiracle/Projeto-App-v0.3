@@ -97,72 +97,38 @@ class CommandHistoryPanelViewState extends State<CommandHistoryPanelView>{
             width: 150,
             child: Text(
               "Displaying the History for: ",
-              /*style: Theme.of(context).textTheme.displaySmall!.copyWith(color: Theme.of(context).colorScheme.background),*/
             )
           ),
-          Container(
-            /* decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.primary,
-            ), */
-            /* margin: const EdgeInsets.symmetric(vertical: 5),
-            padding: const EdgeInsets.only(left: 5), */
-            //INFO: Flutter recommendes using the Dropdown Menu Widget as a subtitute for Dropdown Button on Material 3 Projects. For one reason or another, this Project used
-            //  the latter Widget, and since it's on it's final changes of this iteration, changing the Widget completly feels unnecessary. If this Project recieves another
-            //  iteration of changes, this Widget will be modified.
-            child: DropdownButtonHideUnderline(
-              child: DropdownButton<CommandHistoryType>(
-                dropdownColor: Theme.of(context).colorScheme.secondary,
-                /* iconEnabledColor: Theme.of(context).colorScheme.background, */
-                items: CommandHistoryType.values.map<DropdownMenuItem<CommandHistoryType>>(
-                  (CommandHistoryType type) => DropdownMenuItem<CommandHistoryType>(
-                    value: type,
-                    child: Text(
-                      type.description,
-                      /*style: TextStyle(color: Theme.of(context).colorScheme.primary)*/
-                      style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
-                    )
-                  ),
-                ).toList(),
-                onChanged: (CommandHistoryType? newHistoryType) => setState(() => CommandHistoryPanelModel().historiesNotifier.selCommandHistoryType = newHistoryType!),
-                selectedItemBuilder: (BuildContext context) => CommandHistoryType.values.map<Widget>(
-                  (CommandHistoryType type) => Container(
-                    alignment: Alignment.center,
-                    child: Text(
-                      type.description,
-                      /*style: Theme.of(context).textTheme.displaySmall!.copyWith(color: Theme.of(context).colorScheme.background),*/
-                      style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Theme.of(context).colorScheme.onSecondary),
-                    )
-                  ),
-                ).toList(),
-                value: CommandHistoryPanelModel().historiesNotifier.selCommandHistoryType,
-              )
-            ),
+          //INFO: Flutter recommendes using the Dropdown Menu Widget as a subtitute for Dropdown Button on Material 3 Projects. For one reason or another, this Project used
+          //  the latter Widget, and since it's on it's final changes of this iteration, changing the Widget completly feels unnecessary. If this Project recieves another
+          //  iteration of changes, this Widget will be modified.
+          DropdownButtonHideUnderline(
+            child: DropdownButton<CommandHistoryType>(
+              dropdownColor: Theme.of(context).colorScheme.secondary,
+              items: CommandHistoryType.values.map<DropdownMenuItem<CommandHistoryType>>(
+                (CommandHistoryType type) => DropdownMenuItem<CommandHistoryType>(
+                  value: type,
+                  child: Text(
+                    type.description,
+                    style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
+                  )
+                ),
+              ).toList(),
+              onChanged: (CommandHistoryType? newHistoryType) => setState(() => CommandHistoryPanelModel().historiesNotifier.selCommandHistoryType = newHistoryType!),
+              selectedItemBuilder: (BuildContext context) => CommandHistoryType.values.map<Widget>(
+                (CommandHistoryType type) => Container(
+                  alignment: Alignment.center,
+                  child: Text(
+                    type.description,
+                    style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Theme.of(context).colorScheme.onSecondary),
+                  )
+                ),
+              ).toList(),
+              value: CommandHistoryPanelModel().historiesNotifier.selCommandHistoryType,
+            )
           ),
         ]
       )
-    );
-  }
-
-  TextButton _buildDateSelector(BuildContext context, CommandHistoryPanelSelDateNotifier selDateNotifier, Widget? child){
-    return TextButton(
-      onPressed: () => showDialog(
-        builder: _buildCommandHistoryDatePickerDialog,
-        context: context,
-      ).then((newDate){
-        if(newDate != null){
-          selDateNotifier.selDate = newDate;
-        }
-      }),
-      style: ButtonStyle(
-        padding: MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.only(right: 10)),
-      ),
-      child: Text(
-        DateTimeUtils().mapDateToDisplayString(selDateNotifier.selDate),
-        style: Theme.of(context).textTheme.labelLarge!.copyWith(
-          fontSize: 18
-        ),
-        /*style: TextStyle(color: Theme.of(context).colorScheme.onPrimary)*/
-      ),
     );
   }
 
@@ -170,7 +136,6 @@ class CommandHistoryPanelViewState extends State<CommandHistoryPanelView>{
     return const Center(
       child: Text(
         "There aren't any registered Commands of this Type on this day.",
-        /*style: Theme.of(context).textTheme.headlineMedium,*/
         textAlign: TextAlign.center,
       ),
     );

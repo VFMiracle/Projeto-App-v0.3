@@ -53,13 +53,12 @@ class CronometerPanelEntryViewState extends State<CronometerPanelEntryView>{
               ),
             ),
             ChangeNotifierProvider.value(
-              value: widget._crnmtrModel.isRunningNotifier,
-              child: Consumer<CronometerIsRunningNotifier>(
-                builder: (BuildContext context, CronometerIsRunningNotifier crnmtrIsRnngNtfr, Widget? child){
+              value: widget._crnmtrModel.valueNotifier,
+              child: Consumer<CronometerValueNotifier>(
+                builder: (BuildContext context, CronometerValueNotifier crnmtrValueNtfr, Widget? child){
                   return Text(
-                    crnmtrIsRnngNtfr.isRunning ? "" : "Paused",
+                    TimeConversionService().fromIntToString(crnmtrValueNtfr.currentValue),
                     textAlign: TextAlign.end,
-                    /* style: TextStyle(color: Theme.of(context).colorScheme.secondary) */
                   );
                 }
               ),
@@ -69,12 +68,12 @@ class CronometerPanelEntryViewState extends State<CronometerPanelEntryView>{
         TableRow(
           children:[
             ChangeNotifierProvider.value(
-              value: widget._crnmtrModel.valueNotifier,
-              child: Consumer<CronometerValueNotifier>(
-                builder: (BuildContext context, CronometerValueNotifier crnmtrValueNtfr, Widget? child){
+              value: widget._crnmtrModel.isRunningNotifier,
+              child: Consumer<CronometerIsRunningNotifier>(
+                builder: (BuildContext context, CronometerIsRunningNotifier crnmtrIsRnngNtfr, Widget? child){
                   return Text(
-                    TimeConversionService().fromIntToString(crnmtrValueNtfr.currentValue),
-                    /* style: TextStyle(color: Theme.of(context).colorScheme.secondary) */
+                    crnmtrIsRnngNtfr.isRunning ? "" : "Paused",
+                    textAlign: TextAlign.center,
                   );
                 }
               ),

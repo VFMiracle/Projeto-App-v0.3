@@ -26,7 +26,7 @@ abstract class MainTheme{
         ),
       ),
       textTheme: const TextTheme(
-        //INFO: This Style is used on Text Fields and Text Form Fields.
+        //INFO: This Style is used for the text on Text Fields and Text Form Fields.
         bodyLarge: TextStyle(
           color: Colors.amber,
           fontSize: 22,
@@ -36,31 +36,11 @@ abstract class MainTheme{
           color: Colors.amber,
           fontSize: 20,
         ),
-        /* bodySmall: TextStyle(
-          color: Colors.amber,
-          fontSize: 16,
-        ), */
-        /*displayLarge: TextStyle(
-          color: Colors.redAccent,
-          fontSize: 40,
-        ),
-        displayMedium: TextStyle(
-          color: Colors.redAccent,
-          fontSize: 24,
-        ),
-        displaySmall: TextStyle(
-          color: Colors.redAccent,
-          fontSize: 16,
-        ),*/
-        //INFO: This Style is used for the Date Picker Weekday description in it's Header.
+        //INFO: This Style is used for the Date Picker's Weekday description in it's Header.
         headlineLarge: TextStyle(
           color: Colors.brown,
           fontSize: 38,
         ),
-        /* headlineMedium: TextStyle(
-          color: Colors.brown,
-          fontSize: 24,
-        ), */
         //INFO: This Style is used in Dialog Titles.
         headlineSmall: TextStyle(
           color: Colors.brown,
@@ -72,25 +52,21 @@ abstract class MainTheme{
           color: Colors.lime,
           fontSize: 20,
         ),
-        /* labelMedium: TextStyle(
-          color: Colors.lime,
-          fontSize: 24,
-        ),
-        labelSmall: TextStyle(
-          color: Colors.lime,
-          fontSize: 16,
-        ), */
-        titleLarge: TextStyle( //TEMP: Is used
+        //INFO: This Style is used for the Titles of the Routes.
+        titleLarge: TextStyle(
           color: Colors.pink,
           fontSize: 30,
         ),
+        //INFO: This Style is used for the entries of a Dropdown Button, regardless of whether they're selected or not, and height of a Text Form Field independently of it's
+        //  text size.
         titleMedium: TextStyle(
           color: Colors.pink,
           fontSize: 20,
         ),
+        //INFO: This Style is used on the Date Picker's month selector.
         titleSmall: TextStyle(
           color: Colors.pink,
-          fontSize: 16,
+          fontSize: 20,
         ),
       )
     );

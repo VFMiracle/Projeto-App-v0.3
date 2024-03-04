@@ -15,14 +15,17 @@ class DeletionDialogView extends StatelessWidget{
             _deletionFunction();
             Navigator.of(context).pop();
           },
-          child: const Text("Yes", /* style: Theme.of(context).textTheme.displaySmall */)
+          child: const Text("Yes")
         ),
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: const Text("No", /* style: Theme.of(context).textTheme.displaySmall */)
+          child: const Text("No")
         ),
       ],
-      title: Text(_title)
+      title: Text(
+        _title,
+        style: Theme.of(context).textTheme.headlineSmall!.copyWith(fontSize: 24),
+      )
     );
   }
 }
