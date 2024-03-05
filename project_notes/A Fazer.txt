@@ -20,6 +20,7 @@ THINGS TO DO:
 				- Continue checking where the Headline Large Style is used.
 			- Remove the unused and unnecessary stylings, i.e. commented out code and the colors for the Text Styles respectively for example.
 				*- Remove the Colors from the Main Theme's Text Styles.
-	*- Modify the structure of the Cronometer Panel's Cronometer List Entries.
+	- Modify the structure of the Cronometer Panel's Cronometer List Entries.
+		*- Determine if the Cronometer Entry needs another Style change when it is Paused but has some counterd Time.
 	- Add a Warning to the Cronometer Creator and Name Editing Dialogs, when it's attempted to submit them without a name.
 	- Add a Search Bar to the Cronometer Panel.

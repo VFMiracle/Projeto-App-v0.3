@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_time_counter/enums/command_history_type.dart';
 import 'package:projeto_time_counter/models/routes/command_history_panel_model.dart';
-import 'package:projeto_time_counter/utils/date_time_utils.dart';
 import 'package:projeto_time_counter/views/widgets/command_history_view.dart';
 import 'package:projeto_time_counter/views/widgets/reusable/date_selector.dart';
 import 'package:provider/provider.dart';
