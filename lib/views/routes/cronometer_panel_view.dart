@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_time_counter/models/routes/cronometer_panel_model.dart';
 import 'package:projeto_time_counter/views/widgets/cronometer_panel_entry_view.dart';
+import 'package:projeto_time_counter/views/widgets/reusable/exception_dialog_view.dart';
 import 'package:provider/provider.dart';
 
 //Represents the visual blueprint for the Cronometer Panel.
@@ -49,20 +50,25 @@ class _CronometerPanelViewState extends State<CronometerPanelView>{
   }
 
   AlertDialog _buildCronometerCreatorDialog(BuildContext context){
-    TextEditingController cronometerNameEdtngCtrlr = TextEditingController();
+    TextEditingController nameEditingController = TextEditingController();
     return AlertDialog(
       actions: [
         TextButton(
           onPressed: (){
-            if(cronometerNameEdtngCtrlr.text.isNotEmpty){
-              CronometerPanelModel().addCronometer(cronometerNameEdtngCtrlr.text);
+            if(nameEditingController.text.isNotEmpty){
+              CronometerPanelModel().addCronometer(nameEditingController.text);
               Navigator.of(context).pop();
+            }else{
+              showDialog(
+                builder: (BuildContext context) => const ExceptionDialogView("A Cronometer can't have an empty name. Please provide a valid string."),
+                context: context,
+              );
             }
           },
           child: const Text("Create"),
         ),
       ],
-      content: TextField(controller: cronometerNameEdtngCtrlr),
+      content: TextField(controller: nameEditingController),
       title: const Text("Cronometer Creator"),
     );
   }

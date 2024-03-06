@@ -1,26 +1,3 @@
 THINGS TO DO:
-	- Remake the App's Theme from the beggining.
-		- Remove all instances of the App's sub Themes, such as Time Editor Theme, and stylings for specific Widgets.
-		- Remake the App's Color Scheme.
-			- Analyse where each placeholder Color of the Scheme is being used and determine what actual Color should be used in that place.
-			- Make the Secondary and Error Colors be applied somewhere in the App so they can be seen in action.
-			- Determine what should be done about the On Secondary and On Error Colors of the Color Scheme, since they're required for it's constructor.
-		- Determine if and how the Main Theme should incorporate a Theme Widget for App Bar Actions throughout the App.
-		- Consider if the Date Selector on App Bars should be made into it's own custom Widget.
-		- Create a custom Widget for the Date Selector on App Bars.
-			- Write the SelDateNotifier class that should be extended by the Notifiers that are used on the Date Selector.
-				- Make the TimeRecordPanelSelDateNotifier extend the SelDateNotifier.
-		- Add a custom Style for the Command History Panel's Type Dropdown Section.
-		- Check if there are any other Widgets that require custom styling.
-			- Decide if the Command History List needs a custom style for it's entries.
-		- Remake the App's Text Theme.
-			- Determine how the text troughout the App should be styled considering the Text Theme and Widget specific stylings.
-				- Determine how the Time Editor View's Number Picker should be styled considering the default Styles it uses and the styling standards throughout the App.
-			- Determine which Styles are being used and which ones aren't. Removed the non-used ones and describe where the other ones are being used.
-				- Continue checking where the Headline Large Style is used.
-			- Remove the unused and unnecessary stylings, i.e. commented out code and the colors for the Text Styles respectively for example.
-				*- Remove the Colors from the Main Theme's Text Styles.
-	- Modify the structure of the Cronometer Panel's Cronometer List Entries.
-		*- Determine if the Cronometer Entry needs another Style change when it is Paused but has some counterd Time.
-	- Add a Warning to the Cronometer Creator and Name Editing Dialogs, when it's attempted to submit them without a name.
-	- Add a Search Bar to the Cronometer Panel.
+	*- Add a Search Bar to the Cronometer Panel.
+	- Decide if the App's Color Palette needs to be expanded with a Ternary Color.

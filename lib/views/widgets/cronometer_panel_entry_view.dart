@@ -48,9 +48,12 @@ class CronometerPanelEntryViewState extends State<CronometerPanelEntryView>{
         builder: (BuildContext context, CronometerIsRunningNotifier isRunningNotifier, Widget? child){
           TextStyle runningStyle = Theme.of(context).textTheme.labelLarge!.copyWith(
             color: Theme.of(context).colorScheme.onPrimary,
-            fontSize: 22
+            fontSize: 26
           );
           
+          //INFO: Since the Style of this content only changes when the Cronometer's Running State changes, it only needs an CronometerIsRunning Provider. If it would need
+          //  to change when the Value changes or when there's a Reset, then a Notifier should be created for this scenario, if it doesn't exist already, and provided
+          //  together with the other Notifier(s).
           List<Row> content = [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -86,91 +89,5 @@ class CronometerPanelEntryViewState extends State<CronometerPanelEntryView>{
         }
       ),
     );
-
-    /* return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            ChangeNotifierProvider.value(
-              value: widget._cronometerModel.nameNotifier,
-              child: Consumer<CronometerNameNotifier>(
-                builder: (BuildContext context, CronometerNameNotifier crnmtrNameNtfr, Widget? child) => Text(crnmtrNameNtfr.name),
-              ),
-            ),
-            ChangeNotifierProvider.value(
-              value: widget._cronometerModel.valueNotifier,
-              child: Consumer<CronometerValueNotifier>(
-                builder: (BuildContext context, CronometerValueNotifier crnmtrValueNtfr, Widget? child){
-                  return Text(
-                    TimeConversionService().fromIntToString(crnmtrValueNtfr.currentValue),
-                  );
-                }
-              ),
-            ),
-          ]
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ChangeNotifierProvider.value(
-              value: widget._cronometerModel.isRunningNotifier,
-              child: Consumer<CronometerIsRunningNotifier>(
-                builder: (BuildContext context, CronometerIsRunningNotifier crnmtrIsRnngNtfr, Widget? child){
-                  return Text(
-                    crnmtrIsRnngNtfr.isRunning ? "" : "Paused",
-                  );
-                }
-              ),
-            ),
-          ]
-        ),
-      ]
-    ); */
-
-    /* return Table(
-      children: [
-        TableRow(
-          children:[
-            ChangeNotifierProvider.value(
-              value: widget._crnmtrModel.nameNotifier,
-              child: Consumer<CronometerNameNotifier>(
-                builder: (BuildContext context, CronometerNameNotifier crnmtrNameNtfr, Widget? child) => Text(crnmtrNameNtfr.name),
-              ),
-            ),
-            ChangeNotifierProvider.value(
-              value: widget._crnmtrModel.valueNotifier,
-              child: Consumer<CronometerValueNotifier>(
-                builder: (BuildContext context, CronometerValueNotifier crnmtrValueNtfr, Widget? child){
-                  return Text(
-                    TimeConversionService().fromIntToString(crnmtrValueNtfr.currentValue),
-                    textAlign: TextAlign.end,
-                  );
-                }
-              ),
-            ),
-          ]
-        ),
-        TableRow(
-          children:[
-            ChangeNotifierProvider.value(
-              value: widget._crnmtrModel.isRunningNotifier,
-              child: Consumer<CronometerIsRunningNotifier>(
-                builder: (BuildContext context, CronometerIsRunningNotifier crnmtrIsRnngNtfr, Widget? child){
-                  return Text(
-                    crnmtrIsRnngNtfr.isRunning ? "" : "Paused",
-                    textAlign: TextAlign.center,
-                  );
-                }
-              ),
-            ),
-            const Text(
-              "",
-              textAlign: TextAlign.end,
-            )
-          ]
-        ),
-      ]
-    ); */
   }
 }

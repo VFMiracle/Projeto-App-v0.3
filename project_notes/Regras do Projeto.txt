@@ -1,5 +1,6 @@
 ABREVIATION
 	- Common code elements like variables, function, classes and etc, will never use abreviations, with the exception of the following terms when they aren't the only word used in a name:
+		- Configuration -> config
 		- Data Access Object -> dao
 		- Database -> db
 		- Data Transfer Object -> dto

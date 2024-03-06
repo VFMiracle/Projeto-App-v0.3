@@ -10,7 +10,7 @@ class TimeEditorModel{
   final TimeEditorConfigurationStrategy _configStrtg;
   late final Map<TimeUnit, TimeEditorTimeUnitNotifier> _timeUnitNtfrs = <TimeUnit, TimeEditorTimeUnitNotifier>{};
 
-  TimeEditorModel({required TimeEditorConfigurationStrategy configStrtg, Map<TimeUnit, int>? initialTimeUnitValues, this.textFieldText}) : _configStrtg = configStrtg{
+  TimeEditorModel({required TimeEditorConfigurationStrategy configStrategy, Map<TimeUnit, int>? initialTimeUnitValues, this.textFieldText}) : _configStrtg = configStrategy{
     _timeUnitNtfrs.addAll({
       TimeUnit.hour: TimeEditorTimeUnitNotifier(this),
       TimeUnit.minute: TimeEditorTimeUnitNotifier(this),

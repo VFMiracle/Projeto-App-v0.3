@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:projeto_time_counter/background/background_cronometer.dart';
 import 'package:projeto_time_counter/models/routes/cronometer_model.dart';
 import 'package:projeto_time_counter/services/time_conversion_service.dart';
+import 'package:projeto_time_counter/views/widgets/reusable/exception_dialog_view.dart';
 import 'package:provider/provider.dart';
 
 //DESC: Represents the visual blueprint for a Cronometer.
@@ -66,6 +67,7 @@ class _CronometerViewState extends State<CronometerView> with WidgetsBindingObse
                   return Text(
                     TimeConversionService().fromIntToString(crnmtrValueNtfr.currentValue),
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      color: Theme.of(context).colorScheme.onPrimary,
                       fontSize: 72
                     ),
                   );
@@ -146,20 +148,27 @@ class _CronometerViewState extends State<CronometerView> with WidgetsBindingObse
   }
 
   AlertDialog _buildNameEditingDialog(BuildContext context){
-    TextEditingController nameEdtngCtrlr = TextEditingController(text: widget._model.nameNotifier.name);
+    TextEditingController nameEditingController = TextEditingController(text: widget._model.nameNotifier.name);
     return AlertDialog(
       actions: [
         TextButton(
           onPressed: (){
-            widget._model.nameNotifier.name = nameEdtngCtrlr.text;
-            Navigator.of(context).pop();
+            if(nameEditingController.text.isNotEmpty){
+              widget._model.nameNotifier.name = nameEditingController.text;
+              Navigator.of(context).pop();
+            }else{
+              showDialog(
+                builder: (BuildContext context) => const ExceptionDialogView("A Cronometer can't have an empty name. Please provide a valid string."),
+                context: context,
+              );
+            }
           },
           child: const Text(
             "Confirmar",
           ),
         ),
       ],
-      content: TextField(controller: nameEdtngCtrlr),
+      content: TextField(controller: nameEditingController),
       title: const Text("Name Editor")
     );
   }
