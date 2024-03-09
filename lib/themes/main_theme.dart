@@ -10,9 +10,11 @@ abstract class MainTheme{
       colorScheme: const ColorScheme(
         brightness: Brightness.dark,
         primary: Color.fromARGB(255, 46, 156, 239), //INFO: Color Name: Celestial Blue
-        onPrimary: Color.fromARGB(255, 7, 236, 217), //INFO: Color Name: Turquoise
-        secondary: Color.fromARGB(255, 40, 76, 40), //INFO: Color Name: Cal Poly Green
-        onSecondary: Color.fromARGB(255, 50, 236, 65), //INFO: Color Name: SGBUS Green
+        onPrimary: Color.fromARGB(255, 0, 64, 167), //INFO: Color Name: Cobalt Blue
+        secondary: Color.fromARGB(255, 4, 76, 98), //INFO: Color Name: Midnight Green
+        onSecondary: Color.fromARGB(255, 55, 238, 251), //INFO: Color Name: Eletric Blue
+        tertiary: Color.fromARGB(255, 40, 76, 40), //INFO: Color Name: Cal Poly Green
+        onTertiary: Color.fromARGB(255, 50, 236, 65), //INFO: Color Name: SGBUS Green
         error: Color.fromARGB(255, 146, 25, 11), //INFO: Color Name: Penn Red
         onError: Color.fromARGB(255, 255, 54, 54), //INFO: Color Name: Vermilion
         surface: Color.fromARGB(255, 19, 33, 63), //INFO: Color Name: Oxford Blue
@@ -32,7 +34,7 @@ abstract class MainTheme{
         ),
         //INFO: This Style is used on the majority of simple text writtern throughout the App, including, but not limited to: Route warnings, Error Dialogs and Input labels.
         bodyMedium: TextStyle(
-          fontSize: 20,
+          fontSize: 18,
         ),
         //INFO: This Style is used for the Date Picker's Weekday description in it's Header.
         headlineLarge: TextStyle(
@@ -49,7 +51,7 @@ abstract class MainTheme{
         ),
         //INFO: This Style is used for the Titles of the Routes.
         titleLarge: TextStyle(
-          fontSize: 30,
+          fontSize: 28,
         ),
         //INFO: This Style is used for the entries of a Dropdown Button, regardless of whether they're selected or not, and height of a Text Form Field independently of it's
         //  text size.

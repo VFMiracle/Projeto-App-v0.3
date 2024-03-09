@@ -53,7 +53,10 @@ class _CronometerViewState extends State<CronometerView> with WidgetsBindingObse
           ),
         ],
         title: Consumer<CronometerNameNotifier>(
-          builder: (BuildContext context, CronometerNameNotifier crnmtrNameNtfr, Widget? child) => Text(crnmtrNameNtfr.name)
+          builder: (BuildContext context, CronometerNameNotifier crnmtrNameNtfr, Widget? child) => Text(
+            crnmtrNameNtfr.name,
+            style: Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 24),
+          )
         ),
       ),
       body: Column(

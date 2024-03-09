@@ -33,7 +33,7 @@ class CommandHistoryPanelViewState extends State<CommandHistoryPanelView>{
         title: Text(
           "Command History",
           style: Theme.of(context).textTheme.titleLarge!.copyWith(
-            fontSize: 28
+            fontSize: 26
           ),
         )
       ),
@@ -65,14 +65,6 @@ class CommandHistoryPanelViewState extends State<CommandHistoryPanelView>{
     );
   }
 
-  DatePickerDialog _buildCommandHistoryDatePickerDialog(BuildContext context){
-    return DatePickerDialog(
-      firstDate: DateTime(2023),
-      initialDate: CommandHistoryPanelModel().selDateNotifier.selDate,
-      lastDate: DateTime.now(),
-    );
-  }
-
   Widget _buildCommandHistoryList(BuildContext context){
     return ListView.separated(
       itemBuilder: (BuildContext context, int index){
@@ -93,7 +85,7 @@ class CommandHistoryPanelViewState extends State<CommandHistoryPanelView>{
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           const SizedBox(
-            width: 150,
+            width: 130,
             child: Text(
               "Displaying the History for: ",
             )

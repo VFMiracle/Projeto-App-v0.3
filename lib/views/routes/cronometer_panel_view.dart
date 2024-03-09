@@ -33,7 +33,7 @@ class _CronometerPanelViewState extends State<CronometerPanelView>{
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          /*_buildSearchBar(),*/
+          _buildSearchBar(),
           Expanded(
             child: Consumer<CronometerPanelModel>(
               builder: (BuildContext context, CronometerPanelModel cronometerPanelModel, Widget? child){
@@ -90,11 +90,10 @@ class _CronometerPanelViewState extends State<CronometerPanelView>{
     );
   }
 
-  /*Container _buildSearchBar(){
+  Container _buildSearchBar(){
     return Container(
-      decoration: const BoxDecoration(
-        boxShadow: [BoxShadow(blurRadius: 15, offset: Offset(0, -2.5))],
-        color: Color.fromARGB(255, 51, 157, 211),
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.secondary,
       ),
       padding: const EdgeInsets.symmetric(vertical: 7.5),
       child: Row(
@@ -105,9 +104,9 @@ class _CronometerPanelViewState extends State<CronometerPanelView>{
           ),
           Expanded(
             child: Container(
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(50.0)),
-                color: Color.fromARGB(255, 41, 102, 133),
+                color: Theme.of(context).colorScheme.onPrimary,
                 shape: BoxShape.rectangle,
               ),
               margin: const EdgeInsets.only(right: 10),
@@ -126,5 +125,5 @@ class _CronometerPanelViewState extends State<CronometerPanelView>{
         ]
       ),
     );
-  }*/
+  }
 }
