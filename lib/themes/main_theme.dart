@@ -53,8 +53,8 @@ abstract class MainTheme{
         titleLarge: TextStyle(
           fontSize: 28,
         ),
-        //INFO: This Style is used for the entries of a Dropdown Button, regardless of whether they're selected or not, and height of a Text Form Field independently of it's
-        //  text size.
+        //INFO: This Style is used for the entries of a Dropdown Button, regardless of whether they're selected or not, the height of a Text Form Field, independently of it's
+        //  text size, and the size of a Text Field's Hint Text.
         titleMedium: TextStyle(
           fontSize: 20,
         ),

@@ -105,20 +105,21 @@ class _CronometerPanelViewState extends State<CronometerPanelView>{
           Expanded(
             child: Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(50.0)),
-                color: Theme.of(context).colorScheme.onPrimary,
+                borderRadius: const BorderRadius.all(Radius.circular(50.0)),
+                color: Theme.of(context).colorScheme.tertiary,
                 shape: BoxShape.rectangle,
               ),
               margin: const EdgeInsets.only(right: 10),
               padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: const TextField(
+              child: TextField(
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   hintText: "Search for a Cronometer",
-                  hintStyle: TextStyle(color: Color.fromARGB(255, 30, 58, 71)),
+                  hintStyle: Theme.of(context).textTheme.titleMedium!.copyWith(
+                    color: Theme.of(context).colorScheme.onBackground
+                  ),
                 ),
-                onChanged: null,
-                /*style: TextStyle(color: Colors.white),*/
+                onChanged: CronometerPanelModel().updateSearchTerm,
               ),
             ),
           ),

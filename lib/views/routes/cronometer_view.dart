@@ -70,7 +70,7 @@ class _CronometerViewState extends State<CronometerView> with WidgetsBindingObse
                   return Text(
                     TimeConversionService().fromIntToString(crnmtrValueNtfr.currentValue),
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                      color: Theme.of(context).colorScheme.onPrimary,
+                      color: Theme.of(context).colorScheme.primary,
                       fontSize: 72
                     ),
                   );
@@ -103,7 +103,7 @@ class _CronometerViewState extends State<CronometerView> with WidgetsBindingObse
     Widget? resetButton;
     
     if(!isRunning){
-      selPauseBtnColor = Theme.of(context).colorScheme.onSecondary;
+      selPauseBtnColor = Theme.of(context).colorScheme.onTertiary;
       if(crnmtrValue > 0){
         pauseBtnText = "Continue";
         resetButton = TextButton(
