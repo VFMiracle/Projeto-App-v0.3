@@ -1,3 +1,5 @@
 THINGS TO DO:
 	- Add a Search Bar to the Cronometer Panel.
-		*- Customize the Style for the Search Bar.
+		- Customize the Style for the Search Bar.
+		- Allow it to filter the Cronometers.
+			*- Modify the Cronometer Panel View so it only displays the Searched Cronometers.
