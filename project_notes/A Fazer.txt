@@ -2,4 +2,6 @@ THINGS TO DO:
 	- Add a Search Bar to the Cronometer Panel.
 		- Customize the Style for the Search Bar.
 		- Allow it to filter the Cronometers.
-			*- Modify the Cronometer Panel View so it only displays the Searched Cronometers.
+			- Modify the Cronometer Panel View so it only displays the Searched Cronometers.
+		*- Figure out why the the Cronometer List isn't sorted when started up. It might be related to the fact that the list doesn't account for the new Cronometer when a new one is added.
+		- Find a way to clone the Cronometer List into the Searched Cronometer List when the Search Term is empty.

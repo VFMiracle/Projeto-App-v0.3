@@ -37,7 +37,7 @@ class _CronometerPanelViewState extends State<CronometerPanelView>{
           Expanded(
             child: Consumer<CronometerPanelModel>(
               builder: (BuildContext context, CronometerPanelModel cronometerPanelModel, Widget? child){
-                if(cronometerPanelModel.qtdCronometer > 0){
+                if(!cronometerPanelModel.isSearchedCronometerListEmpty){
                   return _buildCronometerList();
                 }
                 return _buildNoCronometerMessage();
@@ -75,16 +75,22 @@ class _CronometerPanelViewState extends State<CronometerPanelView>{
 
   ListView _buildCronometerList(){
     return ListView.separated(
-      itemBuilder: (BuildContext context, int index) => CronometerPanelEntryView(cronometerModel: CronometerPanelModel().getCronometerModelByIndex(index)),
-      itemCount: CronometerPanelModel().qtdCronometer,
+      itemBuilder: (BuildContext context, int index) => CronometerPanelEntryView(cronometerModel: CronometerPanelModel().getSearchedCronometerByIndex(index)),
+      itemCount: CronometerPanelModel().qtdSearchedCronometers,
       separatorBuilder: (BuildContext context, int index) => const Divider()
     );
   }
 
   Center _buildNoCronometerMessage(){
-    return const Center(
+    String message;
+    if(CronometerPanelModel().isCronometerListEmpty){
+      message = "There are no Cronometers to display.";
+    }else{
+      message = "No Cronometers Were Found in this Search.";
+    }
+    return Center(
       child: Text(
-        "There are no Cronometers to display.",
+        message,
         textAlign: TextAlign.center,
       ),
     );

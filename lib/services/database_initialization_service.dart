@@ -45,17 +45,10 @@ class DatabaseInitializationService{
       },
       onUpgrade: (Database database, int oldVersionNumber, int newVersionNumber) async{
         database.execute(
-          '''DELETE FROM command_history;'''
-        );
-        database.execute(
-          '''INSERT INTO command_history(id_used_command, id_command_type, nm_target, dt_history_creation, ds_update_info) VALUES
-            (4, 2, "Arstuncio", "2024-2-12 4:21:50", "0"), (4, 2, "Bruxeval", "2024-2-12 6:1:2", "0"), (4, 2, "Surgag", "2024-2-12 4:43:32", "100"),
-            (5, 2, "Bruxeval", "2024-2-12 6:22:2", "1260"), (4, 2, "Energumino", "2024-2-12 7:3:12", "0"), (5, 2, "Energumino", "2024-2-12 7:5:42", "150"),
-            (6, 2, "Energumino", "2024-2-12 7:7:1", "150"), (4, 2, "Pilvocu", "2024-2-12 5:8:58", "2000"), (5, 2, "Pilvocu", "2024-2-12 5:14:0", "2302"),
-            (7, 2, "Pilvocu", "2024-2-12 6:0:3", "2302");'''
+          '''DELETE FROM cronometer;'''
         );
       },
-      version: 21,
+      version: 24,
     );
     CronometerDAO.initialize(_database);
     TimeRecordDAO.initialize(_database);

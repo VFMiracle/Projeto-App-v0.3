@@ -6,18 +6,23 @@ import 'package:projeto_time_counter/models/routes/cronometer_model.dart';
 class CronometerPanelModel extends ChangeNotifier{
   //INFO: Since the Cronometer Panel Model is instanced at the start of the App and remains until it is closed, it is a better ideia to turn it into a static singleton.
   static final CronometerPanelModel _cronometerPanelModel = CronometerPanelModel._internal();
+
   String _searchTerm = '';
-  List<CronometerModel> _searchedCronometers = [];
+  final List<CronometerModel> _searchedCronometers = [];
   
-  List<CronometerModel> _cronometersModel = [];
+  List<CronometerModel> _cronometers = [];
   final CronometerPanelFacade _facade = CronometerPanelFacade();
 
-  int get qtdCronometer => _cronometersModel.length;
+  bool get isCronometerListEmpty => _cronometers.isEmpty;
+
+  bool get isSearchedCronometerListEmpty => _searchedCronometers.isEmpty;
+
+  int get qtdSearchedCronometers => _searchedCronometers.length;
 
   CronometerPanelModel._internal(){
     _facade.readAllDbEntries().then((List<CronometerModel> cronometers){
-      _cronometersModel = cronometers;
-      _searchCronometers();
+      _cronometers = cronometers;
+      searchCronometers();
     });
   }
 
@@ -27,40 +32,40 @@ class CronometerPanelModel extends ChangeNotifier{
   //  the time that the Creation Dialog is closed and a new Cronometer is added to the Panel, this might be the cause of them. Right now the code is left as is because
   //  the only solution would require the Cronometer Model id to be initialized after it has been created, which may cause some comprehension issues.
   void addCronometer(String cronometerName){
-    CronometerModel auxModel = CronometerModel.forInsertion(cronometerName);
-    _facade.insertDbEntry(auxModel).then((int crnmtrId){
-      _cronometersModel.add(CronometerModel(crnmtrId, cronometerName));
-      _searchCronometers();
+    CronometerModel newCronometer = CronometerModel.forInsertion(cronometerName);
+    _facade.insertDbEntry(newCronometer).then((int crnmtrId){
+      _cronometers.add(CronometerModel(crnmtrId, cronometerName));
+      searchCronometers();
     });
   }
 
   void deleteCronometer(CronometerModel cronometer){
-    _cronometersModel.remove(cronometer);
+    _cronometers.remove(cronometer);
     _facade.deleteDbEntry(cronometer);
-    _searchCronometers();
+    searchCronometers();
   }
 
-  CronometerModel getCronometerModelByIndex(int index){
-    return _cronometersModel[index];
+  CronometerModel getSearchedCronometerByIndex(int index){
+    return _searchedCronometers[index];
   }
 
-  void _searchCronometers(){
+  void searchCronometers(){
     _searchedCronometers.clear();
-    for(CronometerModel cronometer in _cronometersModel){
+    for(CronometerModel cronometer in _cronometers){
       if(cronometer.nameNotifier.name.toLowerCase().contains(_searchTerm.toLowerCase())){
         _searchedCronometers.add(cronometer);
       }
     }
-    sortCronometers();
-  }
-
-  void sortCronometers(){
-    _cronometersModel.sort((a, b) => a.nameNotifier.name.toLowerCase().compareTo(b.nameNotifier.name.toLowerCase()));
-    notifyListeners();
+    _sortCronometers();
   }
 
   void updateSearchTerm(String newSearchTerm){
     _searchTerm = newSearchTerm;
-    _searchCronometers();
+    searchCronometers();
+  }
+
+  void _sortCronometers(){
+    _cronometers.sort((a, b) => a.nameNotifier.name.toLowerCase().compareTo(b.nameNotifier.name.toLowerCase()));
+    notifyListeners();
   }
 }

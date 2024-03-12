@@ -77,7 +77,7 @@ class CronometerNameNotifier extends ChangeNotifier{
   set name(String newName){
     String oldName = _name;
     _name = newName;
-    CronometerPanelModel().sortCronometers();
+    CronometerPanelModel().searchCronometers();
     CronometerFacade().updateDbEntry(_parentModel, oldName);
     notifyListeners();
   }
