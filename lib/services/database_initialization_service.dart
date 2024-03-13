@@ -48,7 +48,7 @@ class DatabaseInitializationService{
           '''DELETE FROM cronometer;'''
         );
       },
-      version: 24,
+      version: 26,
     );
     CronometerDAO.initialize(_database);
     TimeRecordDAO.initialize(_database);

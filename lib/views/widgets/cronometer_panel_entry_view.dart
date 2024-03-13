@@ -22,8 +22,15 @@ class CronometerPanelEntryViewState extends State<CronometerPanelEntryView>{
       onLongPress: () => showDialog(
         context: context,
         builder: (BuildContext context) => DeletionDialogView(
-          "Are you sure you want to delete the ${widget._cronometerModel.nameNotifier.name} Cronometer?",
-          widget._cronometerModel.delete
+          "Are you sure you want to delete this Cronometer?",
+          widget._cronometerModel.delete,
+          content: Text(
+            widget._cronometerModel.nameNotifier.name,
+            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+              color: Theme.of(context).colorScheme.onSecondary,
+              fontSize: 28,
+            )
+          ),
         ),
       ),
       onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){

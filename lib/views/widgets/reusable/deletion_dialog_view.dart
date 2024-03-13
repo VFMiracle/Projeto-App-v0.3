@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 class DeletionDialogView extends StatelessWidget{
   final String _title;
   final VoidCallback _deletionFunction;
+  final Widget? _content;
 
-  const DeletionDialogView(String title, VoidCallback deletionFunction, {Key? key}): _title = title, _deletionFunction = deletionFunction, super(key: key);
+  const DeletionDialogView(String title, VoidCallback deletionFunction, {Widget? content, Key? key}): _title = title, _deletionFunction = deletionFunction,
+    _content = content, super(key: key);
 
   @override
   AlertDialog build(BuildContext context){
@@ -22,6 +24,7 @@ class DeletionDialogView extends StatelessWidget{
           child: const Text("No")
         ),
       ],
+      content: _content,
       title: Text(
         _title,
         style: Theme.of(context).textTheme.headlineSmall!.copyWith(fontSize: 24),

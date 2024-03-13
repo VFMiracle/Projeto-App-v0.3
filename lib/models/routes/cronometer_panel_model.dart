@@ -65,7 +65,7 @@ class CronometerPanelModel extends ChangeNotifier{
   }
 
   void _sortCronometers(){
-    _cronometers.sort((a, b) => a.nameNotifier.name.toLowerCase().compareTo(b.nameNotifier.name.toLowerCase()));
+    _searchedCronometers.sort((a, b) => a.nameNotifier.name.toLowerCase().compareTo(b.nameNotifier.name.toLowerCase()));
     notifyListeners();
   }
 }
