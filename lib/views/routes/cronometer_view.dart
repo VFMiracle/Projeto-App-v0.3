@@ -157,8 +157,15 @@ class _CronometerViewState extends State<CronometerView> with WidgetsBindingObse
         TextButton(
           onPressed: (){
             if(nameEditingController.text.isNotEmpty){
-              widget._model.nameNotifier.name = nameEditingController.text;
-              Navigator.of(context).pop();
+              if(widget._model.nameNotifier.changeName(nameEditingController.text) == false){
+                showDialog(
+                  builder: (BuildContext context) => const ExceptionDialogView("This Cronometer can't have that name, since there's already another Cronometer with it."
+                    " Please write a new one. (Case differences are ignored)"),
+                  context: context,
+                );
+              }else{
+                Navigator.of(context).pop();
+              }
             }else{
               showDialog(
                 builder: (BuildContext context) => const ExceptionDialogView("A Cronometer can't have an empty name. Please provide a valid string."),

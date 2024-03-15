@@ -74,15 +74,20 @@ class CronometerNameNotifier extends ChangeNotifier{
   final CronometerModel _parentModel;
 
   String get name => _name;
-  set name(String newName){
-    String oldName = _name;
-    _name = newName;
-    CronometerPanelModel().searchCronometers();
-    CronometerFacade().updateDbEntry(_parentModel, oldName);
-    notifyListeners();
-  }
 
   CronometerNameNotifier(this._parentModel, this._name);
+
+  bool changeName(String newName){
+    if(newName == _name || CronometerPanelModel().verifyNameUsed(newName) == false){
+      String oldName = _name;
+      _name = newName;
+      CronometerPanelModel().searchCronometers();
+      CronometerFacade().updateDbEntry(_parentModel, oldName);
+      notifyListeners();
+      return true;
+    }
+    return false;
+  }
 }
 
 class CronometerValueNotifier extends ChangeNotifier{

@@ -56,8 +56,15 @@ class _CronometerPanelViewState extends State<CronometerPanelView>{
         TextButton(
           onPressed: (){
             if(nameEditingController.text.isNotEmpty){
-              CronometerPanelModel().addCronometer(nameEditingController.text);
-              Navigator.of(context).pop();
+              if(CronometerPanelModel().addCronometer(nameEditingController.text) == false){
+                showDialog(
+                  builder: (BuildContext context) => const ExceptionDialogView("There's already a Cronometer with that name. Select a new one. (Case differences "
+                    "are ignored)"),
+                  context: context,
+                );
+              }else{
+                Navigator.of(context).pop();
+              }
             }else{
               showDialog(
                 builder: (BuildContext context) => const ExceptionDialogView("A Cronometer can't have an empty name. Please provide a valid string."),

@@ -21,7 +21,7 @@ class DatabaseInitializationService{
         database.execute(
           '''CREATE TABLE cronometer(
             id_cronometer INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-            nm_cronometer TEXT NOT NULL
+            nm_cronometer TEXT NOT NULL UNIQUE
           );'''
         );
         database.execute(
@@ -45,10 +45,16 @@ class DatabaseInitializationService{
       },
       onUpgrade: (Database database, int oldVersionNumber, int newVersionNumber) async{
         database.execute(
-          '''DELETE FROM cronometer;'''
+          '''DROP TABLE cronometer;'''
+        );
+        database.execute(
+          '''CREATE TABLE cronometer(
+            id_cronometer INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+            nm_cronometer TEXT NOT NULL UNIQUE
+          );'''
         );
       },
-      version: 26,
+      version: 28,
     );
     CronometerDAO.initialize(_database);
     TimeRecordDAO.initialize(_database);

@@ -1,4 +1,3 @@
 THINGS TO DO:
-	- Prevent new Cronometers from having the same name as a previous Cronometer.
-		*- Modify the Cronometer Database Table so the Task Column is made Unique.
-	- Prevent Cronometers from having their name changed when they have counted Time.
+	*- Prevent Cronometers from having their name changed when they have counted Time.
+	- Make the Text Fields for Cronometer Name have first letter capitalization enabled by default.

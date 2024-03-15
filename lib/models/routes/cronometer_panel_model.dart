@@ -31,12 +31,17 @@ class CronometerPanelModel extends ChangeNotifier{
   //OBS: This function waits for the Cronometer Record to be sent to the Database before creating a new Cronometer Model in the App. If delays begin to happend between
   //  the time that the Creation Dialog is closed and a new Cronometer is added to the Panel, this might be the cause of them. Right now the code is left as is because
   //  the only solution would require the Cronometer Model id to be initialized after it has been created, which may cause some comprehension issues.
-  void addCronometer(String cronometerName){
-    CronometerModel newCronometer = CronometerModel.forInsertion(cronometerName);
-    _facade.insertDbEntry(newCronometer).then((int crnmtrId){
-      _cronometers.add(CronometerModel(crnmtrId, cronometerName));
-      searchCronometers();
-    });
+  bool addCronometer(String cronometerName){
+    if(verifyNameUsed(cronometerName) == false){
+      CronometerModel newCronometer = CronometerModel.forInsertion(cronometerName);
+      _facade.insertDbEntry(newCronometer).then((int crnmtrId){
+        _cronometers.add(CronometerModel(crnmtrId, cronometerName));
+        searchCronometers();
+      });
+      return true;
+    }else{
+      return false;
+    }
   }
 
   void deleteCronometer(CronometerModel cronometer){
@@ -62,6 +67,15 @@ class CronometerPanelModel extends ChangeNotifier{
   void updateSearchTerm(String newSearchTerm){
     _searchTerm = newSearchTerm;
     searchCronometers();
+  }
+
+  bool verifyNameUsed(String cronometerName){
+    for(CronometerModel cronometer in _cronometers){
+      if(cronometer.nameNotifier.name.toLowerCase() == cronometerName.toLowerCase()){
+        return true;
+      }
+    }
+    return false;
   }
 
   void _sortCronometers(){
