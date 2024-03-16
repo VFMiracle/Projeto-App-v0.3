@@ -1,3 +1,2 @@
 THINGS TO DO:
-	*- Prevent Cronometers from having their name changed when they have counted Time.
-	- Make the Text Fields for Cronometer Name have first letter capitalization enabled by default.
+	*- Perform field testing (use the App on the day to day).

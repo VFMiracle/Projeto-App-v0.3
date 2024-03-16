@@ -32,63 +32,68 @@ class MainMenu extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text("Time Counter"),
-          //OBS: This property is an override of the configuration on the App's Main Theme.
-          titleSpacing: 20
-        ),
-        body: ListView.separated(
-          itemBuilder: (BuildContext context, int index){
-            switch(index){
-              case 0:{
+      home: Builder(
+        builder: (BuildContext context) => Scaffold(
+          appBar: AppBar(
+            systemOverlayStyle: SystemUiOverlayStyle(
+              systemNavigationBarColor: Theme.of(context).colorScheme.surface,
+            ),
+            title: const Text("Time Counter"),
+            //OBS: This property is an override of the configuration on the App's Main Theme.
+            titleSpacing: 20
+          ),
+          body: ListView.separated(
+            itemBuilder: (BuildContext context, int index){
+              switch(index){
+                case 0:{
+                  return TextButton(
+                    onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){
+                      return ChangeNotifierProvider.value(
+                        value: CronometerPanelModel(),
+                        child: const CronometerPanelView(),
+                      );
+                    })),
+                    child: const Text("Cronometer List"),
+                  );
+                }
+                case 1:{
+                  return TextButton(
+                    onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){
+                      //INFO: The Time Record Panel Model should never be initialized at this point in the code execution.
+                      return MultiProvider(
+                        providers: [
+                          ChangeNotifierProvider.value(value: TimeRecordPanelModel().timeRecordsNotifier),
+                          ChangeNotifierProvider.value(value: TimeRecordPanelModel().selDateNotifier),
+                        ],
+                        child: const TimeRecordPanelView(),
+                      );
+                    })),
+                    child: const Text("Time Records"),
+                  );
+                }
+                case 2:{
                 return TextButton(
                   onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){
-                    return ChangeNotifierProvider.value(
-                      value: CronometerPanelModel(),
-                      child: const CronometerPanelView(),
-                    );
-                  })),
-                  child: const Text("Cronometer List"),
-                );
-              }
-              case 1:{
-                return TextButton(
-                  onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){
-                    //INFO: The Time Record Panel Model should never be initialized at this point in the code execution.
                     return MultiProvider(
                       providers: [
-                        ChangeNotifierProvider.value(value: TimeRecordPanelModel().timeRecordsNotifier),
-                        ChangeNotifierProvider.value(value: TimeRecordPanelModel().selDateNotifier),
+                        ChangeNotifierProvider.value(value: CommandHistoryPanelModel().historiesNotifier),
+                        ChangeNotifierProvider.value(value: CommandHistoryPanelModel().selDateNotifier),
                       ],
-                      child: const TimeRecordPanelView(),
+                      child: const CommandHistoryPanelView(),
                     );
                   })),
-                  child: const Text("Time Records"),
-                );
+                  child: const Text("Command History Panel"),
+                ); 
+                }
+                default:{
+                  return null;
+                }
               }
-              case 2:{
-               return TextButton(
-                onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){
-                  return MultiProvider(
-                    providers: [
-                      ChangeNotifierProvider.value(value: CommandHistoryPanelModel().historiesNotifier),
-                      ChangeNotifierProvider.value(value: CommandHistoryPanelModel().selDateNotifier),
-                    ],
-                    child: const CommandHistoryPanelView(),
-                  );
-                })),
-                child: const Text("Command History Panel"),
-               ); 
-              }
-              default:{
-                return null;
-              }
-            }
-          },
-          itemCount: 3,
-          padding: EdgeInsets.zero,
-          separatorBuilder: (BuildContext context, int index) => const Divider(),
+            },
+            itemCount: 3,
+            padding: EdgeInsets.zero,
+            separatorBuilder: (BuildContext context, int index) => const Divider(),
+          ),
         ),
       ),
       theme: MainTheme.build(),

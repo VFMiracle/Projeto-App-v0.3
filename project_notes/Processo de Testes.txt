@@ -1,0 +1,59 @@
+TESTS FOR THE APP
+	- This list attempts to describe everything that needs to be tested on the Time Counter App. There may still be some operations missing, but this list is expected to cover the majority of cases. In order for any test described here to be seen to it's completion, it's consequences need to be analysed accross all Routes of the App.
+
+- Cronometer Panel
+	1- Create a Cronometer.
+	2- Have a Cronometer count some Time.
+	3- Pause and continue a Cronometer.
+	4- Pause, Reset and Save the Time of a Cronometer.
+	5- Pause, Reset and Delete the Time of a Cronometer.
+	6- Start a Cronometer and close the Application. Then, open it again
+	7- Start and Pause a Cronometer, then close the Application. Afterwards, open it again.
+	8- Start, Pause and do a Reset and Save on a Cronometer, then close the Application. Afterwards, open it again.
+	9- Start, Pause and do a Reset and Delete on a Cronometer, then close the Application. Afterwards, open it again.
+	10- Rename a Cronometer, perform the previous operations again.
+	11- Attempt to rename a Cronometer while it's counting time or has counted some. (This should fail and show an Error Dialog).
+	12- Create atleast 5 Cronometers.
+	13- Do a Search that should return SOME of them.
+	14- Do a Search that should return NONE of them.
+	15- Perform Tests 13 and 14 while one or more of the Cronometers are COUNTING.
+	16- Perform Tests 13 and 14 while one or more of the Cronometers are PAUSED.
+	17- Perform Tests 13 and 14 while one or more of the Cronometers are COUNTING and one or more of them are PAUSED.
+	18- Delete a Cronometer.
+	19- Delete a Cronometer while it is Couting Time.
+	20- Delete a Cronometer while it is Paused with Time on it.
+	21- Create a new Cronometer with the same name as the one from Test 19 and reset the App.
+	22- Create a new Cronometer with the same name as the one from Test 20 and reset the App.
+	23- Rename a Cronometer to the same name as the one from Test 19 and reset the App.
+	24- Rename a Cronometer to the same name as the one from Test 20 and reset the App.
+	25- Change the Device's Date and perform the previous Tests.
+	26- Create a Cronometer, count some Time on it then Delete it. Change the Device's Date, then create a new Cronometer with the same name as the deleted one and Reset the App.
+	27- Create a Cronometer, count some Time on it, pause it, then Delete it. Change the Device's Date, then create a new Cronometer with the same name as the deleted one and Reset the App.
+	28- Create a Cronometer, count some Time on it then Delete it. Change the Device's Date, then rename an existing Cronometer to the same name as the deleted one and Reset the App.
+	29- Create a Cronometer, count some Time on it, pause it, then Delete it. Change the Device's Date, then rename an existing Cronometer to the same name as the deleted one and Reset the App.
+
+- Time Record Panel
+	1- Create a Time Record.
+	2- Change a created Time Record's value.
+	3- Change a created Time Record's name.
+	4- Delete a created Time Record.
+	5- Perform operations 1 through 4 on a Time Record created automatically.
+	6- Change the selected Date.
+	7- Perform operations 1 through 4 on a Date different from the default one.
+	8- Change the Device's Date, create a Time Record automatically, then perfom operations 1 through 4 on that Time Record.
+
+- Command History Panel
+	1- Change the selected Command History Type.
+	2- Delete a Command History.
+	3- Delete a Command History and change from and to it Type.
+	4- Change the selected Date.
+	5- Change the selected Command History Type at a different Date from the default one.
+	6- Change the selected Date at a different Command History Type from the default one.
+	7- Delete a Command History.
+	8- Delete a Command History then change the selected Type.
+	9- Delete a Command History then change the selected Date.
+	10- Delete a Command History then change the selected Type and Date.
+	11- Delete a Command History from a different Type than the default one.
+	12- Delete a Command History from a different Type than the default one then change the selected Type.
+	13- Delete a Command History from a different Type than the default one then change the selected Date.
+	14- Delete a Command History from a different Type than the default one then change the selected Type and Date.

@@ -4,7 +4,6 @@ import 'package:projeto_time_counter/exception/time_record_panel/task_already_re
 import 'package:projeto_time_counter/models/widgets/time_record_model.dart';
 import 'package:projeto_time_counter/models/routes/time_record_panel_model.dart';
 import 'package:projeto_time_counter/services/builder/time_editor_builder.dart';
-import 'package:projeto_time_counter/utils/date_time_utils.dart';
 import 'package:projeto_time_counter/views/widgets/reusable/date_selector.dart';
 import 'package:projeto_time_counter/views/widgets/reusable/exception_dialog_view.dart';
 import 'package:projeto_time_counter/views/widgets/time_record_view.dart';
@@ -70,28 +69,6 @@ class _TimeRecordPanelViewState extends State<TimeRecordPanelView>{
     );
   }
 
-  TextButton _buildDateSelector(BuildContext context, TimeRecordPanelSelDateNotifier selDateNotifier, Widget? child){
-    return TextButton(
-      onPressed: () => showDialog<DateTime>(
-        context: context,
-        builder: _buildTimeRecordDatePickerDialog,
-      ).then((DateTime? newDate){
-        if(newDate != null){
-          selDateNotifier.selDate = newDate;
-        }
-      }),
-      style: ButtonStyle(
-        padding: MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.only(right: 10)),
-      ),
-      child: Text(
-        DateTimeUtils().mapDateToDisplayString(selDateNotifier.selDate),
-        style: Theme.of(context).textTheme.labelLarge!.copyWith(
-          fontSize: 18
-        ),
-      ),
-    );
-  }
-
   Center _buildNoTimeRecordsMessage(BuildContext context){
     return const Center(
       child: Text(
@@ -107,14 +84,6 @@ class _TimeRecordPanelViewState extends State<TimeRecordPanelView>{
       textFieldLabelName: "Task Name",
       allowEmptyTextField: false,
       allowTimeZero: false,
-    );
-  }
-
-  DatePickerDialog _buildTimeRecordDatePickerDialog(BuildContext context){
-    return DatePickerDialog(
-      firstDate: DateTime(2023),
-      initialDate: TimeRecordPanelModel().selDateNotifier.selDate,
-      lastDate: DateTime.now(),
     );
   }
 

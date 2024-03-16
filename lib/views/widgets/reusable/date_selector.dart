@@ -44,6 +44,7 @@ class _DateSelectorState extends State<DateSelector>{
     return DatePickerDialog(
       firstDate: DateTime(2023),
       initialDate: widget._selDateNotifier.selDate,
+      initialEntryMode: DatePickerEntryMode.calendarOnly,
       lastDate: DateTime.now(),
     );
   }

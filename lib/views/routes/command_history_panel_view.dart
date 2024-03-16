@@ -85,9 +85,9 @@ class CommandHistoryPanelViewState extends State<CommandHistoryPanelView>{
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           const SizedBox(
-            width: 130,
+            width: 125,
             child: Text(
-              "Displaying the History for: ",
+              "Selected History Type: ",
             )
           ),
           //INFO: Flutter recommendes using the Dropdown Menu Widget as a subtitute for Dropdown Button on Material 3 Projects. For one reason or another, this Project used
