@@ -75,7 +75,10 @@ class _CronometerPanelViewState extends State<CronometerPanelView>{
           child: const Text("Create"),
         ),
       ],
-      content: TextField(controller: nameEditingController),
+      content: TextField(
+        controller: nameEditingController,
+        textCapitalization: TextCapitalization.words,
+      ),
       title: const Text("Cronometer Creator"),
     );
   }

@@ -46,10 +46,21 @@ class _CronometerViewState extends State<CronometerView> with WidgetsBindingObse
         actions: [
           IconButton(
             icon: const Icon(Icons.create_sharp),
-            onPressed: () => showDialog(
-              context: context,
-              builder: _buildNameEditingDialog,
-            ),
+            onPressed: (){
+              if(!widget._model.isRunningNotifier.isRunning && widget._model.valueNotifier.currentValue == 0){
+                showDialog(
+                  context: context,
+                  builder: _buildNameEditingDialog,
+                );
+              }else{
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text("You can't change the name of a Cronometer that's counting Time, or has a value greater than 0."),
+                    showCloseIcon: true,
+                  )
+                );
+              }
+            }
           ),
         ],
         title: Consumer<CronometerNameNotifier>(
@@ -178,7 +189,10 @@ class _CronometerViewState extends State<CronometerView> with WidgetsBindingObse
           ),
         ),
       ],
-      content: TextField(controller: nameEditingController),
+      content: TextField(
+        controller: nameEditingController,
+        textCapitalization: TextCapitalization.words,
+      ),
       title: const Text("Name Editor")
     );
   }

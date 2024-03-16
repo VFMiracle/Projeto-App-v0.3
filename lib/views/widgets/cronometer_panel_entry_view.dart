@@ -54,7 +54,7 @@ class CronometerPanelEntryViewState extends State<CronometerPanelEntryView>{
       child: Consumer<CronometerIsRunningNotifier>(
         builder: (BuildContext context, CronometerIsRunningNotifier isRunningNotifier, Widget? child){
           TextStyle runningStyle = Theme.of(context).textTheme.labelLarge!.copyWith(
-            color: Theme.of(context).colorScheme.onPrimary,
+            color: Theme.of(context).colorScheme.onSecondary,
             fontSize: 26
           );
           
