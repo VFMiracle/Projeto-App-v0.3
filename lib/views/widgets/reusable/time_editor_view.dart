@@ -67,7 +67,10 @@ class TimeEditorViewState extends State<TimeEditorView>{
         children: [
           Text("${widget._textFieldLabelName}: "),
           Expanded(
-            child: TextField(controller: textEdtngCtrlr,),
+            child: TextField(
+              controller: textEdtngCtrlr,
+              textCapitalization: TextCapitalization.words,
+            ),
           ),
         ]
       ));
