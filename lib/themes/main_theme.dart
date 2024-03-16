@@ -30,7 +30,7 @@ abstract class MainTheme{
       textTheme: const TextTheme(
         //INFO: This Style is used for the text on Text Fields and Text Form Fields.
         bodyLarge: TextStyle(
-          fontSize: 24,
+          fontSize: 20,
         ),
         //INFO: This Style is used on the majority of simple text writtern throughout the App, including, but not limited to: Route warnings, Error Dialogs and Input labels.
         bodyMedium: TextStyle(

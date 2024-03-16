@@ -65,10 +65,18 @@ class TimeEditorViewState extends State<TimeEditorView>{
       textEdtngCtrlr.addListener(() => widget._model.textFieldText = textEdtngCtrlr.text);
       contentWidgets.insert(0, Row(
         children: [
-          Text("${widget._textFieldLabelName}: "),
+          Text(
+            "${widget._textFieldLabelName}: ",
+            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+              fontSize: 16
+            )
+          ),
           Expanded(
             child: TextField(
               controller: textEdtngCtrlr,
+              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                fontSize: 16
+              ),
               textCapitalization: TextCapitalization.words,
             ),
           ),
@@ -99,6 +107,7 @@ class TimeEditorViewState extends State<TimeEditorView>{
               color: Theme.of(context).colorScheme.primary,
             ),
             textStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(
+              color: Theme.of(context).colorScheme.onSecondary,
               fontWeight: FontWeight.w300,
             ),
             value: widget._model.getTimeUnitNotifier(timeUnit).value,
